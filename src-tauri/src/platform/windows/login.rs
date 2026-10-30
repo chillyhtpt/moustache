@@ -21,9 +21,22 @@ const LAUNCHED_AT_LOGIN_ENV: &str = "SHRIMP_LAUNCHED_AT_LOGIN";
 /// The value's name: the product name, so the dev build has its own.
 fn value_name() -> &'static str {
     if cfg!(debug_assertions) {
-        "Shrimp Dev"
+        "Moustache Dev"
     } else {
-        "Shrimp"
+        "Moustache"
+    }
+}
+
+/// Cleans up any legacy Shrimp startup entry in the registry.
+fn clean_legacy_shrimp_entry(key: &str) {
+    for legacy_name in ["Shrimp", "Shrimp Dev"] {
+        unsafe {
+            let _ = RegDeleteKeyValueW(
+                HKEY_CURRENT_USER,
+                &HSTRING::from(key),
+                &HSTRING::from(legacy_name),
+            );
+        }
     }
 }
 
@@ -106,6 +119,7 @@ fn open_run() -> Result<HKEY, PlatformError> {
 }
 
 fn delete(key: &str) -> Result<(), PlatformError> {
+    clean_legacy_shrimp_entry(key);
     let status = unsafe {
         RegDeleteKeyValueW(
             HKEY_CURRENT_USER,
@@ -134,6 +148,8 @@ impl LoginItem for WinLoginItem {
         if !on {
             return delete(RUN);
         }
+        clean_legacy_shrimp_entry(RUN);
+        clean_legacy_shrimp_entry(APPROVED);
         let command =
             command().ok_or_else(|| PlatformError::Failed("no executable path".into()))?;
         let data: Vec<u8> = command

@@ -23,7 +23,7 @@ function backend(health: AppHealth = HEALTHY, extra: Record<string, () => unknow
   let settings: Settings = SETTINGS;
   return mockBackend({
     app_info: () => ({
-      name: "Shrimp",
+      name: "Moustache",
       version: "0.1.0",
       os: "macos",
       arch: "aarch64",
@@ -114,7 +114,7 @@ describe("App navigation", () => {
     backend({ crash: { details: null }, data: null, storage: null, misplaced: false });
     render(<App />);
     expect(
-      await screen.findByRole("heading", { name: "Shrimp quit unexpectedly" }),
+      await screen.findByRole("heading", { name: "Moustache quit unexpectedly" }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("navigation", { name: "Main" })).not.toBeInTheDocument();
   });
@@ -189,7 +189,7 @@ describe("Settings pages", () => {
     const { argsOf } = backend();
     render(<SettingsPage />);
     const select = await screen.findByRole("combobox", {
-      name: "Language of Shrimp's windows, menus and notices",
+      name: "Language of Moustache's windows, menus and notices",
     });
     expect(
       within(select)
@@ -206,14 +206,14 @@ describe("Settings pages", () => {
 describe("ErrorScreen", () => {
   const misplaced: AppHealth = { ...HEALTHY, misplaced: true, crash: { details: null } };
 
-  it("asks to move Shrimp to Applications before anything else", async () => {
+  it("asks to move Moustache to Applications before anything else", async () => {
     backend(misplaced);
     render(<App />);
     expect(
-      await screen.findByRole("heading", { name: "Move Shrimp to the Applications folder" }),
+      await screen.findByRole("heading", { name: "Move Moustache to the Applications folder" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Shrimp needs to be in the Applications folder to run and update."),
+      screen.getByText("Moustache needs to be in the Applications folder to run and update."),
     ).toBeInTheDocument();
     expect(screen.queryByRole("navigation", { name: "Main" })).not.toBeInTheDocument();
   });
@@ -235,17 +235,17 @@ describe("ErrorScreen", () => {
       move_to_applications: () => {
         throw {
           code: "platform",
-          message: "Shrimp couldn't be copied to /Applications: Permission denied",
+          message: "Moustache couldn't be copied to /Applications: Permission denied",
         };
       },
     });
     render(<ErrorScreen health={misplaced} />);
     fireEvent.click(screen.getByRole("button", { name: "Move to Applications" }));
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Shrimp couldn't be copied to /Applications: Permission denied",
+      "Moustache couldn't be copied to /Applications: Permission denied",
     );
     expect(
-      screen.getByRole("heading", { name: "Move Shrimp to the Applications folder" }),
+      screen.getByRole("heading", { name: "Move Moustache to the Applications folder" }),
     ).toBeInTheDocument();
   });
 

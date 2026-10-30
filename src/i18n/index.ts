@@ -46,7 +46,7 @@ export function catalogFor(language: UiLanguage, windows = IS_WINDOWS): Catalog 
   return windows ? overlay(CATALOGS[language], WINDOWS_TEXT[language]) : CATALOGS[language];
 }
 
-/** The first of `preferred` (BCP 47 tags) Shrimp is translated into, else English. */
+/** The first of `preferred` (BCP 47 tags) Moustache is translated into, else English. */
 export function resolveLanguage(preferred: readonly string[]): UiLanguage {
   for (const tag of preferred) {
     const base = tag.toLowerCase().split("-")[0];

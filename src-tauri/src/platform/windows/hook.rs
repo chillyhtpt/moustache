@@ -37,7 +37,7 @@ use windows::Win32::UI::WindowsAndMessaging::{
 use windows::core::w;
 
 use super::hotkeys::RawInput;
-use super::input::{SHRIMP_TAG, send_menu_mask};
+use super::input::{MOUSTACHE_TAG, SHRIMP_TAG, send_menu_mask};
 use super::keycode;
 use crate::hotkeys::{MouseButton, MouseEvent};
 use crate::platform::PlatformError;
@@ -433,7 +433,7 @@ unsafe extern "system" fn keyboard_proc(code: i32, wparam: WPARAM, lparam: LPARA
     }
     // SAFETY: for WH_KEYBOARD_LL, lparam points to a KBDLLHOOKSTRUCT.
     let event = unsafe { &*(lparam.0 as *const KBDLLHOOKSTRUCT) };
-    if event.dwExtraInfo == SHRIMP_TAG {
+    if event.dwExtraInfo == MOUSTACHE_TAG || event.dwExtraInfo == SHRIMP_TAG {
         return unsafe { CallNextHookEx(None, code, wparam, lparam) };
     }
     let down = matches!(wparam.0 as u32, WM_KEYDOWN | WM_SYSKEYDOWN);
@@ -521,7 +521,7 @@ unsafe extern "system" fn mouse_proc(code: i32, wparam: WPARAM, lparam: LPARAM) 
     }
     // SAFETY: for WH_MOUSE_LL, lparam points to an MSLLHOOKSTRUCT.
     let event = unsafe { &*(lparam.0 as *const MSLLHOOKSTRUCT) };
-    if event.dwExtraInfo == SHRIMP_TAG {
+    if event.dwExtraInfo == MOUSTACHE_TAG || event.dwExtraInfo == SHRIMP_TAG {
         return unsafe { CallNextHookEx(None, code, wparam, lparam) };
     }
     let (swallow, mask) = with_state(|state| on_mouse(state, message, event.mouseData));

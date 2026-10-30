@@ -300,7 +300,7 @@ export function UpgradeManagerPage() {
             <div>
               <div className="flex items-center gap-2.5">
                 <h2 className="text-xl font-bold text-foreground">
-                  Shrimp v{selectedVersion.version}
+                  Moustache v{selectedVersion.version}
                 </h2>
                 {selectedVersion.isCurrent && (
                   <span className="rounded-full bg-brand/15 text-brand px-2 py-0.5 text-xs font-semibold">

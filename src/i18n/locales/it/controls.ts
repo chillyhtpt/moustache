@@ -64,7 +64,7 @@ export const controls: ControlsCatalog = {
     tips: {
       bluetooth:
         "Usa le cuffie Bluetooth per ascoltare: il loro microfono suona ovattato, è lento ad attivarsi e porta l'audio in una modalità a bassa qualità.",
-      whisper: "Puoi parlare a bassa voce: Shrimp amplifica la voce sommessa e i sussurri.",
+      whisper: "Puoi parlare a bassa voce: Moustache amplifica la voce sommessa e i sussurri.",
       moving:
         "Scegli questo microfono nell'elenco, o mettilo al primo posto così Rilevamento automatico lo usa.",
       shared:

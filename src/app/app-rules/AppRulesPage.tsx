@@ -501,7 +501,7 @@ export function AppRulesPage() {
                   value={editingRule.customPrompt}
                   onChange={(e) => setEditingRule({ ...editingRule, customPrompt: e.target.value })}
                   rows={3}
-                  placeholder="Describe how Shrimp should rewrite spoken dictations in this app..."
+                  placeholder="Describe how Moustache should rewrite spoken dictations in this app..."
                   className="mt-1 w-full rounded-md border border-input bg-background p-2 text-xs text-foreground resize-none"
                 />
               </div>

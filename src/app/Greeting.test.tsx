@@ -6,7 +6,7 @@ import { INSIGHTS, mockBackend, SHORTCUTS } from "./testBackend";
 function renderGreeting(totalWords: number) {
   mockBackend({
     app_info: () => ({
-      name: "Shrimp",
+      name: "Moustache",
       version: "0.1.0",
       os: "macos",
       arch: "aarch64",

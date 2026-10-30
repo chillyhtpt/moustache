@@ -48,7 +48,7 @@ export const core = {
     },
   },
   bar: {
-    region: "Shrimp Flow Bar",
+    region: "Moustache Flow Bar",
     start: "Start dictation",
     startHint: "Click to dictate, or drag to move",
     recording: "Recording",
@@ -91,23 +91,23 @@ export const core = {
   },
   appLanguage: {
     title: "App language",
-    label: "Language of Shrimp's windows, menus and notices",
+    label: "Language of Moustache's windows, menus and notices",
     system: "Same as the Mac",
   },
   system: {
     title: "System",
     launchAtLogin: "Launch at login",
-    launchAtLoginBody: "Shrimp starts in the background when you log in, ready in the menu bar.",
+    launchAtLoginBody: "Moustache starts in the background when you log in, ready in the menu bar.",
     showInDock: "Show app in Dock",
     showInDockBody:
-      "When off, Shrimp lives in the menu bar and shows in the Dock only while its window is open.",
+      "When off, Moustache lives in the menu bar and shows in the Dock only while its window is open.",
     resetTitle: "Reset app",
     resetBody:
-      "Deletes Shrimp's local data on this Mac and restarts it. Use it if Shrimp keeps misbehaving.",
+      "Deletes Moustache's local data on this Mac and restarts it. Use it if Moustache keeps misbehaving.",
     reset: "Reset & restart",
     resetConfirmTitle: "Reset and restart?",
     resetConfirmBody:
-      "This deletes your history, recordings, dictionary, snippets, stats, settings and API keys on this Mac, then restarts Shrimp. Downloaded speech models are kept.",
+      "This deletes your history, recordings, dictionary, snippets, stats, settings and API keys on this Mac, then restarts Moustache. Downloaded speech models are kept.",
   },
   help: {
     title: "Help",
@@ -115,10 +115,10 @@ export const core = {
     start1: "Put the cursor where you want text, hold {{shortcut}} and speak. Let go to insert.",
     start2: "Double-tap {{shortcut}} to keep recording hands-free; press it again to finish.",
     start3: "Say “new line”, “new paragraph” or punctuation such as “comma” as you speak.",
-    start4: "Say “actually” or “scratch that” to correct yourself; Shrimp keeps the correction.",
+    start4: "Say “actually” or “scratch that” to correct yourself; Moustache keeps the correction.",
     shortcutsTitle: "Your shortcuts",
     change: "Change",
-    keysTitle: "Moving around Shrimp",
+    keysTitle: "Moving around Moustache",
     keyBack: "Back and forward between pages",
     keyPages: "Previous or next page",
     keySearch: "Search history",
@@ -132,13 +132,13 @@ export const core = {
     setupBody: "Walk through permissions, your microphone, shortcut, languages and engine again.",
     setupAgain: "Run setup again",
     about:
-      "Shrimp {{version}}. Everything you dictate stays on this Mac unless you choose a cloud engine or provider.",
+      "Moustache {{version}}. Everything you dictate stays on this Mac unless you choose a cloud engine or provider.",
   },
   onboarding: {
     progress: "Setup steps",
     titles: {
-      welcome: "Welcome to Shrimp",
-      permissions: "Let Shrimp hear you and type for you",
+      welcome: "Welcome to Moustache",
+      permissions: "Let Moustache hear you and type for you",
       microphone: "Test your microphone",
       shortcut: "Your dictation shortcut",
       languages: "Which languages do you speak?",
@@ -147,16 +147,16 @@ export const core = {
       done: "You're all set",
     },
     welcomeBody:
-      "Speak anywhere you can type. Hold a key, talk, and let go: Shrimp writes what you said with Whisper on this Mac, tidies it up and pastes it where your cursor is.",
+      "Speak anywhere you can type. Hold a key, talk, and let go: Moustache writes what you said with Whisper on this Mac, tidies it up and pastes it where your cursor is.",
     getStarted: "Get started",
     continue: "Continue",
     back: "Back",
     skip: "Skip",
-    finish: "Start using Shrimp",
+    finish: "Start using Moustache",
     permissionsBody:
-      "Shrimp needs two permissions. Each one turns green as soon as macOS grants it.",
+      "Moustache needs two permissions. Each one turns green as soon as macOS grants it.",
     permissionsNote:
-      "Input Monitoring isn't needed: Accessibility already lets Shrimp see its shortcut.",
+      "Input Monitoring isn't needed: Accessibility already lets Moustache see its shortcut.",
     permission: {
       microphone: "Microphone",
       microphoneWhy: "To hear you while you dictate.",
@@ -176,9 +176,9 @@ export const core = {
     globeKey: "If pressing fn opens the emoji picker, set “Press 🌐 key to” to Do Nothing.",
     openKeyboardSettings: "Open Keyboard Settings",
     languagesBody:
-      "Pick every language you dictate in, or let Shrimp detect the language each time.",
+      "Pick every language you dictate in, or let Moustache detect the language each time.",
     engineBody:
-      "Shrimp transcribes on this Mac with Whisper. The model downloads once and works offline.",
+      "Moustache transcribes on this Mac with Whisper. The model downloads once and works offline.",
     aiTitle: "AI edits",
     aiBody:
       "An AI model can remove filler words, apply your corrections and format lists. You can change this later in Settings.",
@@ -192,36 +192,36 @@ export const core = {
     practice2: "“My list: one, eggs; two, milk; three, bread.”",
     practiceField: "Practice here",
     youSaid: "You said",
-    shrimpWrote: "Shrimp wrote",
+    shrimpWrote: "Moustache wrote",
     doneTip1: "Hold {{shortcut}} anywhere you type, and let go to insert.",
     doneTip2: "Your dictations, with Undo AI edit and Retry, are on Home.",
     doneTip3: "Help in the sidebar has your shortcuts and how to move around.",
-    reverifyTitle: "Grant Shrimp's permissions again",
+    reverifyTitle: "Grant Moustache's permissions again",
     reverifyBody:
-      "macOS no longer lets Shrimp use a permission it had, which often happens after an update. Grant it again to keep dictating.",
-    reverifyHint: "In System Settings, turn Shrimp off and on again if it already looks allowed.",
+      "macOS no longer lets Moustache use a permission it had, which often happens after an update. Grant it again to keep dictating.",
+    reverifyHint: "In System Settings, turn Moustache off and on again if it already looks allowed.",
     later: "Later",
   },
   errors: {
     dataTitle: "Some of your local data is corrupted.",
     dataBody:
-      "Shrimp can't read its database, so this session doesn't save history or changes. Restore the latest backup, or start fresh; the damaged file is kept aside either way.",
+      "Moustache can't read its database, so this session doesn't save history or changes. Restore the latest backup, or start fresh; the damaged file is kept aside either way.",
     dataBackup: "The latest backup is from {{date}}.",
     restoreBackup: "Restore backup",
     startFresh: "Start fresh",
     storageTitle: "Storage full",
     storageBody:
-      "You are running out of space on your computer. Shrimp needs room to save recordings and history. Free up some space, then check again.",
+      "You are running out of space on your computer. Moustache needs room to save recordings and history. Free up some space, then check again.",
     storageFree: "{{free}} free",
     openStorage: "Open Storage Settings",
     checkAgain: "Check again",
-    crashTitle: "Shrimp quit unexpectedly",
+    crashTitle: "Moustache quit unexpectedly",
     crashBody:
       "Your settings and history are safe. If you were dictating, the recording was saved: recover it from History on Home.",
     crashDetails: "Details",
     continue: "Continue",
-    moveTitle: "Move Shrimp to the Applications folder",
-    moveBody: "Shrimp needs to be in the Applications folder to run and update.",
+    moveTitle: "Move Moustache to the Applications folder",
+    moveBody: "Moustache needs to be in the Applications folder to run and update.",
     moveToApplications: "Move to Applications",
     quit: "Quit",
   },
@@ -235,7 +235,7 @@ export const core = {
     eveningAnonymous: "Good evening",
     holdToDictate:
       "Hold <kbd>{{shortcut}}</kbd> to dictate anywhere, or double-tap it for hands-free.",
-    statsCard: "Your week in Shrimp. Open Insights",
+    statsCard: "Your week in Moustache. Open Insights",
     thisWeek: "This week",
     wpmShort: "{{count, number}} WPM",
     streak_one: "{{count, number}}-day streak",
@@ -255,7 +255,7 @@ export const core = {
     monthDown: "−{{percent}}% this month",
     monthHint:
       "{{current, number}} words compared to {{previous, number}} words this time last month.",
-    fixes: "Fixes made by Shrimp",
+    fixes: "Fixes made by Moustache",
     fixesHint: "{{corrected, number}} words corrected, {{dictionary, number}} dictionary fixes",
     topAppHint: "Top app: {{app}}",
     currentStreak: "Current streak",
@@ -283,7 +283,7 @@ export const core = {
     appsUsed_other: "{{count, number}} apps",
     appsUsed_zero: "{{count, number}} apps",
     usage: "Where you dictate",
-    usageHint: "Your words by kind of app, counted from this version of Shrimp on.",
+    usageHint: "Your words by kind of app, counted from this version of Moustache on.",
     usageCategory: {
       personalMessages: "Personal messages",
       workMessages: "Work messages",
@@ -356,7 +356,7 @@ export const core = {
   },
   share: {
     title: "Share your stats",
-    cardTitle: "My Shrimp activity",
+    cardTitle: "My Moustache activity",
     preview: "A card with your total words, speed, streak, top app and activity",
     copy: "Copy image",
     download: "Download",
@@ -367,7 +367,7 @@ export const core = {
     wpm: "words per minute",
     streak: "longest streak",
     topApp: "top app",
-    footer: "Dictated with Shrimp",
+    footer: "Dictated with Moustache",
     shareOn: "Share on {{network}}",
     pasteIntoPost: "Image copied. Paste it into your post.",
   },
@@ -380,7 +380,7 @@ export const core = {
     noMatches: "No dictations match “{{query}}”",
     disabled: "History disabled",
     disabledHint:
-      "Shrimp doesn't store transcripts. Choose Store data locally in Settings › Data and privacy to keep them.",
+      "Moustache doesn't store transcripts. Choose Store data locally in Settings › Data and privacy to keep them.",
     today: "Today",
     yesterday: "Yesterday",
     copied: "Copied to the clipboard",

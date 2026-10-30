@@ -11,7 +11,7 @@ export const library = {
     selected_many: "{{count, number}} selected",
     selected_other: "{{count, number}} selected",
     selected_zero: "{{count, number}} selected",
-    empty: "No words yet. Add names, jargon and spellings Shrimp should get right.",
+    empty: "No words yet. Add names, jargon and spellings Moustache should get right.",
     noMatches: "No matches.",
     sortBy: "Sort by",
     sorts: {
@@ -53,7 +53,7 @@ export const library = {
     word: "Word",
     correctMisspelling: "Correct a misspelling",
     misspelling: "Misspelling",
-    misspellingHint: "What Shrimp hears, replaced by the word above.",
+    misspellingHint: "What Moustache hears, replaced by the word above.",
     save: "Save",
   },
   snippets: {
@@ -80,7 +80,7 @@ export const library = {
     triggerHint: "What you say",
     expansion: "Expansion",
     expansionHint:
-      "What Shrimp types. **Bold**, *italic*, lists and [links](https://…) keep their formatting where the app accepts it.",
+      "What Moustache types. **Bold**, *italic*, lists and [links](https://…) keep their formatting where the app accepts it.",
     bold: "Bold",
     italic: "Italic",
     link: "Link",
@@ -106,6 +106,6 @@ export const library = {
   autoLearn: {
     label: "Auto-add to dictionary",
     description:
-      "When you correct a word right after dictating it, Shrimp adds the new spelling. Paths, links, code, numbers, everyday words and words you delete here are never added.",
+      "When you correct a word right after dictating it, Moustache adds the new spelling. Paths, links, code, numbers, everyday words and words you delete here are never added.",
   },
 } as const;

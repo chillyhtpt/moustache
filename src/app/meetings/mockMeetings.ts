@@ -1,6 +1,7 @@
 import type { MeetingNote } from "./types";
 
-const STORAGE_KEY = "shrimp:meetings";
+const STORAGE_KEY = "moustache:meetings";
+const LEGACY_STORAGE_KEY = "shrimp:meetings";
 
 export const SAMPLE_MEETINGS: MeetingNote[] = [
   {
@@ -122,7 +123,7 @@ export const SAMPLE_MEETINGS: MeetingNote[] = [
 
 export function loadSavedMeetings(): MeetingNote[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_MEETINGS));
       return SAMPLE_MEETINGS;

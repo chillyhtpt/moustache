@@ -1,5 +1,5 @@
 /*
- * Shrimp's design tokens: shadcn/ui's token names and hairline precision, set in
+ * Moustache's design tokens: shadcn/ui's token names and hairline precision, set in
  * Apple's type scale, materials and motion. Light and dark follow the system
  * (prefers-color-scheme); html[data-platform] adapts sizes to Windows, and
  * html[data-material] says whether the window shows a native material.
@@ -130,7 +130,7 @@
   --separator: #ececef;
   --input: #d9d9de;
   --ring: #f05a38;
-  /* Coral, Shrimp's one accent: fills and icons; brand-strong is its AA text shade. */
+  /* Coral, Moustache's one accent: fills and icons; brand-strong is its AA text shade. */
   --brand: #f05a38;
   --brand-foreground: #ffffff;
   --brand-strong: #b5371e;

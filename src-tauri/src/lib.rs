@@ -1,4 +1,4 @@
-//! Shrimp: speech to text, anywhere. See docs/ARCHITECTURE.md for the module map.
+//! Moustache: speech to text, anywhere. See docs/ARCHITECTURE.md for the module map.
 
 mod app;
 pub mod audio;
@@ -145,6 +145,6 @@ pub fn run() {
         .setup(app::setup::setup)
         .on_window_event(app::window::on_window_event)
         .build(tauri::generate_context!())
-        .expect("failed to build the Shrimp app")
+        .expect("failed to build the Moustache app")
         .run(app::on_run_event);
 }

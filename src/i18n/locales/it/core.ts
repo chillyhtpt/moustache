@@ -50,7 +50,7 @@ export const core: CoreCatalog = {
     },
   },
   bar: {
-    region: "Flow Bar di Shrimp",
+    region: "Flow Bar di Moustache",
     start: "Avvia dettatura",
     startHint: "Fai clic per dettare o trascina per spostare",
     recording: "Registrazione",
@@ -93,23 +93,23 @@ export const core: CoreCatalog = {
   },
   appLanguage: {
     title: "Lingua dell'app",
-    label: "Lingua di finestre, menu e notifiche di Shrimp",
+    label: "Lingua di finestre, menu e notifiche di Moustache",
     system: "Stessa lingua del Mac",
   },
   system: {
     title: "Sistema",
     launchAtLogin: "Apri al login",
-    launchAtLoginBody: "Shrimp si avvia in background quando accedi, pronto nella barra dei menu.",
+    launchAtLoginBody: "Moustache si avvia in background quando accedi, pronto nella barra dei menu.",
     showInDock: "Mostra l'app nel Dock",
     showInDockBody:
-      "Altrimenti Shrimp resta nella barra dei menu e appare nel Dock solo mentre la sua finestra è aperta.",
+      "Altrimenti Moustache resta nella barra dei menu e appare nel Dock solo mentre la sua finestra è aperta.",
     resetTitle: "Ripristina l'app",
     resetBody:
-      "Elimina i dati locali di Shrimp su questo Mac e lo riavvia. Usalo se Shrimp continua a non funzionare bene.",
+      "Elimina i dati locali di Moustache su questo Mac e lo riavvia. Usalo se Moustache continua a non funzionare bene.",
     reset: "Ripristina e riavvia",
     resetConfirmTitle: "Ripristinare e riavviare?",
     resetConfirmBody:
-      "Verranno eliminati cronologia, registrazioni, dizionario, snippet, statistiche, impostazioni e chiavi API su questo Mac, poi Shrimp si riavvierà. I modelli vocali scaricati vengono mantenuti.",
+      "Verranno eliminati cronologia, registrazioni, dizionario, snippet, statistiche, impostazioni e chiavi API su questo Mac, poi Moustache si riavvierà. I modelli vocali scaricati vengono mantenuti.",
   },
   help: {
     title: "Aiuto",
@@ -120,10 +120,10 @@ export const core: CoreCatalog = {
       "Premi due volte {{shortcut}} per registrare a mani libere; premilo di nuovo per finire.",
     start3:
       "Mentre parli, di' “new line”, “new paragraph” o un segno di punteggiatura come “comma”.",
-    start4: "Di' “anzi” o “no, aspetta” per correggerti; Shrimp tiene la correzione.",
+    start4: "Di' “anzi” o “no, aspetta” per correggerti; Moustache tiene la correzione.",
     shortcutsTitle: "Le tue scorciatoie",
     change: "Modifica",
-    keysTitle: "Muoversi in Shrimp",
+    keysTitle: "Muoversi in Moustache",
     keyBack: "Avanti e indietro tra le pagine",
     keyPages: "Pagina precedente o successiva",
     keySearch: "Cerca nella cronologia",
@@ -137,13 +137,13 @@ export const core: CoreCatalog = {
     setupBody: "Ripercorri permessi, microfono, scorciatoia, lingue e motore vocale.",
     setupAgain: "Ripeti la configurazione",
     about:
-      "Shrimp {{version}}. Tutto ciò che detti resta su questo Mac, a meno che tu non scelga un motore o un provider cloud.",
+      "Moustache {{version}}. Tutto ciò che detti resta su questo Mac, a meno che tu non scelga un motore o un provider cloud.",
   },
   onboarding: {
     progress: "Passaggi della configurazione",
     titles: {
-      welcome: "Ti diamo il benvenuto in Shrimp",
-      permissions: "Consenti a Shrimp di sentirti e scrivere per te",
+      welcome: "Ti diamo il benvenuto in Moustache",
+      permissions: "Consenti a Moustache di sentirti e scrivere per te",
       microphone: "Prova il microfono",
       shortcut: "La tua scorciatoia di dettatura",
       languages: "Quali lingue parli?",
@@ -152,16 +152,16 @@ export const core: CoreCatalog = {
       done: "Tutto pronto",
     },
     welcomeBody:
-      "Parla ovunque puoi scrivere. Tieni premuto un tasto, parla e rilascia: Shrimp trascrive ciò che hai detto con Whisper su questo Mac, lo sistema e lo incolla dove si trova il cursore.",
+      "Parla ovunque puoi scrivere. Tieni premuto un tasto, parla e rilascia: Moustache trascrive ciò che hai detto con Whisper su questo Mac, lo sistema e lo incolla dove si trova il cursore.",
     getStarted: "Inizia",
     continue: "Continua",
     back: "Indietro",
     skip: "Salta",
-    finish: "Inizia a usare Shrimp",
+    finish: "Inizia a usare Moustache",
     permissionsBody:
-      "Shrimp ha bisogno di due permessi. Ognuno diventa verde appena macOS lo concede.",
+      "Moustache ha bisogno di due permessi. Ognuno diventa verde appena macOS lo concede.",
     permissionsNote:
-      "Monitoraggio input non serve: Accessibilità permette già a Shrimp di vedere la sua scorciatoia.",
+      "Monitoraggio input non serve: Accessibilità permette già a Moustache di vedere la sua scorciatoia.",
     permission: {
       microphone: "Microfono",
       microphoneWhy: "Per sentirti mentre detti.",
@@ -183,9 +183,9 @@ export const core: CoreCatalog = {
       "Se premendo fn si apre il selettore emoji, imposta “Premi il tasto 🌐 per” su Non fare nulla.",
     openKeyboardSettings: "Apri impostazioni Tastiera",
     languagesBody:
-      "Scegli tutte le lingue in cui detti, o lascia che Shrimp rilevi la lingua ogni volta.",
+      "Scegli tutte le lingue in cui detti, o lascia che Moustache rilevi la lingua ogni volta.",
     engineBody:
-      "Shrimp trascrive su questo Mac con Whisper. Il modello si scarica una volta sola e funziona offline.",
+      "Moustache trascrive su questo Mac con Whisper. Il modello si scarica una volta sola e funziona offline.",
     aiTitle: "Modifiche IA",
     aiBody:
       "Un modello IA può rimuovere gli intercalari, applicare le tue correzioni e formattare gli elenchi. Puoi cambiarlo in seguito nelle Impostazioni.",
@@ -200,37 +200,37 @@ export const core: CoreCatalog = {
     practice2: "“La mia lista: uno, uova; due, latte; tre, pane.”",
     practiceField: "Prova qui",
     youSaid: "Hai detto",
-    shrimpWrote: "Shrimp ha scritto",
+    shrimpWrote: "Moustache ha scritto",
     doneTip1: "Tieni premuto {{shortcut}} ovunque scrivi e rilascia per inserire.",
     doneTip2: "Le tue dettature, con Annulla modifica IA e Riprova, sono nella Home.",
     doneTip3: "Aiuto, nella barra laterale, mostra le tue scorciatoie e come muoverti.",
-    reverifyTitle: "Concedi di nuovo i permessi a Shrimp",
+    reverifyTitle: "Concedi di nuovo i permessi a Moustache",
     reverifyBody:
-      "macOS non permette più a Shrimp di usare un permesso che aveva, come capita spesso dopo un aggiornamento. Concedilo di nuovo per continuare a dettare.",
+      "macOS non permette più a Moustache di usare un permesso che aveva, come capita spesso dopo un aggiornamento. Concedilo di nuovo per continuare a dettare.",
     reverifyHint:
-      "In Impostazioni di Sistema, disattiva e riattiva Shrimp se risulta già consentito.",
+      "In Impostazioni di Sistema, disattiva e riattiva Moustache se risulta già consentito.",
     later: "Più tardi",
   },
   errors: {
     dataTitle: "Alcuni dati locali sono danneggiati.",
     dataBody:
-      "Shrimp non riesce a leggere il suo database, quindi in questa sessione cronologia e modifiche non vengono salvate. Ripristina l'ultimo backup o ricomincia da zero; il file danneggiato viene comunque messo da parte.",
+      "Moustache non riesce a leggere il suo database, quindi in questa sessione cronologia e modifiche non vengono salvate. Ripristina l'ultimo backup o ricomincia da zero; il file danneggiato viene comunque messo da parte.",
     dataBackup: "Ultimo backup: {{date}}.",
     restoreBackup: "Ripristina backup",
     startFresh: "Ricomincia da zero",
     storageTitle: "Spazio esaurito",
     storageBody:
-      "Lo spazio sul computer sta per finire. Shrimp ha bisogno di spazio per salvare registrazioni e cronologia. Libera un po' di spazio, poi controlla di nuovo.",
+      "Lo spazio sul computer sta per finire. Moustache ha bisogno di spazio per salvare registrazioni e cronologia. Libera un po' di spazio, poi controlla di nuovo.",
     storageFree: "{{free}} disponibili",
     openStorage: "Apri Spazio di archiviazione",
     checkAgain: "Controlla di nuovo",
-    crashTitle: "Shrimp si è chiuso inaspettatamente",
+    crashTitle: "Moustache si è chiuso inaspettatamente",
     crashBody:
       "Impostazioni e cronologia sono al sicuro. Se stavi dettando, la registrazione è stata salvata: recuperala dalla cronologia nella Home.",
     crashDetails: "Dettagli",
     continue: "Continua",
-    moveTitle: "Sposta Shrimp nella cartella Applicazioni",
-    moveBody: "Shrimp deve trovarsi nella cartella Applicazioni per funzionare e aggiornarsi.",
+    moveTitle: "Sposta Moustache nella cartella Applicazioni",
+    moveBody: "Moustache deve trovarsi nella cartella Applicazioni per funzionare e aggiornarsi.",
     moveToApplications: "Sposta in Applicazioni",
     quit: "Esci",
   },
@@ -244,7 +244,7 @@ export const core: CoreCatalog = {
     eveningAnonymous: "Buonasera",
     holdToDictate:
       "Tieni premuto <kbd>{{shortcut}}</kbd> per dettare ovunque, o premilo due volte per dettare a mani libere.",
-    statsCard: "La tua settimana in Shrimp. Apri Statistiche",
+    statsCard: "La tua settimana in Moustache. Apri Statistiche",
     thisWeek: "Questa settimana",
     wpmShort: "{{count, number}} parole/min",
     streak_one: "Serie di {{count, number}} giorno",
@@ -264,7 +264,7 @@ export const core: CoreCatalog = {
     monthDown: "−{{percent}}% questo mese",
     monthHint:
       "{{current, number}} parole rispetto alle {{previous, number}} dello stesso periodo del mese scorso.",
-    fixes: "Correzioni fatte da Shrimp",
+    fixes: "Correzioni fatte da Moustache",
     fixesHint:
       "{{corrected, number}} parole corrette, {{dictionary, number}} correzioni dal dizionario",
     topAppHint: "App più usata: {{app}}",
@@ -293,7 +293,7 @@ export const core: CoreCatalog = {
     appsUsed_other: "{{count, number}} app",
     appsUsed_zero: "{{count, number}} app",
     usage: "Dove detti",
-    usageHint: "Le tue parole per tipo di app, contate da questa versione di Shrimp.",
+    usageHint: "Le tue parole per tipo di app, contate da questa versione di Moustache.",
     usageCategory: {
       personalMessages: "Messaggi personali",
       workMessages: "Messaggi di lavoro",
@@ -366,7 +366,7 @@ export const core: CoreCatalog = {
   },
   share: {
     title: "Condividi le tue statistiche",
-    cardTitle: "La mia attività in Shrimp",
+    cardTitle: "La mia attività in Moustache",
     preview: "Una scheda con parole totali, velocità, serie, app più usata e attività",
     copy: "Copia immagine",
     download: "Scarica",
@@ -377,7 +377,7 @@ export const core: CoreCatalog = {
     wpm: "parole al minuto",
     streak: "serie più lunga",
     topApp: "app più usata",
-    footer: "Dettato con Shrimp",
+    footer: "Dettato con Moustache",
     shareOn: "Condividi su {{network}}",
     pasteIntoPost: "Immagine copiata. Incollala nel tuo post.",
   },
@@ -390,7 +390,7 @@ export const core: CoreCatalog = {
     noMatches: "Nessuna dettatura corrisponde a “{{query}}”",
     disabled: "Cronologia disattivata",
     disabledHint:
-      "Shrimp non salva le trascrizioni. Scegli Salva i dati in locale in Impostazioni › Dati e privacy per conservarle.",
+      "Moustache non salva le trascrizioni. Scegli Salva i dati in locale in Impostazioni › Dati e privacy per conservarle.",
     today: "Oggi",
     yesterday: "Ieri",
     copied: "Copiato negli appunti",

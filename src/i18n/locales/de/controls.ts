@@ -64,7 +64,7 @@ export const controls: ControlsCatalog = {
     tips: {
       bluetooth:
         "Nutze Bluetooth-Kopfhörer zum Zuhören: Ihre Mikrofone klingen dumpf, brauchen Zeit zum Starten und schalten dein Audio in einen Modus mit geringer Qualität.",
-      whisper: "Leises Sprechen ist kein Problem: Shrimp verstärkt leise und geflüsterte Sprache.",
+      whisper: "Leises Sprechen ist kein Problem: Moustache verstärkt leise und geflüsterte Sprache.",
       moving:
         "Wähle es in der Mikrofonauswahl oder setz es ganz nach oben, damit „Automatisch“ es nutzt.",
       shared: "Setz es ganz nach oben, damit „Automatisch“ es wählt, sobald es angeschlossen ist.",

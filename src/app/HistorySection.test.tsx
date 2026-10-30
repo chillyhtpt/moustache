@@ -53,7 +53,7 @@ function backend(list: HistoryList) {
       current = { ...current, entries: current.entries.filter((entry) => entry.id !== args.id) };
       return null;
     },
-    extract_history_audio: () => "/Users/me/Downloads/Shrimp 2026-10-13 09.00.00.wav",
+    extract_history_audio: () => "/Users/me/Downloads/Moustache 2026-10-13 09.00.00.wav",
     set_history_storage: () => null,
   });
 }

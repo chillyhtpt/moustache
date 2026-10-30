@@ -65,7 +65,7 @@ export const controls: ControlsCatalog = {
     tips: {
       bluetooth:
         "Usa los auriculares Bluetooth para escuchar: sus micrófonos suenan apagados, tardan en activarse y pasan tu audio a un modo de baja calidad.",
-      whisper: "Puedes hablar en voz baja: Shrimp realza la voz suave y los susurros.",
+      whisper: "Puedes hablar en voz baja: Moustache realza la voz suave y los susurros.",
       moving:
         "Elige ese micrófono en el selector, o ponlo el primero de la lista para que la detección automática lo use.",
       shared:

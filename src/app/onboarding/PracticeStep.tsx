@@ -8,7 +8,7 @@ interface PracticeStepProps {
   shortcut: string;
 }
 
-/** Practice dictations in a demo field, with what Shrimp wrote (ONB-06). */
+/** Practice dictations in a demo field, with what Moustache wrote (ONB-06). */
 export function PracticeStep({ shortcut }: PracticeStepProps) {
   const { t } = useTranslation();
   const [since] = useState(() => Date.now());

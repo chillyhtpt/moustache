@@ -29,7 +29,7 @@ export const settingsSections = {
   speechEngine: {
     title: "Speech engine",
     model: "Speech model",
-    note: "Whisper on this Mac is private and works offline. Cloud engines send your audio to OpenAI or Groq; if one fails, Shrimp falls back to Whisper on this Mac.",
+    note: "Whisper on this Mac is private and works offline. Cloud engines send your audio to OpenAI or Groq; if one fails, Moustache falls back to Whisper on this Mac.",
   },
   whisperModels: {
     title: "Whisper model",
@@ -79,7 +79,7 @@ export const settingsSections = {
     title: "Flow Bar",
     alwaysShow: "Show Flow Bar at all times",
     alwaysShowBody:
-      "When off, the bar appears only while you dictate or when Shrimp has something to tell you.",
+      "When off, the bar appears only while you dictate or when Moustache has something to tell you.",
     hiddenUntil: "Hidden until {{time}}",
     showNow: "Show now",
     note: "Drag the bar to the bottom, left or right edge of the screen; it follows you to the display your pointer is on. Right-click it for the microphone and more.",
@@ -91,7 +91,7 @@ export const settingsSections = {
       "Select text, hold {{shortcut}} and say what to change, like “make this more formal” or “translate to Spanish”. With nothing selected, ask a question.",
     pressEnter: "“Press enter” voice command",
     pressEnterBody:
-      "End a dictation with “press enter” to send it: Shrimp leaves the words out and presses Enter after pasting.",
+      "End a dictation with “press enter” to send it: Moustache leaves the words out and presses Enter after pasting.",
   },
   commandModeIntro: {
     title: "Using Command Mode (beta)",
@@ -107,17 +107,17 @@ export const settingsSections = {
     title: "Vibe coding",
     fileTagging: "File tagging in chat",
     fileTaggingBody:
-      "In Cursor and Windsurf chat, say a file's name (“index dot ts”) or “tag” and its name, and Shrimp writes an @-mention. Works for files open or shown in the sidebar.",
+      "In Cursor and Windsurf chat, say a file's name (“index dot ts”) or “tag” and its name, and Moustache writes an @-mention. Works for files open or shown in the sidebar.",
     variables: "Variable recognition",
     variablesBody:
-      "In Cursor, VS Code and Windsurf, say names naturally, “user ID” for <code>userId</code>: Shrimp matches them to the code on screen. Say “camel case”, “snake case”, “pascal case” or “kebab case” before words to build a new name.",
+      "In Cursor, VS Code and Windsurf, say names naturally, “user ID” for <code>userId</code>: Moustache matches them to the code on screen. Say “camel case”, “snake case”, “pascal case” or “kebab case” before words to build a new name.",
     step1: "Open the Command Palette (Cmd+Shift+P).",
     step2: "Run “Toggle Screen Reader Accessibility Mode”.",
     step3: "Check that “Screen Reader Optimized” shows in the status bar.",
   },
   contextAwareness: {
     title: "Context awareness",
-    body: "Shrimp reads the text around your cursor and the names on screen, so names are spelled right and the style fits the app. When off, nothing from your screen reaches the speech engine or the AI provider; casing and spacing still adapt to the text around the cursor, on this Mac.",
+    body: "Moustache reads the text around your cursor and the names on screen, so names are spelled right and the style fits the app. When off, nothing from your screen reaches the speech engine or the AI provider; casing and spacing still adapt to the text around the cursor, on this Mac.",
   },
   shortcutsSection: {
     title: "Shortcuts",

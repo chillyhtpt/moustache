@@ -30,7 +30,7 @@ export function VaultSyncCard() {
   const handleExportVault = () => {
     const vaultBundle = {
       app: "Moustache",
-      version: "0.1.2",
+      version: "1.0.0",
       exportedAt: new Date().toISOString(),
       vaultType: "TeamConfigurationVault",
       encryption: "AES-GCM-256 (Simulated)",

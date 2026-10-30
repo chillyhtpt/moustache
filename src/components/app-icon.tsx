@@ -1,7 +1,7 @@
 import appIcon from "../../assets/icons/app-icon.svg";
 import { cn } from "@/lib/utils";
 
-/** Shrimp's app icon, as in the Dock (with Apple's grid margin around the squircle). */
+/** Moustache's app icon, as in the Dock (with Apple's grid margin around the squircle). */
 export function AppIcon({ className }: { className?: string | undefined }) {
   return (
     <img

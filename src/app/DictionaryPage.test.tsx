@@ -34,7 +34,7 @@ describe("DictionaryPage", () => {
     render(<DictionaryPage />);
     expect(
       await screen.findByText(
-        "No words yet. Add names, jargon and spellings Shrimp should get right.",
+        "No words yet. Add names, jargon and spellings Moustache should get right.",
       ),
     ).toBeInTheDocument();
   });
@@ -68,7 +68,7 @@ describe("DictionaryPage", () => {
     fireEvent.change(within(dialog).getByLabelText("Word"), { target: { value: "Shrimp" } });
     fireEvent.click(within(dialog).getByRole("checkbox", { name: "Correct a misspelling" }));
     expect(
-      within(dialog).getByText("What Shrimp hears, replaced by the word above."),
+      within(dialog).getByText("What Moustache hears, replaced by the word above."),
     ).toBeInTheDocument();
     fireEvent.change(within(dialog).getByLabelText("Misspelling"), {
       target: { value: "shrimpp" },

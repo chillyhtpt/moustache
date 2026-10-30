@@ -32,7 +32,7 @@ export const settingsSections: SettingsSectionsCatalog = {
   speechEngine: {
     title: "Spracherkennung",
     model: "Sprachmodell",
-    note: "Whisper auf diesem Mac ist privat und funktioniert offline. Cloud-Engines senden dein Audio an OpenAI oder Groq; fällt eine aus, nutzt Shrimp wieder Whisper auf diesem Mac.",
+    note: "Whisper auf diesem Mac ist privat und funktioniert offline. Cloud-Engines senden dein Audio an OpenAI oder Groq; fällt eine aus, nutzt Moustache wieder Whisper auf diesem Mac.",
   },
   whisperModels: {
     title: "Whisper-Modell",
@@ -82,7 +82,7 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Flow Bar",
     alwaysShow: "Flow Bar immer anzeigen",
     alwaysShowBody:
-      "Ist dies aus, erscheint die Leiste nur beim Diktieren oder wenn Shrimp dir etwas mitteilen will.",
+      "Ist dies aus, erscheint die Leiste nur beim Diktieren oder wenn Moustache dir etwas mitteilen will.",
     hiddenUntil: "Ausgeblendet bis {{time}}",
     showNow: "Jetzt anzeigen",
     note: "Zieh die Leiste an den unteren, linken oder rechten Bildschirmrand; sie folgt dir auf den Bildschirm, auf dem dein Zeiger ist. Ein Rechtsklick darauf zeigt das Mikrofon und mehr.",
@@ -94,7 +94,7 @@ export const settingsSections: SettingsSectionsCatalog = {
       "Wähle Text aus, halte {{shortcut}} gedrückt und sag, was du ändern willst, etwa „formuliere das förmlicher“ oder „übersetze ins Englische“. Ist nichts ausgewählt, stell eine Frage.",
     pressEnter: "Sprachbefehl „press enter“",
     pressEnterBody:
-      "Beende ein Diktat mit „press enter“, um es abzuschicken: Shrimp lässt die Wörter weg und drückt nach dem Einfügen Enter.",
+      "Beende ein Diktat mit „press enter“, um es abzuschicken: Moustache lässt die Wörter weg und drückt nach dem Einfügen Enter.",
   },
   commandModeIntro: {
     title: "Command Mode verwenden (Beta)",
@@ -102,7 +102,7 @@ export const settingsSections: SettingsSectionsCatalog = {
     step2:
       "Halte <kbd>{{shortcut}}</kbd> gedrückt und sag, was passieren soll: „mach das kürzer“, „übersetze ins Englische“, „mach eine Liste daraus“.",
     step3: "Lass los. Das Ergebnis ersetzt deine Auswahl; Cmd+Z macht es rückgängig.",
-    body: "Ist nichts ausgewählt, stell eine Frage, und die Antwort erscheint neben der Flow Bar. Beginne mit „search“, um eine Websuche zu öffnen. Drück den Kurzbefehl zweimal, damit Shrimp freihändig weiter zuhört; Esc bricht ab. Deine Auswahl und das Feld, in dem du bist, werden an deinen KI-Anbieter gesendet.",
+    body: "Ist nichts ausgewählt, stell eine Frage, und die Antwort erscheint neben der Flow Bar. Beginne mit „search“, um eine Websuche zu öffnen. Drück den Kurzbefehl zweimal, damit Moustache freihändig weiter zuhört; Esc bricht ab. Deine Auswahl und das Feld, in dem du bist, werden an deinen KI-Anbieter gesendet.",
     disable: "Deaktivieren",
     gotIt: "Verstanden",
   },
@@ -110,17 +110,17 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Vibe-Coding",
     fileTagging: "Dateien im Chat erwähnen",
     fileTaggingBody:
-      "Sag im Chat von Cursor und Windsurf den Namen einer Datei („index dot ts“) oder „tag“ und ihren Namen, und Shrimp schreibt eine @-Erwähnung. Funktioniert für geöffnete oder in der Seitenleiste angezeigte Dateien.",
+      "Sag im Chat von Cursor und Windsurf den Namen einer Datei („index dot ts“) oder „tag“ und ihren Namen, und Moustache schreibt eine @-Erwähnung. Funktioniert für geöffnete oder in der Seitenleiste angezeigte Dateien.",
     variables: "Variablenerkennung",
     variablesBody:
-      "Sag Namen in Cursor, VS Code und Windsurf ganz natürlich, „user ID“ für <code>userId</code>: Shrimp gleicht sie mit dem Code auf dem Bildschirm ab. Sag „camel case“, „snake case“, „pascal case“ oder „kebab case“ vor Wörtern, um einen neuen Namen zu bilden.",
+      "Sag Namen in Cursor, VS Code und Windsurf ganz natürlich, „user ID“ für <code>userId</code>: Moustache gleicht sie mit dem Code auf dem Bildschirm ab. Sag „camel case“, „snake case“, „pascal case“ oder „kebab case“ vor Wörtern, um einen neuen Namen zu bilden.",
     step1: "Öffne die Befehlspalette (Cmd+Shift+P).",
     step2: "Führe „Toggle Screen Reader Accessibility Mode“ aus.",
     step3: "Prüfe, ob „Screen Reader Optimized“ in der Statusleiste steht.",
   },
   contextAwareness: {
     title: "Kontexterkennung",
-    body: "Shrimp liest den Text um deinen Cursor und die Namen auf dem Bildschirm, damit Namen richtig geschrieben werden und der Stil zur App passt. Ist dies aus, gelangt nichts von deinem Bildschirm zur Spracherkennung oder zum KI-Anbieter; Groß- und Kleinschreibung sowie Leerzeichen passen sich weiterhin lokal auf diesem Mac an den Text um den Cursor an.",
+    body: "Moustache liest den Text um deinen Cursor und die Namen auf dem Bildschirm, damit Namen richtig geschrieben werden und der Stil zur App passt. Ist dies aus, gelangt nichts von deinem Bildschirm zur Spracherkennung oder zum KI-Anbieter; Groß- und Kleinschreibung sowie Leerzeichen passen sich weiterhin lokal auf diesem Mac an den Text um den Cursor an.",
   },
   shortcutsSection: {
     title: "Kurzbefehle",

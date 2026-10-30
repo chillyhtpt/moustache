@@ -8,7 +8,7 @@ const isTextField = (element: Element | null): boolean =>
 
 /**
  * Tells Rust whether one of this window's text fields has focus, so a
- * dictation into Shrimp itself is pasted there (onboarding's practice).
+ * dictation into Moustache itself is pasted there (onboarding's practice).
  */
 export function reportOwnTextFields() {
   let focused = false;

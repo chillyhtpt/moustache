@@ -32,7 +32,7 @@ export const settingsSections: SettingsSectionsCatalog = {
   speechEngine: {
     title: "Mecanismo de fala",
     model: "Modelo de fala",
-    note: "O Whisper neste Mac é privado e funciona offline. Os mecanismos na nuvem enviam seu áudio para a OpenAI ou a Groq; se um deles falhar, o Shrimp volta a usar o Whisper neste Mac.",
+    note: "O Whisper neste Mac é privado e funciona offline. Os mecanismos na nuvem enviam seu áudio para a OpenAI ou a Groq; se um deles falhar, o Moustache volta a usar o Whisper neste Mac.",
   },
   whisperModels: {
     title: "Modelo do Whisper",
@@ -82,7 +82,7 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Flow Bar",
     alwaysShow: "Mostrar a Flow Bar o tempo todo",
     alwaysShowBody:
-      "Quando desativado, a barra só aparece enquanto você dita ou quando o Shrimp tem algo para dizer.",
+      "Quando desativado, a barra só aparece enquanto você dita ou quando o Moustache tem algo para dizer.",
     hiddenUntil: "Oculta até {{time}}",
     showNow: "Mostrar agora",
     note: "Arraste a barra para a borda inferior, esquerda ou direita da tela; ela vai junto para a tela onde está o ponteiro. Clique nela com o botão direito para ver o microfone e mais opções.",
@@ -94,7 +94,7 @@ export const settingsSections: SettingsSectionsCatalog = {
       "Selecione um texto, mantenha {{shortcut}} pressionado e diga o que mudar, como “deixe isto mais formal” ou “traduza para o inglês”. Sem nada selecionado, faça uma pergunta.",
     pressEnter: "Comando de voz “press enter”",
     pressEnterBody:
-      "Termine um ditado com “press enter” para enviá-lo: o Shrimp omite essas palavras e pressiona Enter depois de colar.",
+      "Termine um ditado com “press enter” para enviá-lo: o Moustache omite essas palavras e pressiona Enter depois de colar.",
   },
   commandModeIntro: {
     title: "Usando o Command Mode (beta)",
@@ -110,17 +110,17 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Vibe coding",
     fileTagging: "Marcar arquivos no chat",
     fileTaggingBody:
-      "No chat do Cursor e do Windsurf, diga o nome de um arquivo (“index dot ts”) ou “tag” e o nome dele, e o Shrimp escreve uma menção com @. Funciona com arquivos abertos ou visíveis na barra lateral.",
+      "No chat do Cursor e do Windsurf, diga o nome de um arquivo (“index dot ts”) ou “tag” e o nome dele, e o Moustache escreve uma menção com @. Funciona com arquivos abertos ou visíveis na barra lateral.",
     variables: "Reconhecimento de variáveis",
     variablesBody:
-      "No Cursor, no VS Code e no Windsurf, diga os nomes naturalmente, “user ID” para <code>userId</code>: o Shrimp os associa ao código na tela. Diga “camel case”, “snake case”, “pascal case” ou “kebab case” antes das palavras para criar um novo nome.",
+      "No Cursor, no VS Code e no Windsurf, diga os nomes naturalmente, “user ID” para <code>userId</code>: o Moustache os associa ao código na tela. Diga “camel case”, “snake case”, “pascal case” ou “kebab case” antes das palavras para criar um novo nome.",
     step1: "Abra a Paleta de Comandos (Cmd+Shift+P).",
     step2: "Execute “Toggle Screen Reader Accessibility Mode”.",
     step3: "Confira se “Screen Reader Optimized” aparece na barra de status.",
   },
   contextAwareness: {
     title: "Percepção de contexto",
-    body: "O Shrimp lê o texto ao redor do cursor e os nomes na tela, para escrever os nomes corretamente e adequar o estilo ao app. Quando desativado, nada da sua tela chega ao mecanismo de fala nem ao provedor de IA; maiúsculas e espaçamento continuam se adaptando ao texto ao redor do cursor, neste Mac.",
+    body: "O Moustache lê o texto ao redor do cursor e os nomes na tela, para escrever os nomes corretamente e adequar o estilo ao app. Quando desativado, nada da sua tela chega ao mecanismo de fala nem ao provedor de IA; maiúsculas e espaçamento continuam se adaptando ao texto ao redor do cursor, neste Mac.",
   },
   shortcutsSection: {
     title: "Atalhos",

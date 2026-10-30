@@ -64,7 +64,7 @@ export const controls: ControlsCatalog = {
     tips: {
       bluetooth:
         "Deixe os fones Bluetooth para ouvir: os microfones deles soam abafados, demoram para ligar e mudam seu áudio para um modo de baixa qualidade.",
-      whisper: "Pode falar baixo: o Shrimp amplifica falas suaves e sussurradas.",
+      whisper: "Pode falar baixo: o Moustache amplifica falas suaves e sussurradas.",
       moving:
         "Escolha-o na lista ou coloque-o em primeiro lugar para que a detecção automática o use.",
       shared:

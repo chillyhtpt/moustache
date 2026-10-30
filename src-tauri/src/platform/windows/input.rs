@@ -17,7 +17,9 @@ use super::keycode::{
 };
 use crate::platform::PlatformError;
 
-/// Marks input Shrimp sends ("SHRP"), so its hooks tell it from the user's.
+/// Marks input Moustache sends ("MSTC"), so its hooks tell it from the user's.
+pub const MOUSTACHE_TAG: usize = 0x4D53_5443;
+/// Legacy Shrimp tag ("SHRP") for backward compatibility.
 pub const SHRIMP_TAG: usize = 0x5348_5250;
 /// How long Windows takes to pass sent keys through the hooks.
 const RESTORE_DELAY: std::time::Duration = std::time::Duration::from_millis(20);
@@ -57,7 +59,7 @@ fn key(vk: u16, down: bool) -> INPUT {
                 wScan: u16::try_from(scan).unwrap_or_default(),
                 dwFlags: flags,
                 time: 0,
-                dwExtraInfo: SHRIMP_TAG,
+                dwExtraInfo: MOUSTACHE_TAG,
             },
         },
     }
@@ -335,7 +337,7 @@ mod tests {
         let (inputs, lifted) = shortcut(Modifiers::SHIFT_LEFT, Modifiers::SHIFT, VK_INSERT);
         for input in inputs.into_iter().chain(restore(lifted)) {
             let ki = unsafe { input.Anonymous.ki };
-            assert_eq!(ki.dwExtraInfo, SHRIMP_TAG);
+            assert_eq!(ki.dwExtraInfo, MOUSTACHE_TAG);
             if ki.wVk.0 == VK_INSERT {
                 assert!(ki.dwFlags.0 & KEYEVENTF_EXTENDEDKEY.0 != 0);
             }

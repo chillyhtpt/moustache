@@ -1,11 +1,11 @@
 [package]
 name = "shrimp"
-version = "0.1.2"
-description = "Speech to text, anywhere"
-authors = ["Dantavious Williams"]
+version = "1.0.0"
+description = "Moustache: Speech to text, anywhere"
+authors = ["Dantavious Williams", "chillyhtpt"]
 license = "MIT"
-repository = "https://github.com/WHEREISDAN/shrimp"
-homepage = "https://github.com/WHEREISDAN/shrimp"
+repository = "https://github.com/chillyhtpt/moustache"
+homepage = "https://github.com/chillyhtpt/moustache"
 edition = "2024"
 rust-version = "1.90"
 

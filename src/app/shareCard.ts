@@ -7,7 +7,7 @@ export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
 const WEEKS = 26;
 
-/** Shrimp's brand on a zinc card: white type, and the activity in coral. */
+/** Moustache's brand on a zinc card: white type, and the activity in coral. */
 const COLORS = {
   background: "#18181b",
   ink: "#fafafa",
@@ -28,7 +28,7 @@ const CELL = 28;
 const GAP = 6;
 const HEAT_TOP = 272;
 
-/** How tall Shrimp's mark is in the footer. */
+/** How tall Moustache's mark is in the footer. */
 const MARK_SIZE = 28;
 
 const dayKey = (date: Date) =>
@@ -102,7 +102,7 @@ export function drawShareCard(
     }
   }
 
-  // The footer, after Shrimp's mark in coral.
+  // The footer, after Moustache's mark in coral.
   const footer = CARD_HEIGHT - 74;
   if (typeof Path2D !== "undefined") {
     context.save();

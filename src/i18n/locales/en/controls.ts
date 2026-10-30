@@ -62,7 +62,7 @@ export const controls = {
     tips: {
       bluetooth:
         "Keep Bluetooth headphones for listening: their microphones sound muffled, take time to start and switch your audio to a low-quality mode.",
-      whisper: "Speaking quietly is fine: Shrimp raises soft and whispered speech.",
+      whisper: "Speaking quietly is fine: Moustache raises soft and whispered speech.",
       moving: "Choose it in the picker, or rank it first so Auto-detect uses it.",
       shared: "Rank it first so Auto-detect picks it whenever it is plugged in.",
       desktop: "Place it 15–30 cm from your mouth, a little to the side.",

@@ -61,11 +61,11 @@ mod tests {
     #[test]
     fn compose_pages_carry_the_encoded_text() {
         let text = post_text(12_345);
-        assert_eq!(text, "I've dictated 12,345 words with Shrimp.");
-        assert_eq!(post_text(1), "I've dictated 1 word with Shrimp.");
+        assert_eq!(text, "I've dictated 12,345 words with Moustache.");
+        assert_eq!(post_text(1), "I've dictated 1 word with Moustache.");
         assert_eq!(
             compose_url(ShareNetwork::X, &text),
-            "https://x.com/intent/tweet?text=I%27ve%20dictated%2012%2C345%20words%20with%20Shrimp."
+            "https://x.com/intent/tweet?text=I%27ve%20dictated%2012%2C345%20words%20with%20Moustache."
         );
         assert_eq!(
             compose_url(ShareNetwork::LinkedIn, "Grüße & co"),

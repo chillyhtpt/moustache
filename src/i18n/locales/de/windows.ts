@@ -5,29 +5,29 @@ export const windows: WindowsCatalog = {
   appLanguage: { system: "Wie in Windows" },
   system: {
     launchAtLoginBody:
-      "Shrimp startet beim Anmelden im Hintergrund und wartet im Infobereich der Taskleiste.",
+      "Moustache startet beim Anmelden im Hintergrund und wartet im Infobereich der Taskleiste.",
     resetBody:
-      "Löscht die lokalen Daten von Shrimp auf diesem PC und startet die App neu. Hilft, wenn Shrimp immer wieder Probleme macht.",
+      "Löscht die lokalen Daten von Moustache auf diesem PC und startet die App neu. Hilft, wenn Moustache immer wieder Probleme macht.",
     resetConfirmBody:
-      "Dadurch werden Verlauf, Aufnahmen, Wörterbuch, Textbausteine, Statistiken, Einstellungen und API-Schlüssel auf diesem PC gelöscht und Shrimp neu gestartet. Heruntergeladene Sprachmodelle bleiben erhalten.",
+      "Dadurch werden Verlauf, Aufnahmen, Wörterbuch, Textbausteine, Statistiken, Einstellungen und API-Schlüssel auf diesem PC gelöscht und Moustache neu gestartet. Heruntergeladene Sprachmodelle bleiben erhalten.",
   },
   help: {
     about:
-      "Shrimp {{version}}. Alles, was du diktierst, bleibt auf diesem PC, außer du wählst eine Cloud-Engine oder einen Cloud-Anbieter.",
+      "Moustache {{version}}. Alles, was du diktierst, bleibt auf diesem PC, außer du wählst eine Cloud-Engine oder einen Cloud-Anbieter.",
   },
   onboarding: {
     welcomeBody:
-      "Sprich überall, wo du tippen kannst. Taste halten, sprechen, loslassen: Shrimp schreibt mit Whisper auf diesem PC auf, was du gesagt hast, bringt es in Form und fügt es an der Cursorposition ein.",
+      "Sprich überall, wo du tippen kannst. Taste halten, sprechen, loslassen: Moustache schreibt mit Whisper auf diesem PC auf, was du gesagt hast, bringt es in Form und fügt es an der Cursorposition ein.",
     permissionsBody:
-      "Shrimp braucht dein Mikrofon. Die Zeile wird grün, sobald Windows es erlaubt.",
+      "Moustache braucht dein Mikrofon. Die Zeile wird grün, sobald Windows es erlaubt.",
     permissionsNote:
-      "Für Kurzbefehle und Einfügen fragt Windows keine Berechtigung ab. Apps, die als Administrator laufen, nehmen nur Text an, wenn auch Shrimp als Administrator läuft.",
+      "Für Kurzbefehle und Einfügen fragt Windows keine Berechtigung ab. Apps, die als Administrator laufen, nehmen nur Text an, wenn auch Moustache als Administrator läuft.",
     permission: { openSettings: "Einstellungen öffnen" },
     engineBody:
-      "Shrimp transkribiert mit Whisper auf diesem PC. Das Modell wird einmal heruntergeladen und funktioniert offline.",
+      "Moustache transkribiert mit Whisper auf diesem PC. Das Modell wird einmal heruntergeladen und funktioniert offline.",
     aiOllamaBody: "Ein Modell auf diesem PC über Ollama. Nichts verlässt deinen PC.",
     reverifyBody:
-      "Windows lässt Shrimp eine zuvor erteilte Berechtigung nicht mehr nutzen. Erteile sie erneut, um weiter zu diktieren.",
+      "Windows lässt Moustache eine zuvor erteilte Berechtigung nicht mehr nutzen. Erteile sie erneut, um weiter zu diktieren.",
     reverifyHint:
       "Prüfe unter Einstellungen › Datenschutz › Mikrofon, dass Desktop-Apps das Mikrofon verwenden dürfen.",
   },
@@ -49,7 +49,7 @@ export const windows: WindowsCatalog = {
   aiProvider: { ollamaNote: "Ollama läuft auf diesem PC; nichts verlässt ihn." },
   apiKey: { saved: "Schlüssel in der Windows-Anmeldeinformationsverwaltung gespeichert" },
   speechEngine: {
-    note: "Whisper auf diesem PC ist privat und funktioniert offline. Cloud-Engines senden dein Audio an OpenAI oder Groq; fällt eine aus, nutzt Shrimp wieder Whisper auf diesem PC.",
+    note: "Whisper auf diesem PC ist privat und funktioniert offline. Cloud-Engines senden dein Audio an OpenAI oder Groq; fällt eine aus, nutzt Moustache wieder Whisper auf diesem PC.",
   },
   modelCard: { ready: "Bereit. Das Diktieren läuft komplett auf diesem PC." },
   sound: {
@@ -60,7 +60,7 @@ export const windows: WindowsCatalog = {
   },
   vibeCoding: { step1: "Öffne die Befehlspalette (Strg+Umschalt+P)." },
   contextAwareness: {
-    body: "Shrimp liest den Text um deinen Cursor und die Namen auf dem Bildschirm, damit Namen richtig geschrieben werden und der Stil zur App passt. Ist dies aus, gelangt nichts von deinem Bildschirm zur Spracherkennung oder zum KI-Anbieter; Groß- und Kleinschreibung sowie Leerzeichen passen sich weiterhin lokal auf diesem PC an den Text um den Cursor an.",
+    body: "Moustache liest den Text um deinen Cursor und die Namen auf dem Bildschirm, damit Namen richtig geschrieben werden und der Stil zur App passt. Ist dies aus, gelangt nichts von deinem Bildschirm zur Spracherkennung oder zum KI-Anbieter; Groß- und Kleinschreibung sowie Leerzeichen passen sich weiterhin lokal auf diesem PC an den Text um den Cursor an.",
   },
   micAdvice: {
     questions: {

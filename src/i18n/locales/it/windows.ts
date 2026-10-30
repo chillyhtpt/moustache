@@ -4,29 +4,29 @@ export const windows: WindowsCatalog = {
   settings: { pageHint: "Alt+↑ e Alt+↓ passano da una pagina all'altra." },
   appLanguage: { system: "Stessa lingua di Windows" },
   system: {
-    launchAtLoginBody: "Shrimp si avvia in background quando accedi, pronto nell'area di notifica.",
+    launchAtLoginBody: "Moustache si avvia in background quando accedi, pronto nell'area di notifica.",
     resetBody:
-      "Elimina i dati locali di Shrimp su questo PC e lo riavvia. Usalo se Shrimp continua a non funzionare bene.",
+      "Elimina i dati locali di Moustache su questo PC e lo riavvia. Usalo se Moustache continua a non funzionare bene.",
     resetConfirmBody:
-      "Verranno eliminati cronologia, registrazioni, dizionario, snippet, statistiche, impostazioni e chiavi API su questo PC, poi Shrimp si riavvierà. I modelli vocali scaricati vengono mantenuti.",
+      "Verranno eliminati cronologia, registrazioni, dizionario, snippet, statistiche, impostazioni e chiavi API su questo PC, poi Moustache si riavvierà. I modelli vocali scaricati vengono mantenuti.",
   },
   help: {
     about:
-      "Shrimp {{version}}. Tutto ciò che detti resta su questo PC, a meno che tu non scelga un motore o un provider cloud.",
+      "Moustache {{version}}. Tutto ciò che detti resta su questo PC, a meno che tu non scelga un motore o un provider cloud.",
   },
   onboarding: {
     welcomeBody:
-      "Parla ovunque puoi scrivere. Tieni premuto un tasto, parla e rilascia: Shrimp trascrive ciò che hai detto con Whisper su questo PC, lo sistema e lo incolla dove si trova il cursore.",
+      "Parla ovunque puoi scrivere. Tieni premuto un tasto, parla e rilascia: Moustache trascrive ciò che hai detto con Whisper su questo PC, lo sistema e lo incolla dove si trova il cursore.",
     permissionsBody:
-      "Shrimp ha bisogno del microfono. La riga diventa verde appena Windows lo consente.",
+      "Moustache ha bisogno del microfono. La riga diventa verde appena Windows lo consente.",
     permissionsNote:
-      "Windows non chiede permessi per le scorciatoie o per incollare. Le app eseguite come amministratore ricevono testo solo se anche Shrimp è eseguito come amministratore.",
+      "Windows non chiede permessi per le scorciatoie o per incollare. Le app eseguite come amministratore ricevono testo solo se anche Moustache è eseguito come amministratore.",
     permission: { openSettings: "Apri Impostazioni" },
     engineBody:
-      "Shrimp trascrive su questo PC con Whisper. Il modello si scarica una volta sola e funziona offline.",
+      "Moustache trascrive su questo PC con Whisper. Il modello si scarica una volta sola e funziona offline.",
     aiOllamaBody: "Un modello su questo PC tramite Ollama. Nulla lascia il tuo PC.",
     reverifyBody:
-      "Windows non permette più a Shrimp di usare un permesso che aveva. Concedilo di nuovo per continuare a dettare.",
+      "Windows non permette più a Moustache di usare un permesso che aveva. Concedilo di nuovo per continuare a dettare.",
     reverifyHint:
       "In Impostazioni › Privacy › Microfono, verifica che le app desktop possano usare il microfono.",
   },
@@ -48,7 +48,7 @@ export const windows: WindowsCatalog = {
   aiProvider: { ollamaNote: "Ollama funziona su questo PC; nulla esce dal PC." },
   apiKey: { saved: "Chiave salvata in Gestione credenziali di Windows" },
   speechEngine: {
-    note: "Whisper su questo PC è privato e funziona offline. I motori cloud inviano l'audio a OpenAI o Groq; se uno non funziona, Shrimp torna a Whisper su questo PC.",
+    note: "Whisper su questo PC è privato e funziona offline. I motori cloud inviano l'audio a OpenAI o Groq; se uno non funziona, Moustache torna a Whisper su questo PC.",
   },
   modelCard: { ready: "Pronto. La dettatura avviene interamente su questo PC." },
   sound: {
@@ -59,7 +59,7 @@ export const windows: WindowsCatalog = {
   },
   vibeCoding: { step1: "Apri la Command Palette (Ctrl+Maiusc+P)." },
   contextAwareness: {
-    body: "Shrimp legge il testo intorno al cursore e i nomi sullo schermo, così i nomi sono scritti correttamente e lo stile si adatta all'app. Se disattivato, nulla dello schermo arriva al motore vocale o al provider IA; maiuscole e spaziatura si adattano comunque al testo intorno al cursore, su questo PC.",
+    body: "Moustache legge il testo intorno al cursore e i nomi sullo schermo, così i nomi sono scritti correttamente e lo stile si adatta all'app. Se disattivato, nulla dello schermo arriva al motore vocale o al provider IA; maiuscole e spaziatura si adattano comunque al testo intorno al cursore, su questo PC.",
   },
   micAdvice: {
     questions: {

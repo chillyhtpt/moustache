@@ -24,7 +24,7 @@ describe("recommend", () => {
     expect(advice.title).toBe("A headset or a USB microphone close to you");
     expect(advice.tips[0]).toMatch(/Bluetooth headphones for listening/);
     expect(advice.tips).toContain(
-      "Speaking quietly is fine: Shrimp raises soft and whispered speech.",
+      "Speaking quietly is fine: Moustache raises soft and whispered speech.",
     );
   });
 

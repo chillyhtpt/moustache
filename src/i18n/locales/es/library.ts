@@ -13,7 +13,7 @@ export const library: LibraryCatalog = {
     selected_many: "{{count, number}} seleccionadas",
     selected_other: "{{count, number}} seleccionadas",
     selected_zero: "{{count, number}} seleccionadas",
-    empty: "Aún no hay palabras. Añade nombres, jerga y palabras que Shrimp debe escribir bien.",
+    empty: "Aún no hay palabras. Añade nombres, jerga y palabras que Moustache debe escribir bien.",
     noMatches: "No hay coincidencias.",
     sortBy: "Ordenar por",
     sorts: {
@@ -55,7 +55,7 @@ export const library: LibraryCatalog = {
     word: "Palabra",
     correctMisspelling: "Corregir una palabra mal escrita",
     misspelling: "Palabra mal escrita",
-    misspellingHint: "Lo que oye Shrimp, sustituido por la palabra de arriba.",
+    misspellingHint: "Lo que oye Moustache, sustituido por la palabra de arriba.",
     save: "Guardar",
   },
   snippets: {
@@ -82,7 +82,7 @@ export const library: LibraryCatalog = {
     triggerHint: "Lo que dices",
     expansion: "Expansión",
     expansionHint:
-      "Lo que escribe Shrimp. **Negrita**, *cursiva*, listas y [enlaces](https://…) conservan su formato donde la app lo admite.",
+      "Lo que escribe Moustache. **Negrita**, *cursiva*, listas y [enlaces](https://…) conservan su formato donde la app lo admite.",
     bold: "Negrita",
     italic: "Cursiva",
     link: "Enlace",
@@ -108,6 +108,6 @@ export const library: LibraryCatalog = {
   autoLearn: {
     label: "Añadir al diccionario automáticamente",
     description:
-      "Cuando corriges una palabra justo después de dictarla, Shrimp añade la versión corregida. Nunca se añaden rutas, enlaces, código, números, palabras comunes ni las palabras que elimines aquí.",
+      "Cuando corriges una palabra justo después de dictarla, Moustache añade la versión corregida. Nunca se añaden rutas, enlaces, código, números, palabras comunes ni las palabras que elimines aquí.",
   },
 };

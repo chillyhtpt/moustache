@@ -24,7 +24,7 @@ function backend(models: ModelStatus[]) {
   return (cmd: string) => {
     switch (cmd) {
       case "app_info":
-        return { name: "Shrimp", version: "0.1.0", os: "macos", arch: "aarch64", userName: "Alex" };
+        return { name: "Moustache", version: "0.1.0", os: "macos", arch: "aarch64", userName: "Alex" };
       case "get_models":
         return models;
       case "get_permissions":
@@ -58,7 +58,7 @@ describe("App", () => {
   it("shows the app info returned by the backend", async () => {
     mockIPC(backend([model({})]), { shouldMockEvents: true });
     render(<App />);
-    expect(await screen.findByTestId("app-info")).toHaveTextContent("Shrimp 0.1.0 · macos/aarch64");
+    expect(await screen.findByTestId("app-info")).toHaveTextContent("Moustache 0.1.0 · macos/aarch64");
   });
 
   it("shows an error when the backend call fails", async () => {
@@ -142,7 +142,7 @@ describe("App", () => {
     expect(screen.queryByRole("heading", { name: "Shortcuts" })).not.toBeInTheDocument();
     expect(
       await screen.findByText(
-        "No words yet. Add names, jargon and spellings Shrimp should get right.",
+        "No words yet. Add names, jargon and spellings Moustache should get right.",
       ),
     ).toBeInTheDocument();
   });

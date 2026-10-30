@@ -14,7 +14,7 @@ export const library: LibraryCatalog = {
     selected_other: "{{count, number}} ausgewählt",
     selected_zero: "{{count, number}} ausgewählt",
     empty:
-      "Noch keine Wörter. Füge Namen, Fachbegriffe und Schreibweisen hinzu, die Shrimp richtig schreiben soll.",
+      "Noch keine Wörter. Füge Namen, Fachbegriffe und Schreibweisen hinzu, die Moustache richtig schreiben soll.",
     noMatches: "Keine Treffer.",
     sortBy: "Sortieren nach",
     sorts: {
@@ -56,7 +56,7 @@ export const library: LibraryCatalog = {
     word: "Wort",
     correctMisspelling: "Falsche Schreibweise korrigieren",
     misspelling: "Falsche Schreibweise",
-    misspellingHint: "Was Shrimp hört; wird durch das Wort oben ersetzt.",
+    misspellingHint: "Was Moustache hört; wird durch das Wort oben ersetzt.",
     save: "Speichern",
   },
   snippets: {
@@ -83,7 +83,7 @@ export const library: LibraryCatalog = {
     triggerHint: "Was du sagst",
     expansion: "Text",
     expansionHint:
-      "Was Shrimp schreibt. **Fett**, *kursiv*, Listen und [Links](https://…) behalten ihre Formatierung, wo die App das unterstützt.",
+      "Was Moustache schreibt. **Fett**, *kursiv*, Listen und [Links](https://…) behalten ihre Formatierung, wo die App das unterstützt.",
     bold: "Fett",
     italic: "Kursiv",
     link: "Link",
@@ -109,6 +109,6 @@ export const library: LibraryCatalog = {
   autoLearn: {
     label: "Automatisch zum Wörterbuch hinzufügen",
     description:
-      "Korrigierst du ein Wort direkt nach dem Diktieren, fügt Shrimp die neue Schreibweise hinzu. Pfade, Links, Code, Zahlen, Alltagswörter und Wörter, die du hier löschst, werden nie hinzugefügt.",
+      "Korrigierst du ein Wort direkt nach dem Diktieren, fügt Moustache die neue Schreibweise hinzu. Pfade, Links, Code, Zahlen, Alltagswörter und Wörter, die du hier löschst, werden nie hinzugefügt.",
   },
 };

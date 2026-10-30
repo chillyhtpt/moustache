@@ -7,7 +7,7 @@
   },
   "bundle": {
     "macOS": {
-      "signingIdentity": "Shrimp Dev"
+      "signingIdentity": "Moustache Dev"
     }
   }
 }

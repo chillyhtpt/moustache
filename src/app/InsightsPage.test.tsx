@@ -122,7 +122,7 @@ describe("InsightsPage", () => {
     stubCanvas();
     const { calls } = backend({
       copy_image: () => null,
-      save_image: () => "/Users/me/Downloads/My Shrimp activity 2026-10-13.png",
+      save_image: () => "/Users/me/Downloads/My Moustache activity 2026-10-13.png",
     });
     render(<InsightsPage />);
     fireEvent.click(await screen.findByRole("button", { name: "Share" }));

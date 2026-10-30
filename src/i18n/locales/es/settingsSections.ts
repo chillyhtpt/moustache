@@ -32,7 +32,7 @@ export const settingsSections: SettingsSectionsCatalog = {
   speechEngine: {
     title: "Motor de voz",
     model: "Modelo de voz",
-    note: "Whisper en este Mac es privado y funciona sin conexión. Los motores en la nube envían tu audio a OpenAI o Groq; si uno falla, Shrimp recurre a Whisper en este Mac.",
+    note: "Whisper en este Mac es privado y funciona sin conexión. Los motores en la nube envían tu audio a OpenAI o Groq; si uno falla, Moustache recurre a Whisper en este Mac.",
   },
   whisperModels: {
     title: "Modelo de Whisper",
@@ -84,7 +84,7 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Flow Bar",
     alwaysShow: "Mostrar siempre la Flow Bar",
     alwaysShowBody:
-      "Si está desactivado, la barra solo aparece mientras dictas o cuando Shrimp tiene algo que decirte.",
+      "Si está desactivado, la barra solo aparece mientras dictas o cuando Moustache tiene algo que decirte.",
     hiddenUntil: "Oculta hasta las {{time}}",
     showNow: "Mostrar ahora",
     note: "Arrastra la barra al borde inferior, izquierdo o derecho de la pantalla; te sigue a la pantalla en la que esté el puntero. Haz clic derecho en ella para elegir el micrófono y más.",
@@ -96,7 +96,7 @@ export const settingsSections: SettingsSectionsCatalog = {
       "Selecciona texto, mantén pulsado {{shortcut}} y di qué cambiar, como “hazlo más formal” o “tradúcelo al inglés”. Sin nada seleccionado, haz una pregunta.",
     pressEnter: "Comando de voz “press enter”",
     pressEnterBody:
-      "Termina un dictado con “press enter” para enviarlo: Shrimp omite esas palabras y pulsa Enter después de pegar.",
+      "Termina un dictado con “press enter” para enviarlo: Moustache omite esas palabras y pulsa Enter después de pegar.",
   },
   commandModeIntro: {
     title: "Cómo usar Command Mode (beta)",
@@ -112,17 +112,17 @@ export const settingsSections: SettingsSectionsCatalog = {
     title: "Vibe coding",
     fileTagging: "Etiquetar archivos en el chat",
     fileTaggingBody:
-      "En el chat de Cursor y Windsurf, di el nombre de un archivo (“index dot ts”) o “tag” y su nombre, y Shrimp escribe una mención con @. Funciona con archivos abiertos o visibles en la barra lateral.",
+      "En el chat de Cursor y Windsurf, di el nombre de un archivo (“index dot ts”) o “tag” y su nombre, y Moustache escribe una mención con @. Funciona con archivos abiertos o visibles en la barra lateral.",
     variables: "Reconocimiento de variables",
     variablesBody:
-      "En Cursor, VS Code y Windsurf, di los nombres con naturalidad, “user ID” para <code>userId</code>: Shrimp los asocia con el código en pantalla. Di “camel case”, “snake case”, “pascal case” o “kebab case” antes de las palabras para crear un nombre nuevo.",
+      "En Cursor, VS Code y Windsurf, di los nombres con naturalidad, “user ID” para <code>userId</code>: Moustache los asocia con el código en pantalla. Di “camel case”, “snake case”, “pascal case” o “kebab case” antes de las palabras para crear un nombre nuevo.",
     step1: "Abre la paleta de comandos (Cmd+Mayúsculas+P).",
     step2: "Ejecuta “Toggle Screen Reader Accessibility Mode”.",
     step3: "Comprueba que aparece “Screen Reader Optimized” en la barra de estado.",
   },
   contextAwareness: {
     title: "Reconocimiento del contexto",
-    body: "Shrimp lee el texto alrededor del cursor y los nombres en pantalla, para escribir bien los nombres y adaptar el estilo a la app. Si está desactivado, nada de tu pantalla llega al motor de voz ni al proveedor de IA; las mayúsculas y los espacios se siguen adaptando al texto junto al cursor, en este Mac.",
+    body: "Moustache lee el texto alrededor del cursor y los nombres en pantalla, para escribir bien los nombres y adaptar el estilo a la app. Si está desactivado, nada de tu pantalla llega al motor de voz ni al proveedor de IA; las mayúsculas y los espacios se siguen adaptando al texto junto al cursor, en este Mac.",
   },
   shortcutsSection: {
     title: "Atajos",

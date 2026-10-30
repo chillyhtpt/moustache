@@ -46,7 +46,7 @@ function backend(step: OnboardingStep, permissions: PermissionsInfo, completed =
     list_history: () => ({ entries: [], disabled: false }),
     run_notice_action: () => null,
     app_info: () => ({
-      name: "Shrimp",
+      name: "Moustache",
       version: "0.1.0",
       os: "macos",
       arch: "aarch64",
@@ -67,9 +67,9 @@ describe("Onboarding", () => {
   it("walks through every step, saving each one", async () => {
     const { argsOf, settings } = backend("welcome", GRANTED);
     render(<App />);
-    expect(await title("Welcome to Shrimp")).toHaveFocus();
+    expect(await title("Welcome to Moustache")).toHaveFocus();
     next("Get started");
-    expect(await title("Let Shrimp hear you and type for you")).toBeInTheDocument();
+    expect(await title("Let Moustache hear you and type for you")).toBeInTheDocument();
     await waitFor(() => expect(screen.getByRole("button", { name: "Continue" })).toBeEnabled());
     next();
     expect(await title("Test your microphone")).toBeInTheDocument();
@@ -89,7 +89,7 @@ describe("Onboarding", () => {
     expect(screen.getByRole("button", { name: "Skip" })).toBeInTheDocument();
     next();
     expect(await title("You're all set")).toBeInTheDocument();
-    next("Start using Shrimp");
+    next("Start using Moustache");
     expect(await screen.findByRole("navigation", { name: "Main" })).toBeInTheDocument();
     expect(settings().onboarding.completed).toBe(true);
     expect(settings().ai.provider).toBe("ollama");
@@ -114,7 +114,7 @@ describe("Onboarding", () => {
       accessibility: "denied",
     });
     render(<App />);
-    await title("Let Shrimp hear you and type for you");
+    await title("Let Moustache hear you and type for you");
     expect(await screen.findByRole("button", { name: "Allow" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Continue" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Open System Settings" })).toBeInTheDocument();
@@ -133,7 +133,7 @@ describe("Onboarding", () => {
   it("asks again for a permission lost after an update", async () => {
     backend("done", { microphone: "granted", accessibility: "denied" }, true);
     render(<App />);
-    expect(await title("Grant Shrimp's permissions again")).toBeInTheDocument();
+    expect(await title("Grant Moustache's permissions again")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Later" }));
     expect(await screen.findByRole("navigation", { name: "Main" })).toBeInTheDocument();
   });

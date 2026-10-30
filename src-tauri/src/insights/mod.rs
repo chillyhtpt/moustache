@@ -263,7 +263,7 @@ mod tests {
     #[test]
     fn milestone_notices_offer_insights() {
         let words = notice(Milestone::Words(25_000));
-        assert_eq!(words.message, "You've dictated 25,000 words with Shrimp.");
+        assert_eq!(words.message, "You've dictated 25,000 words with Moustache.");
         assert_eq!(words.action(), Some(NoticeAction::OpenInsights));
         assert_eq!(
             notice(Milestone::VoiceProfile { first: true }).action(),

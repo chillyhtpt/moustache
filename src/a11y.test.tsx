@@ -55,7 +55,7 @@ const HISTORY: HistoryItem[] = [
 function backend(settings: Settings = SETTINGS) {
   return mockBackend({
     app_info: () => ({
-      name: "Shrimp",
+      name: "Moustache",
       version: "0.1.0",
       os: "macos",
       arch: "aarch64",

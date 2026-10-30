@@ -6,6 +6,7 @@ import {
   Info,
   Plus,
   Sliders,
+  Sparkles,
   Trash2,
   X,
 } from "lucide-react";
@@ -23,6 +24,7 @@ import {
   sameAction,
   type ShortcutList,
   type ShortcutRow,
+  updateSettings,
 } from "../lib/ipc";
 import { useTauriEvent } from "../lib/useTauriEvent";
 import { Dialog, DialogFooter } from "./Dialog";
@@ -61,9 +63,45 @@ export function ShortcutsDialog({ onClose }: ShortcutsDialogProps) {
   const [holdThreshold, setHoldThreshold] = useState(500);
   const [doubleTapWindow, setDoubleTapWindow] = useState(400);
   const [stuckKeyTimeout, setStuckKeyTimeout] = useState(10);
-  const [presetProfile, setPresetProfile] = useState<"standard" | "developer" | "ergonomic">(
+  const [presetProfile, setPresetProfile] = useState<"standard" | "developer" | "wisprCapsLock">(
     "standard",
   );
+
+  const isCapsLockBound = Boolean(
+    list?.rows.find((r) => r.action === "pushToTalk")?.shortcuts.some((k) => k.toLowerCase().includes("caps")),
+  );
+
+  const applyProfile = async (profile: "standard" | "developer" | "wisprCapsLock") => {
+    setPresetProfile(profile);
+    try {
+      if (profile === "wisprCapsLock") {
+        await updateSettings({
+          shortcuts: {
+            bindings: {
+              pushToTalk: ["CapsLock"],
+              handsFree: [],
+            },
+          },
+        });
+        setHoldThreshold(250);
+        setDoubleTapWindow(400);
+      } else if (profile === "developer") {
+        await updateSettings({
+          shortcuts: {
+            bindings: {
+              pushToTalk: ["Ctrl+Opt"],
+              handsFree: ["Ctrl+Opt+Space"],
+            },
+          },
+        });
+      } else if (profile === "standard") {
+        await resetShortcuts();
+      }
+      load();
+    } catch (err: unknown) {
+      setProblem(errorMessage(err));
+    }
+  };
 
   // Conflict detection
   const detectedConflicts = () => {
@@ -126,6 +164,69 @@ export function ShortcutsDialog({ onClose }: ShortcutsDialogProps) {
           {t("shortcuts.secureInput", { app: list.secureInput })}
         </p>
       )}
+      {/* Wispr Flow Caps Lock Mode Showcase & Quick Action */}
+      {isCapsLockBound ? (
+        <div className="rounded-xl border border-brand/30 bg-brand/5 p-4 space-y-2.5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <span className="flex size-7 items-center justify-center rounded-lg bg-brand text-brand-foreground font-mono font-bold text-xs shadow-xs">
+                ⇪
+              </span>
+              <div>
+                <span className="font-bold text-foreground text-xs block">
+                  Wispr Flow Caps Lock Mode Active
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  Push-to-talk & hands-free with automatic uppercase lock suppression
+                </span>
+              </div>
+            </div>
+            <span className="rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 text-[10px] font-semibold border border-emerald-500/20">
+              Active
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-muted-foreground pt-1">
+            <div className="rounded-lg bg-card/80 p-2.5 border border-border/50">
+              <span className="font-semibold text-foreground block mb-0.5">Hold to Talk</span>
+              Press and hold Caps Lock to speak. Release to paste transcript.
+            </div>
+            <div className="rounded-lg bg-card/80 p-2.5 border border-border/50">
+              <span className="font-semibold text-foreground block mb-0.5">Two-Tap Hands-Free</span>
+              Tap Caps Lock twice to lock dictation on. Tap again or Esc to finish.
+            </div>
+            <div className="rounded-lg bg-card/80 p-2.5 border border-border/50">
+              <span className="font-semibold text-foreground block mb-0.5">Shift + Caps Lock</span>
+              Hold Shift and press Caps Lock to toggle normal uppercase typing.
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-between rounded-xl border border-border/80 bg-card p-3">
+          <div className="flex items-center gap-2.5">
+            <span className="flex size-7 items-center justify-center rounded-lg bg-muted text-foreground font-mono font-bold text-xs">
+              ⇪
+            </span>
+            <div>
+              <span className="font-semibold text-foreground text-xs block">
+                Wispr Flow Caps Lock Mode
+              </span>
+              <span className="text-[11px] text-muted-foreground">
+                Single-key push-to-talk + two-tap hands-free without uppercase lock
+              </span>
+            </div>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => void applyProfile("wisprCapsLock")}
+            className="h-7 gap-1.5 border-brand/40 text-brand hover:bg-brand/10 text-xs font-medium cursor-pointer"
+          >
+            <Sparkles className="size-3.5" />
+            Use Caps Lock
+          </Button>
+        </div>
+      )}
+
       <ul className="flex flex-col divide-y divide-separator rounded-xl border bg-card shadow-xs empty:hidden">
         {list?.rows.map((row) => (
           <ShortcutItem
@@ -185,13 +286,13 @@ export function ShortcutsDialog({ onClose }: ShortcutsDialogProps) {
               <select
                 value={presetProfile}
                 onChange={(e) =>
-                  setPresetProfile(e.target.value as "standard" | "developer" | "ergonomic")
+                  void applyProfile(e.target.value as "standard" | "developer" | "wisprCapsLock")
                 }
                 className="rounded border border-input bg-background px-2.5 py-1 text-xs text-foreground"
               >
+                <option value="wisprCapsLock">Wispr Flow (Caps Lock Single-Key)</option>
                 <option value="standard">Standard (Default Fn/Win)</option>
                 <option value="developer">Developer (Vim/IDE Safe)</option>
-                <option value="ergonomic">Ergonomic (Caps Lock Single-Key)</option>
               </select>
             </div>
 

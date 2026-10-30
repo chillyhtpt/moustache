@@ -33,7 +33,7 @@ export interface ShortcutRecording {
 const GRACE_MS = 500;
 
 /**
- * Records shortcuts through Shrimp's keyboard and mouse hooks, which see Fn, Caps Lock and
+ * Records shortcuts through Moustache's keyboard and mouse hooks, which see Fn, Caps Lock and
  * mouse buttons. Keys save on release, mouse buttons on press; Esc alone or a click cancels.
  * `owns` limits the hook to the actions this view shows.
  */

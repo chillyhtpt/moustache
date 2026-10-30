@@ -229,7 +229,7 @@ export type ModelStatus = {
   id: string;
   label: string;
   sizeBytes: number;
-  /** Shrimp's recommendation. */
+  /** Moustache's recommendation. */
   isDefault: boolean;
   /** Loaded, so dictations use it. */
   inUse: boolean;
@@ -293,7 +293,7 @@ export interface Settings {
     anthropicModel: string;
     openaiModel: string;
     groqModel: string;
-    /** Empty means Shrimp picks an installed model. */
+    /** Empty means Moustache picks an installed model. */
     ollamaModel: string;
     ollamaUrl: string;
   };
@@ -404,6 +404,9 @@ export interface SettingsPatch {
     promptEngineer?: { prompt?: string } | null;
     custom?: CustomTransform[];
     autoApply?: string | null;
+  };
+  shortcuts?: {
+    bindings?: Record<string, string[]>;
   };
 }
 
@@ -752,7 +755,7 @@ export const getSettings = (): Promise<Settings> => invoke<Settings>("get_settin
 export const updateSettings = (patch: SettingsPatch): Promise<Settings> =>
   invoke<Settings>("update_settings", { patch });
 
-/** The apps Style › Formatting per app offers: the one in front before Shrimp, then those dictated into. */
+/** The apps Style › Formatting per app offers: the one in front before Moustache, then those dictated into. */
 export const getFormatApps = (): Promise<KnownApp[]> => invoke<KnownApp[]>("get_format_apps");
 
 export const transformAction = (action: TransformAction): Promise<void> =>
@@ -877,7 +880,7 @@ export const repairData = (repair: Repair): Promise<void> => invoke("repair_data
 /** Reset & restart. */
 export const resetApp = (): Promise<void> => invoke("reset_app");
 
-/** Copies Shrimp into Applications, then quits and opens the copy (debug builds only log). */
+/** Copies Moustache into Applications, then quits and opens the copy (debug builds only log). */
 export const moveToApplications = (): Promise<void> => invoke("move_to_applications");
 
 export const quitApp = (): Promise<void> => invoke("quit_app");

@@ -1,6 +1,7 @@
 import type { AppRule } from "./types";
 
-const STORAGE_KEY = "shrimp:appRules";
+const STORAGE_KEY = "moustache:appRules";
+const LEGACY_STORAGE_KEY = "shrimp:appRules";
 
 export const DEFAULT_APP_RULES: AppRule[] = [
   {
@@ -75,7 +76,7 @@ export const DEFAULT_APP_RULES: AppRule[] = [
 
 export function loadAppRules(): AppRule[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_APP_RULES));
       return DEFAULT_APP_RULES;
