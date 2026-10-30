@@ -1,5 +1,7 @@
+import { Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getAppInfo, type AppInfo } from "../lib/ipc";
 import { Greeting } from "./Greeting";
@@ -13,9 +15,10 @@ type InfoState =
 
 interface HomePageProps {
   onOpenInsights: () => void;
+  onOpenMeetings?: () => void;
 }
 
-export function HomePage({ onOpenInsights }: HomePageProps) {
+export function HomePage({ onOpenInsights, onOpenMeetings }: HomePageProps) {
   const { t } = useTranslation();
   return (
     <div className="app">
@@ -24,6 +27,30 @@ export function HomePage({ onOpenInsights }: HomePageProps) {
         <Greeting onOpenInsights={onOpenInsights} />
         <ModelCard hideWhenReady />
         <PermissionsCard hideWhenGranted />
+        {onOpenMeetings && (
+          <div className="flex items-center justify-between rounded-xl border border-brand/30 bg-card p-4 shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="rounded-lg bg-brand/10 p-2.5 text-brand">
+                <Users className="size-5" />
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold text-foreground">
+                  Meeting Transcription & AI Notes
+                </h2>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Live Granola-style notes, participant scratchpad, and OpenWhispr audio import.
+                </p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              onClick={onOpenMeetings}
+              className="bg-brand text-brand-foreground hover:bg-brand/90 text-xs cursor-pointer"
+            >
+              Open Meetings
+            </Button>
+          </div>
+        )}
         <HistorySection />
         <AppInfoLine />
       </div>

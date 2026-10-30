@@ -1,6 +1,8 @@
 //! OS integration behind traits, so the dictation core stays portable and
 //! testable with fakes. Only this module contains `#[cfg(target_os)]` code.
 
+#[cfg(not(any(target_os = "macos", target_os = "windows")))]
+mod linux;
 #[cfg(target_os = "macos")]
 mod macos;
 mod overrides;
@@ -448,6 +450,11 @@ pub fn native(main_thread: MainThread) -> Platform {
     overrides::apply(windows::platform(main_thread))
 }
 
+#[cfg(not(any(target_os = "macos", target_os = "windows")))]
+pub fn native(main_thread: MainThread) -> Platform {
+    overrides::apply(linux::platform(main_thread))
+}
+
 #[cfg(target_os = "macos")]
 pub use macos::{
     free_bytes, language_name, move_to_applications, open_keyboard_settings, open_sound_settings,
@@ -456,6 +463,13 @@ pub use macos::{
 
 #[cfg(target_os = "windows")]
 pub use windows::{
+    free_bytes, is_windows_11, language_name, move_to_applications, open_keyboard_settings,
+    open_sound_settings, open_storage_settings, outside_applications, relaunch_after_exit,
+    set_own_field_focused, small_icon_size,
+};
+
+#[cfg(not(any(target_os = "macos", target_os = "windows")))]
+pub use linux::{
     free_bytes, is_windows_11, language_name, move_to_applications, open_keyboard_settings,
     open_sound_settings, open_storage_settings, outside_applications, relaunch_after_exit,
     set_own_field_focused, small_icon_size,
@@ -501,6 +515,9 @@ pub use macos::flow_bar;
 
 #[cfg(target_os = "windows")]
 pub use windows::{flow_bar, main_window};
+
+#[cfg(not(any(target_os = "macos", target_os = "windows")))]
+pub use linux::{flow_bar, main_window};
 
 #[cfg(test)]
 mod tests {

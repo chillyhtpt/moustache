@@ -13,6 +13,9 @@ import { usePermissions } from "./onboarding/usePermissions";
 import { HelpPage } from "./HelpPage";
 import { HomePage } from "./HomePage";
 import { InsightsPage } from "./InsightsPage";
+import { MeetingPage } from "./meetings/MeetingPage";
+import { AppRulesPage } from "./app-rules/AppRulesPage";
+import { UpgradeManagerPage } from "./upgrade/UpgradeManagerPage";
 import { SettingsPage, type SettingsSection, type SettingsTarget } from "./SettingsPage";
 import { ShortcutsDialog } from "./ShortcutsDialog";
 import { Sidebar, type PageId } from "./Sidebar";
@@ -87,9 +90,12 @@ function Screen() {
       section === "dictionary" ||
       section === "insights" ||
       section === "help" ||
-      section === "transforms"
+      section === "transforms" ||
+      section === "meetings" ||
+      section === "appRules" ||
+      section === "upgrade"
     ) {
-      go(section);
+      go(section as PageId);
     } else if (section === "voiceProfile") {
       go("insights");
       setRevealVoiceProfile((count) => count + 1);
@@ -157,7 +163,18 @@ function CurrentPage({
 }: CurrentPageProps) {
   switch (page) {
     case "home":
-      return <HomePage onOpenInsights={() => onNavigate("insights")} />;
+      return (
+        <HomePage
+          onOpenInsights={() => onNavigate("insights")}
+          onOpenMeetings={() => onNavigate("meetings")}
+        />
+      );
+    case "meetings":
+      return <MeetingPage />;
+    case "appRules":
+      return <AppRulesPage />;
+    case "upgrade":
+      return <UpgradeManagerPage />;
     case "insights":
       return <InsightsPage revealVoiceProfile={revealVoiceProfile} />;
     case "dictionary":

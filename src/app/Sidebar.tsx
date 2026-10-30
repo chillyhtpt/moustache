@@ -1,4 +1,6 @@
 import {
+  AppWindow,
+  ArrowUpCircle,
   BookOpenText,
   ChartNoAxesColumn,
   CircleHelp,
@@ -6,6 +8,7 @@ import {
   House,
   Settings,
   TextQuote,
+  Users,
   WandSparkles,
   type LucideIcon,
 } from "lucide-react";
@@ -15,7 +18,17 @@ import { IS_WINDOWS } from "@/lib/platform";
 import { cn } from "@/lib/utils";
 
 export type PageId =
-  "home" | "insights" | "dictionary" | "snippets" | "style" | "transforms" | "settings" | "help";
+  | "home"
+  | "insights"
+  | "dictionary"
+  | "snippets"
+  | "style"
+  | "transforms"
+  | "settings"
+  | "help"
+  | "meetings"
+  | "appRules"
+  | "upgrade";
 
 /** The sidebar's pages, top to bottom; Settings and Help sit at the bottom (APP-04). */
 export const PAGES: PageId[] = [
@@ -40,6 +53,9 @@ const ICONS: Record<PageId, LucideIcon> = {
   transforms: WandSparkles,
   settings: Settings,
   help: CircleHelp,
+  meetings: Users,
+  appRules: AppWindow,
+  upgrade: ArrowUpCircle,
 };
 
 interface SidebarProps {
@@ -77,7 +93,15 @@ export function Sidebar({ page, onSelect }: SidebarProps) {
           strokeWidth={1.75}
           className="size-4 shrink-0 text-muted-foreground transition-colors group-aria-[current=page]:text-brand"
         />
-        <span className="truncate">{t(`nav.${id}`)}</span>
+        <span className="truncate">
+          {id === "meetings"
+            ? "Meetings"
+            : id === "appRules"
+              ? "App Rules"
+              : id === "upgrade"
+                ? "Upgrade"
+                : t(`nav.${id as "home"}`)}
+        </span>
       </button>
     );
   };

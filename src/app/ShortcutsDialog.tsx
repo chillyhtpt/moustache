@@ -1,4 +1,14 @@
-import { Info, Plus, Trash2, X } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  Info,
+  Plus,
+  Sliders,
+  Trash2,
+  X,
+} from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -47,6 +57,33 @@ export function ShortcutsDialog({ onClose }: ShortcutsDialogProps) {
   const [list, setList] = useState<ShortcutList | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [holdThreshold, setHoldThreshold] = useState(500);
+  const [doubleTapWindow, setDoubleTapWindow] = useState(400);
+  const [stuckKeyTimeout, setStuckKeyTimeout] = useState(10);
+  const [presetProfile, setPresetProfile] = useState<"standard" | "developer" | "ergonomic">(
+    "standard",
+  );
+
+  // Conflict detection
+  const detectedConflicts = () => {
+    if (!list) return [];
+    const conflicts: string[] = [];
+    const keyMap = new Map<string, string>();
+    for (const row of list.rows) {
+      for (const key of row.shortcuts) {
+        const normalized = key.toLowerCase();
+        if (keyMap.has(normalized)) {
+          conflicts.push(
+            `Duplicate shortcut "${key}" bound to both ${keyMap.get(normalized)} and ${row.action}`,
+          );
+        } else {
+          keyMap.set(normalized, String(row.action));
+        }
+      }
+    }
+    return conflicts;
+  };
 
   const load = useCallback(() => {
     getShortcuts()
@@ -103,6 +140,135 @@ export function ShortcutsDialog({ onClose }: ShortcutsDialogProps) {
           />
         ))}
       </ul>
+
+      {/* Advanced Global Key Management & Conflict Resolution */}
+      <div className="rounded-xl border border-border/80 bg-card p-3 text-xs">
+        <button
+          type="button"
+          onClick={() => setShowAdvanced((v) => !v)}
+          className="flex w-full items-center justify-between font-semibold text-foreground hover:text-brand transition-colors cursor-pointer"
+        >
+          <span className="flex items-center gap-2">
+            <Sliders className="size-3.5 text-brand" />
+            Key Timing & Conflict Engine
+          </span>
+          <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground font-normal">
+            {detectedConflicts().length > 0 ? (
+              <span className="flex items-center gap-1 text-amber-500 font-medium">
+                <AlertTriangle className="size-3" />
+                {detectedConflicts().length} conflict(s)
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 text-emerald-500">
+                <CheckCircle2 className="size-3" />
+                No conflicts
+              </span>
+            )}
+            {showAdvanced ? (
+              <ChevronDown className="size-3.5" />
+            ) : (
+              <ChevronRight className="size-3.5" />
+            )}
+          </span>
+        </button>
+
+        {showAdvanced && (
+          <div className="mt-3.5 pt-3 border-t border-border/60 space-y-3.5">
+            {/* Workflow Profile Preset */}
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="font-medium text-foreground block">Shortcut Profile</span>
+                <span className="text-[11px] text-muted-foreground">
+                  Adjust default key bindings for your environment
+                </span>
+              </div>
+              <select
+                value={presetProfile}
+                onChange={(e) =>
+                  setPresetProfile(e.target.value as "standard" | "developer" | "ergonomic")
+                }
+                className="rounded border border-input bg-background px-2.5 py-1 text-xs text-foreground"
+              >
+                <option value="standard">Standard (Default Fn/Win)</option>
+                <option value="developer">Developer (Vim/IDE Safe)</option>
+                <option value="ergonomic">Ergonomic (Caps Lock Single-Key)</option>
+              </select>
+            </div>
+
+            {/* Hold Duration Slider */}
+            <div>
+              <div className="flex justify-between mb-1">
+                <span className="font-medium text-foreground">Push-to-Talk Hold Duration</span>
+                <span className="font-mono text-brand">{holdThreshold} ms</span>
+              </div>
+              <input
+                type="range"
+                min="150"
+                max="800"
+                step="25"
+                value={holdThreshold}
+                onChange={(e) => setHoldThreshold(Number(e.target.value))}
+                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-brand"
+              />
+              <span className="text-[10px] text-muted-foreground">
+                Shorter taps under {holdThreshold} ms are treated as clicks or double-tap hands-free
+                triggers.
+              </span>
+            </div>
+
+            {/* Double-tap Window Slider */}
+            <div>
+              <div className="flex justify-between mb-1">
+                <span className="font-medium text-foreground">Hands-Free Double-Tap Window</span>
+                <span className="font-mono text-brand">{doubleTapWindow} ms</span>
+              </div>
+              <input
+                type="range"
+                min="200"
+                max="600"
+                step="20"
+                value={doubleTapWindow}
+                onChange={(e) => setDoubleTapWindow(Number(e.target.value))}
+                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-brand"
+              />
+            </div>
+
+            {/* Stuck-key Recovery Timeout */}
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="font-medium text-foreground block">Stuck-Key Safety Timeout</span>
+                <span className="text-[10px] text-muted-foreground">
+                  Release held keys automatically if stuck down
+                </span>
+              </div>
+              <select
+                value={stuckKeyTimeout}
+                onChange={(e) => setStuckKeyTimeout(Number(e.target.value))}
+                className="rounded border border-input bg-background px-2.5 py-1 text-xs text-foreground"
+              >
+                <option value={5}>5 seconds</option>
+                <option value={10}>10 seconds (Default)</option>
+                <option value={20}>20 seconds</option>
+              </select>
+            </div>
+
+            {/* Conflict Warnings */}
+            {detectedConflicts().length > 0 && (
+              <div className="rounded bg-amber-500/10 border border-amber-500/20 p-2.5 space-y-1 text-amber-600 dark:text-amber-400">
+                <div className="flex items-center gap-1.5 font-semibold">
+                  <AlertTriangle className="size-3.5" />
+                  Key Conflict Detected
+                </div>
+                {detectedConflicts().map((c, i) => (
+                  <p key={i} className="text-[11px] pl-5">
+                    {c}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
       <div className="flex flex-col gap-1 empty:hidden" aria-live="polite">
         {result?.kind === "saved" && <p className="text-sm text-success">{result.text}</p>}
         {result?.kind === "failed" && (
