@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 import { BRAND_MARK } from "@/lib/brandMark";
 
-/** Shrimp's mark in the current colour. */
+/** Moustache's mark in the current colour. */
 export function BrandMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

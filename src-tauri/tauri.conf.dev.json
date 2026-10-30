@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Shrimp Dev",
+  "productName": "Moustache Dev",
   "identifier": "com.shrimp.desktop.dev",
   "build": {
     "beforeBuildCommand": "pnpm build:dev"

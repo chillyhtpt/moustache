@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Shrimp",
+  "productName": "Moustache",
   "version": "0.1.2",
   "identifier": "com.shrimp.desktop",
   "build": {
@@ -14,7 +14,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Shrimp",
+        "title": "Moustache",
         "width": 900,
         "height": 640,
         "minWidth": 640,

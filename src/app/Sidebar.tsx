@@ -67,7 +67,7 @@ function Brand() {
   return (
     <div className="flex items-center gap-2 px-2 text-sidebar-foreground">
       <BrandMark className="size-[18px] text-brand" />
-      <span className="text-base font-semibold tracking-[-0.01em]">Shrimp</span>
+      <span className="text-base font-semibold tracking-[-0.01em]">Moustache</span>
     </div>
   );
 }
