@@ -36,44 +36,26 @@ jobs:
         with:
           targets: x86_64-pc-windows-msvc
 
-      - name: Install Vulkan SDK
-        shell: pwsh
-        run: |
-          choco install vulkan-sdk -y --no-progress
-          $vulkanDir = Get-ChildItem -Path "C:\VulkanSDK" -ErrorAction SilentlyContinue | Sort-Object Name -Descending | Select-Object -First 1
-          if ($vulkanDir) {
-            Write-Host "Setting VULKAN_SDK to $($vulkanDir.FullName)"
-            "VULKAN_SDK=$($vulkanDir.FullName)" >> $env:GITHUB_ENV
-            "$($vulkanDir.FullName)\Bin" >> $env:GITHUB_PATH
-          }
-
       - name: Install Frontend Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build Windows Installer
         shell: pwsh
         run: |
+          $env:CARGO_TARGET_DIR = 'C:\st'
           $env:GGML_NATIVE = 'OFF'
           $env:GGML_AVX = 'ON'
           $env:GGML_AVX2 = 'ON'
           $env:GGML_BMI2 = 'ON'
           $env:GGML_FMA = 'ON'
           $env:GGML_F16C = 'ON'
-          if ($env:VULKAN_SDK) {
-            pnpm tauri build --bundles nsis --features vulkan
-          } else {
-            pnpm tauri build --bundles nsis
-          }
+          pnpm tauri build --bundles nsis
 
       - name: Locate Built Installer
         id: locate-installer
         shell: pwsh
         run: |
-          $installer = Get-ChildItem -Path "src-tauri/target/release/bundle/nsis/*.exe" | Select-Object -First 1
-          if (-not $installer) {
-            # Check default target path
-            $installer = Get-ChildItem -Path "target/release/bundle/nsis/*.exe" -Recurse | Select-Object -First 1
-          }
+          $installer = Get-ChildItem -Path "C:\st\release\bundle\nsis\*.exe", "src-tauri/target/release/bundle/nsis/*.exe", "target/release/bundle/nsis/*.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
           if (-not $installer) {
             Write-Error "Could not find built NSIS installer (.exe)"
             exit 1

@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="assets/icons/app-icon.svg" width="128" height="128" alt="Shrimp's app icon">
+  <img src="assets/icons/app-icon.svg" width="128" height="128" alt="Moustache app icon">
 </p>
 
-<h1 align="center">Shrimp</h1>
+<h1 align="center">Moustache</h1>
 
 <p align="center">Speech to text, anywhere. A desktop dictation app for macOS and Windows.</p>
 
-Hold a shortcut, speak, and let go: Shrimp writes what you said at the cursor, in any app.
+Hold a shortcut, speak, and let go: Moustache writes what you said at the cursor, in any app.
 Speech is transcribed on your computer with [Whisper](https://github.com/ggml-org/whisper.cpp),
 and an optional AI model can clean it up, format it and follow spoken commands.
 

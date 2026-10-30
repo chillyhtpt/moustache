@@ -1,13 +1,13 @@
 {
-  "name": "shrimp",
+  "name": "moustache",
   "private": true,
   "version": "0.1.2",
-  "description": "Speech to text, anywhere: a desktop dictation app for macOS and Windows.",
+  "description": "Moustache: Speech to text, anywhere: a desktop dictation app for macOS and Windows.",
   "license": "MIT",
-  "homepage": "https://github.com/WHEREISDAN/shrimp#readme",
+  "homepage": "https://github.com/chillyhtpt/moustache#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WHEREISDAN/shrimp.git"
+    "url": "git+https://github.com/chillyhtpt/moustache.git"
   },
   "type": "module",
   "scripts": {
