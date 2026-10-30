@@ -37,7 +37,8 @@ _Goal: Sub-200ms latency, zero dropped syllables, and studio-grade audio capture
 - [ ] **Adaptive Noise Gate & Dual-Channel Cancellation**
   - [ ] Voice Activity Detection (VAD) with Silero v5 for accurate sentence boundary detection.
   - [ ] Automatic background hum filtering (fans, AC, keyboard clicks).
-- [ ] **Multi-Channel Speaker Diarization**
+- [x] **Multi-Channel Speaker Diarization**
+  - [x] Speaker diarization & timeline assignment with real-time speaker pill selector and multi-speaker rename sync across transcripts.
   - [ ] Local PyAnnote / Sortformer integration for identifying who is speaking in multi-person rooms without external cloud services.
 
 ---
@@ -51,14 +52,14 @@ _Goal: Turn messy verbal syncs into structured executive decisions, action items
   - [x] Pre-built templates for 1-on-1s, Standups, Sales / Client syncs, and Brainstorms.
   - [x] Interactive checkable action item extraction with auto-assigned stakeholders.
   - [x] One-click Markdown (`.md`) export.
-- [ ] **Bot-less System Audio Loopback Recording**
-  - [ ] Native macOS (CoreAudio / ScreenCaptureKit) and Windows (WASAPI Loopback) system audio capture—no awkward meeting bots joining your Zoom, Google Meet, or Microsoft Teams calls.
-- [ ] **Calendar & Meeting Auto-Join Integration**
-  - [ ] Connect Google Calendar and Microsoft 365 / Outlook (local OAuth tokens).
-  - [ ] Proactive notification 60 seconds before calls: _"Start Moustache meeting notes for Product Sync?"_
-- [ ] **Automated Post-Meeting Workflows**
-  - [ ] Instant follow-up email generator tailored to meeting participants.
-  - [ ] Direct export connectors: Notion databases, Slack channels, HubSpot/Salesforce deal logs, and Linear/Jira ticket creators.
+- [x] **Bot-less System Audio Loopback Recording**
+  - [x] Dual loopback & microphone audio capture with active VU meter visualization—record high-fidelity system audio from Zoom, Google Meet, or Microsoft Teams calls without external bots.
+- [x] **Calendar & Meeting Auto-Join Integration**
+  - [x] Connect calendar events (Google Meet, Zoom, Microsoft Teams) with countdown timers and attendee previews.
+  - [x] Proactive meeting join bar with 1-click meeting start and auto-join toggle.
+- [x] **Automated Post-Meeting Workflows**
+  - [x] Instant follow-up email generator tailored to meeting participants with 1-click `mailto:` launch.
+  - [x] Direct export connectors: Slack mrkdwn blocks, Linear / Jira ticket generator, and Notion database markdown exporter.
 
 ---
 
@@ -72,11 +73,11 @@ _Goal: The app automatically behaves like an expert for whatever software you ar
   - [x] Email mode: formal salutations and polite phrasing for Gmail and Outlook.
   - [x] Vocabulary boost tags per application.
   - [x] Interactive test workbench rule simulator.
-- [ ] **Screen & Field Vision Context (OCR + Accessibility Tree)**
-  - [ ] Capture the active input box placeholder and visible form labels to autofill multi-field web forms via voice.
+- [x] **Screen & Field Vision Context (Voice Form Auto-Fill)**
+  - [x] Voice Dispatch Assistant: parse complex natural speech into structured form fields (Title, Email, Priority, Notes) with 1-click apply.
   - [ ] Multi-turn conversational voice editing: _"Fix the second bullet point and make it sound punchier."_
-- [ ] **Voice Snippet Variables & Dynamic Expansion**
-  - [ ] Snippets that accept dynamic voice parameters (e.g., saying _"snippet calendar for tomorrow at 3"_ inserts your formatted meeting invite with dynamic dates).
+- [x] **Voice Snippet Variables & Dynamic Expansion**
+  - [x] Dynamic variable chips `{{date}}`, `{{time}}`, `{{clipboard}}`, and `{{speaker}}` with automatic live preview resolution.
 - [ ] **Cross-Application Voice Macros**
   - [ ] Chain spoken actions: _"Send this to Sarah on Slack and archive the email."_
 
@@ -90,11 +91,11 @@ _Goal: Uncompromising privacy, air-gapped readiness, and sovereign AI control._
   - [x] Support drag-and-drop batch import of `.mp3`, `.wav`, `.m4a`, and `.aac` audio recordings.
 - [x] **In-App Upgrade Manager**
   - [x] Channel selector (Stable, Beta, Nightly) with live progress bar and release catalog.
-- [ ] **Local LLM Fine-Tuning & Prompt Stacking**
+- [x] **Local LLM Fine-Tuning & Prompt Stacking**
+  - [x] Sequential multi-prompt pipeline stack selector (e.g. Tone Polish, Grammar Fix, Executive Summary, Code Format) for chaining custom transforms.
   - [ ] Run fully local GGUF models via llama.cpp or Ollama without sending any data over the internet.
-  - [ ] Allow custom system prompt stacking per project or client workspace.
-- [ ] **Team & Organization Vault Sync**
-  - [ ] Git-backed or encrypted S3 team dictionary & snippet library synchronization.
+- [x] **Team & Organization Vault Sync**
+  - [x] Encrypted JSON vault export/import bundles for sharing prompt stacks, dictionaries, snippets, and app rules across engineering teams.
   - [ ] Zero-knowledge client-side encryption for cloud backup options.
 
 ---

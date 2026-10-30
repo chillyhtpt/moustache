@@ -80,6 +80,24 @@ export function SnippetDialog({ snippet, onSaved, onClose }: SnippetDialogProps)
   const bold = () => edit((value, start, end) => wrapSelection(value, start, end, "**"));
   const italic = () => edit((value, start, end) => wrapSelection(value, start, end, "*"));
   const link = () => edit(insertLink);
+  const insertToken = (token: string) => {
+    const el = textareaRef.current;
+    if (!el) {
+      setExpansion((prev) => prev + token);
+      return;
+    }
+    const start = el.selectionStart ?? expansion.length;
+    const end = el.selectionEnd ?? expansion.length;
+    const next = expansion.slice(0, start) + token + expansion.slice(end);
+    if (next.length <= MAX_EXPANSION) {
+      setExpansion(next);
+      pendingSelection.current = {
+        value: next,
+        start: start + token.length,
+        end: start + token.length,
+      };
+    }
+  };
   const shortcuts: Record<string, () => void> = { b: bold, i: italic, k: link };
 
   const onTextareaKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -176,6 +194,39 @@ export function SnippetDialog({ snippet, onSaved, onClose }: SnippetDialogProps)
             }}
             onKeyDown={onTextareaKeyDown}
           />
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            <span className="text-[11px] text-muted-foreground font-medium">
+              Dynamic Variables:
+            </span>
+            <button
+              type="button"
+              onClick={() => insertToken("{{date}}")}
+              className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-foreground hover:bg-muted cursor-pointer"
+            >
+              +&#123;&#123;date&#125;&#125;
+            </button>
+            <button
+              type="button"
+              onClick={() => insertToken("{{time}}")}
+              className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-foreground hover:bg-muted cursor-pointer"
+            >
+              +&#123;&#123;time&#125;&#125;
+            </button>
+            <button
+              type="button"
+              onClick={() => insertToken("{{clipboard}}")}
+              className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-foreground hover:bg-muted cursor-pointer"
+            >
+              +&#123;&#123;clipboard&#125;&#125;
+            </button>
+            <button
+              type="button"
+              onClick={() => insertToken("{{speaker}}")}
+              className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-foreground hover:bg-muted cursor-pointer"
+            >
+              +&#123;&#123;speaker&#125;&#125;
+            </button>
+          </div>
           <div className="flex items-start justify-between gap-3">
             <p id={`${ids}-expansion-hint`} className="text-sm text-muted-foreground">
               {t("snippets.expansionHint")}

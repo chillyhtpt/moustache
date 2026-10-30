@@ -109,7 +109,7 @@ export function UpgradeManagerPage() {
             <div>
               <div className="flex items-center gap-2.5">
                 <h2 className="text-lg font-bold text-foreground">
-                  Shrimp v{currentVersion.version}
+                  Moustache v{currentVersion.version}
                 </h2>
                 <span className="rounded-full bg-brand/15 text-brand px-2.5 py-0.5 text-xs font-semibold">
                   Installed
@@ -137,7 +137,7 @@ export function UpgradeManagerPage() {
             {updateState === "checking" && (
               <Button disabled variant="outline" className="gap-2">
                 <RefreshCw className="size-4 animate-spin text-brand" />
-                Checking GitHub Releases...
+                Checking for updates...
               </Button>
             )}
 

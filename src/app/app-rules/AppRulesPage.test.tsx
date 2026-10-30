@@ -16,6 +16,17 @@ describe("AppRulesPage", () => {
     const select = screen.getByLabelText(/Target App Profile:/i);
     expect(screen.getByText(/Transformed Paste Output:/i)).toBeInTheDocument();
     fireEvent.change(select, { target: { value: "rule-vscode" } });
+    expect((select as HTMLSelectElement).value).toBe("rule-vscode");
+  });
+
+  it("parses and auto-fills multi-field forms via voice assistant", () => {
+    render(<AppRulesPage />);
+    expect(screen.getByText(/Field Vision & Voice Form Auto-Fill/i)).toBeInTheDocument();
+    const autofillBtn = screen.getByRole("button", { name: /Auto-Fill Fields/i });
+    expect(autofillBtn).toBeInTheDocument();
+    fireEvent.click(autofillBtn);
+    expect(screen.getByDisplayValue("Payment gateway timeout")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("contact@enterprise.com")).toBeInTheDocument();
   });
 
   it("opens add app rule dialog", () => {

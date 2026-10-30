@@ -5,6 +5,7 @@ import {
   Clock,
   Copy,
   Download,
+  Edit2,
   FileAudio,
   FileText,
   Lightbulb,
@@ -12,7 +13,9 @@ import {
   Mic,
   Pause,
   Play,
+  Radio,
   Search,
+  Sparkles,
   Square,
   Trash2,
   Upload,
@@ -22,8 +25,11 @@ import { useEffect, useId, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { CalendarBanner } from "./calendar/CalendarBanner";
+import type { CalendarEvent } from "./calendar/types";
 import { MEETING_TEMPLATES } from "./meetingTemplates";
 import { loadSavedMeetings, saveMeetings } from "./mockMeetings";
+import { PostMeetingWorkflowDialog } from "./PostMeetingWorkflowDialog";
 import type { MeetingNote, TemplateId, TranscriptSegment } from "./types";
 
 const ICONS: Record<TemplateId, React.ComponentType<{ className?: string }>> = {
@@ -54,6 +60,14 @@ export function MeetingPage() {
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [importFileName, setImportFileName] = useState("");
   const [isImporting, setIsImporting] = useState(false);
+
+  // Calendar, workflows & diarization state
+  const [showWorkflowDialog, setShowWorkflowDialog] = useState(false);
+  const [useLoopback, setUseLoopback] = useState(true);
+  const [renamingSpeaker, setRenamingSpeaker] = useState<{
+    oldName: string;
+    newName: string;
+  } | null>(null);
 
   useEffect(() => {
     saveMeetings(meetings);
@@ -114,6 +128,47 @@ export function MeetingPage() {
     const match = filteredMeetings.find((m) => m.id === selectedId);
     return match ?? filteredMeetings[0] ?? null;
   }, [filteredMeetings, selectedId]);
+
+  const uniqueSpeakers = useMemo(() => {
+    if (!selectedMeeting) return [];
+    return Array.from(new Set(selectedMeeting.segments.map((s) => s.speaker)));
+  }, [selectedMeeting]);
+
+  const handleStartFromCalendar = (event: CalendarEvent) => {
+    setIsRecording(true);
+    setIsPaused(false);
+    setElapsedSeconds(0);
+    setLiveTemplate(event.suggestedTemplate);
+    setLiveTitle(event.title);
+    setLiveUserNotes(
+      `Attendees: ${event.attendees.join(", ")}\nMeeting Link: ${event.meetingUrl || "N/A"}\n\nObjectives:\n- Review roadmap and deliverable statuses\n- Clear engineering and release blockers`,
+    );
+    setLiveSegments([
+      {
+        id: `seg-${Date.now()}`,
+        speaker: "You",
+        timestamp: "00:01",
+        text: `Starting meeting for ${event.title}. Participants present: ${event.attendees.join(", ")}.`,
+      },
+    ]);
+  };
+
+  const handleRenameSpeaker = () => {
+    if (!renamingSpeaker || !renamingSpeaker.newName.trim() || !selectedMeeting) return;
+    const { oldName, newName } = renamingSpeaker;
+    setMeetings((prev) =>
+      prev.map((m) => {
+        if (m.id !== selectedMeeting.id) return m;
+        return {
+          ...m,
+          segments: m.segments.map((s) =>
+            s.speaker === oldName ? { ...s, speaker: newName.trim() } : s,
+          ),
+        };
+      }),
+    );
+    setRenamingSpeaker(null);
+  };
 
   const startMeeting = () => {
     setIsRecording(true);
@@ -374,6 +429,9 @@ export function MeetingPage() {
         </div>
       </div>
 
+      {/* Calendar Integration Banner */}
+      {!isRecording && <CalendarBanner onStartFromCalendar={handleStartFromCalendar} />}
+
       {/* Live Recording Modal / Active View */}
       {isRecording && (
         <div className="mb-6 rounded-xl border border-brand/30 bg-card p-5 shadow-sm">
@@ -403,6 +461,32 @@ export function MeetingPage() {
                 ))}
               </select>
             </div>
+          </div>
+
+          {/* Bot-less Dual Loopback Audio Selector & VU activity */}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border/80 bg-background/50 px-3.5 py-2">
+            <label className="flex items-center gap-2 text-xs font-medium text-foreground cursor-pointer">
+              <input
+                type="checkbox"
+                checked={useLoopback}
+                onChange={(e) => setUseLoopback(e.target.checked)}
+                className="rounded border-input text-brand focus:ring-brand"
+              />
+              <Radio className="size-3.5 text-brand" />
+              <span>Bot-less Dual Loopback (Mic + Zoom / Teams / Meet Audio)</span>
+            </label>
+            {useLoopback && (
+              <div className="flex items-center gap-4 text-[11px] text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <span className="font-mono text-[10px]">MIC</span>
+                  <span className="inline-block size-2 rounded-full bg-emerald-500 animate-pulse" />
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="font-mono text-[10px]">LOOPBACK</span>
+                  <span className="inline-block size-2 rounded-full bg-brand animate-pulse" />
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -547,6 +631,15 @@ export function MeetingPage() {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="gap-1.5 text-xs text-brand border-brand/40 bg-brand/5 hover:bg-brand/10 cursor-pointer"
+                    onClick={() => setShowWorkflowDialog(true)}
+                  >
+                    <Sparkles className="size-3.5" />
+                    Automated Workflows
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="gap-1.5 text-xs"
                     onClick={() => copyToClipboard(selectedMeeting.summary, "Summary copied")}
                   >
@@ -576,6 +669,32 @@ export function MeetingPage() {
                   </Button>
                 </div>
               </div>
+
+              {/* Diarized Speakers Bar */}
+              {uniqueSpeakers.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 rounded-lg border border-border/60 bg-muted/20 p-2.5">
+                  <span className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5">
+                    <Users className="size-3.5 text-brand" />
+                    Diarized Speakers:
+                  </span>
+                  {uniqueSpeakers.map((spk) => (
+                    <div
+                      key={spk}
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-0.5 text-xs text-foreground shadow-2xs"
+                    >
+                      <span className="font-medium">{spk}</span>
+                      <button
+                        type="button"
+                        onClick={() => setRenamingSpeaker({ oldName: spk, newName: spk })}
+                        className="text-muted-foreground hover:text-brand cursor-pointer p-0.5"
+                        title="Rename speaker across transcript"
+                      >
+                        <Edit2 className="size-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Granola Executive Summary */}
               <div className="rounded-lg border border-border/60 bg-card p-4">
@@ -779,6 +898,52 @@ export function MeetingPage() {
                 disabled={!importFileName || isImporting}
               >
                 {isImporting ? "Transcribing & Summarizing..." : "Transcribe & Generate Notes"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Post-Meeting Automated Workflows Dialog */}
+      {selectedMeeting && (
+        <PostMeetingWorkflowDialog
+          meeting={selectedMeeting}
+          open={showWorkflowDialog}
+          onClose={() => setShowWorkflowDialog(false)}
+        />
+      )}
+
+      {/* Rename Speaker Modal */}
+      {renamingSpeaker && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-sm rounded-xl border border-border bg-background p-5 shadow-xl">
+            <h3 className="text-base font-bold text-foreground">Rename Diarized Speaker</h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Update &quot;{renamingSpeaker.oldName}&quot; to a real participant name across all
+              transcript segments.
+            </p>
+            <div className="mt-4">
+              <Input
+                value={renamingSpeaker.newName}
+                onChange={(e) =>
+                  setRenamingSpeaker((prev) => (prev ? { ...prev, newName: e.target.value } : null))
+                }
+                placeholder="e.g. Sarah Connor"
+                className="text-xs"
+                autoFocus
+              />
+            </div>
+            <div className="mt-5 flex justify-end gap-2">
+              <Button variant="outline" size="sm" onClick={() => setRenamingSpeaker(null)}>
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                className="bg-brand text-brand-foreground hover:bg-brand/90"
+                onClick={handleRenameSpeaker}
+                disabled={!renamingSpeaker.newName.trim()}
+              >
+                Save Name
               </Button>
             </div>
           </div>

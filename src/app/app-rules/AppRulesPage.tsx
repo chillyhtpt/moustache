@@ -3,10 +3,12 @@ import {
   Code2,
   CornerDownLeft,
   FileText,
+  FormInput,
   Mail,
   MessageSquare,
   Plus,
   SlidersHorizontal,
+  Sparkles,
   Trash2,
   Wand2,
 } from "lucide-react";
@@ -59,6 +61,46 @@ export function AppRulesPage() {
     "hey can you review my pull request user profile and let me know if we can ship this today",
   );
   const [testAppId, setTestAppId] = useState<string>("rule-slack");
+
+  // Vision & Form Auto-Fill assistant state
+  const [formPrompt, setFormPrompt] = useState(
+    "Report issue: Payment gateway timeout for client contact@enterprise.com with urgent priority regarding checkout API",
+  );
+  const [formData, setFormData] = useState({
+    title: "Payment gateway timeout",
+    email: "contact@enterprise.com",
+    priority: "Urgent",
+    notes: "Reported issue regarding checkout API timing out during high volume transactions.",
+  });
+
+  const handleParseFormVoice = (input: string) => {
+    setFormPrompt(input);
+    if (input.toLowerCase().includes("security") || input.toLowerCase().includes("vulnerability")) {
+      setFormData({
+        title: "Session token refresh vulnerability",
+        email: "security@audit.org",
+        priority: "Critical",
+        notes: "Automated report: Insecure session revocation found during token refresh loop.",
+      });
+    } else if (
+      input.toLowerCase().includes("feedback") ||
+      input.toLowerCase().includes("dark mode")
+    ) {
+      setFormData({
+        title: "Customer feedback on dark mode theme",
+        email: "sarah@company.com",
+        priority: "Normal",
+        notes: "Positive feedback received regarding dark mode visual contrast and icons.",
+      });
+    } else {
+      setFormData({
+        title: "Payment gateway timeout",
+        email: "contact@enterprise.com",
+        priority: "Urgent",
+        notes: "Reported issue regarding checkout API timing out during high volume transactions.",
+      });
+    }
+  };
 
   useEffect(() => {
     saveAppRules(rules);
@@ -190,6 +232,100 @@ export function AppRulesPage() {
             </label>
             <div className="rounded-md border border-brand/30 bg-muted/30 p-2.5 min-h-[74px] font-mono whitespace-pre-wrap text-foreground">
               {simulatedOutput()}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Wispr Flow Ultra: Screen & Field Vision Form Auto-Fill */}
+      <div className="mb-8 rounded-xl border border-border/80 bg-card p-5 shadow-sm">
+        <div className="mb-3 flex items-center justify-between">
+          <span className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <FormInput className="size-4 text-brand" />
+            Field Vision & Voice Form Auto-Fill (Wispr Flow Ultra)
+          </span>
+          <span className="text-xs text-muted-foreground">
+            Spoken paragraphs intelligently distributed across form inputs
+          </span>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <label className="text-xs text-muted-foreground font-medium mb-1 block">
+              Speak naturally across multiple fields:
+            </label>
+            <div className="flex gap-2">
+              <Input
+                value={formPrompt}
+                onChange={(e) => setFormPrompt(e.target.value)}
+                className="text-xs"
+              />
+              <Button
+                size="sm"
+                className="bg-brand text-brand-foreground hover:bg-brand/90 text-xs shrink-0"
+                onClick={() => handleParseFormVoice(formPrompt)}
+              >
+                <Sparkles className="size-3.5 mr-1" />
+                Auto-Fill Fields
+              </Button>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-muted-foreground">
+              <span>Try samples:</span>
+              <button
+                type="button"
+                onClick={() =>
+                  handleParseFormVoice(
+                    "Security Bug: Insecure session revocation for test@security.org with critical severity",
+                  )
+                }
+                className="text-brand hover:underline cursor-pointer"
+              >
+                Security Bug sample
+              </button>
+              <span>•</span>
+              <button
+                type="button"
+                onClick={() =>
+                  handleParseFormVoice(
+                    "Customer Feedback: Loved dark mode update by sarah@company.com with normal priority",
+                  )
+                }
+                className="text-brand hover:underline cursor-pointer"
+              >
+                Feedback sample
+              </button>
+            </div>
+          </div>
+
+          {/* Target Form Preview */}
+          <div className="rounded-lg border border-border/60 bg-muted/20 p-3.5 mt-3">
+            <p className="text-xs font-semibold text-foreground mb-2.5">
+              Active Form Auto-Populated by Moustache:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-3">
+              <div>
+                <span className="text-[11px] text-muted-foreground block mb-0.5">Issue Title:</span>
+                <Input readOnly value={formData.title} className="text-xs bg-background" />
+              </div>
+              <div>
+                <span className="text-[11px] text-muted-foreground block mb-0.5">
+                  Reporter Email:
+                </span>
+                <Input readOnly value={formData.email} className="text-xs bg-background" />
+              </div>
+              <div>
+                <span className="text-[11px] text-muted-foreground block mb-0.5">Priority:</span>
+                <Input readOnly value={formData.priority} className="text-xs bg-background" />
+              </div>
+            </div>
+            <div>
+              <span className="text-[11px] text-muted-foreground block mb-0.5">Parsed Notes:</span>
+              <textarea
+                readOnly
+                rows={2}
+                value={formData.notes}
+                className="w-full rounded-md border border-input bg-background p-2 text-xs text-foreground resize-none"
+              />
             </div>
           </div>
         </div>

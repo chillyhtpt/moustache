@@ -13,6 +13,7 @@ import { ShortcutRecorder } from "./ShortcutRecorder";
 import { ToggleRow } from "./ToggleRow";
 import { useAutosave } from "./useAutosave";
 import { useSettings } from "./useSettings";
+import { VaultSyncCard } from "./vault/VaultSyncCard";
 
 const MAX_CUSTOM = 8;
 
@@ -145,6 +146,8 @@ export function TransformsPage() {
             </div>
           </Group>
         </Section>
+
+        <VaultSyncCard />
       </fieldset>
     </Page>
   );
