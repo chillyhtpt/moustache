@@ -148,11 +148,19 @@ fn cursor_monitor<R: Runtime>(window: &WebviewWindow<R>) -> tauri::Result<Option
     }
 }
 
+/// The display the bar should sit on: its current display, falling back to the cursor's or primary.
+fn target_monitor<R: Runtime>(window: &WebviewWindow<R>) -> tauri::Result<Option<Monitor>> {
+    if let Ok(Some(current)) = window.current_monitor() {
+        return Ok(Some(current));
+    }
+    cursor_monitor(window)
+}
+
 fn place<R: Runtime>(window: &WebviewWindow<R>, state: &FlowBarState) -> tauri::Result<()> {
     let Some((width, height)) = *lock(&state.size) else {
         return Ok(());
     };
-    let Some(monitor) = cursor_monitor(window)? else {
+    let Some(monitor) = target_monitor(window)? else {
         return Ok(());
     };
     let scale = monitor.scale_factor();
@@ -171,11 +179,27 @@ fn place<R: Runtime>(window: &WebviewWindow<R>, state: &FlowBarState) -> tauri::
             room: ROOM * scale,
         },
     );
-    window.set_size(PhysicalSize::new(
-        (width * scale).round() as u32,
-        (height * scale).round() as u32,
-    ))?;
-    window.set_position(PhysicalPosition::new(x.round() as i32, y.round() as i32))
+    let target_w = (width * scale).round() as u32;
+    let target_h = (height * scale).round() as u32;
+    let target_x = x.round() as i32;
+    let target_y = y.round() as i32;
+
+    #[cfg(target_os = "windows")]
+    {
+        crate::platform::windows::flow_bar::set_bounds(
+            window,
+            target_x,
+            target_y,
+            target_w,
+            target_h,
+        );
+    }
+    #[cfg(not(target_os = "windows"))]
+    {
+        window.set_size(PhysicalSize::new(target_w, target_h))?;
+        window.set_position(PhysicalPosition::new(target_x, target_y))?;
+    }
+    Ok(())
 }
 
 /// Dragging the resting bar (BAR-05): it follows the cursor, and on release

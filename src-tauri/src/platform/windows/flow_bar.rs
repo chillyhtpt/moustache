@@ -68,3 +68,21 @@ pub fn set_visible<R: Runtime>(app: &AppHandle<R>, label: &str, visible: bool) {
         }
     }
 }
+
+/// Atomically sets the Flow Bar's bounds (position and size) in a single Win32 call,
+/// avoiding the jitter and tearing of separate set_size and set_position calls.
+pub fn set_bounds<R: Runtime>(window: &WebviewWindow<R>, x: i32, y: i32, width: u32, height: u32) {
+    if let Some(handle) = hwnd(window) {
+        unsafe {
+            let _ = SetWindowPos(
+                handle,
+                Some(HWND_TOPMOST),
+                x,
+                y,
+                width as i32,
+                height as i32,
+                SWP_NOACTIVATE,
+            );
+        }
+    }
+}

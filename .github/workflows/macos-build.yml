@@ -1,0 +1,72 @@
+name: Build macOS Application
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    name: Build macOS Installer (.dmg)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+          run_install: false
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Frontend Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build macOS Application
+        run: pnpm tauri build --bundles dmg
+
+      - name: Locate Built DMG
+        id: locate-dmg
+        run: |
+          DMG_PATH=$(find src-tauri/target/release/bundle/dmg target/release/bundle/dmg -name "*.dmg" 2>/dev/null | head -n 1)
+          if [ -z "$DMG_PATH" ]; then
+            echo "Error: DMG file not found"
+            exit 1
+          fi
+          echo "Found DMG: $DMG_PATH"
+          echo "dmg_path=$DMG_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Upload macOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: moustache-macos-dmg
+          path: ${{ steps.locate-dmg.outputs.dmg_path }}
+          if-no-files-found: error
+
+      - name: Publish to GitHub Release (Tags only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.locate-dmg.outputs.dmg_path }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

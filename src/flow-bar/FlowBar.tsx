@@ -158,6 +158,9 @@ export function FlowBar() {
 
   const resting = (placement?.alwaysShow ?? true) && now >= hiddenUntil;
   const edge = placement?.edge ?? "bottom";
+  useEffect(() => {
+    document.body.className = `edge-${edge}`;
+  }, [edge]);
   // Beside the resting pill on hover, while Transforms are on (TRF-07).
   const wand =
     hovered && resting && state.phase === "idle" && transforms?.enabled ? transforms : null;

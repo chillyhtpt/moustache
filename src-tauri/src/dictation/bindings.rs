@@ -98,10 +98,6 @@ pub fn configured(defaults: &[Binding], settings: &Settings) -> Vec<Binding> {
 }
 
 pub fn active(defaults: &[Binding], settings: &Settings, moment: Moment) -> Vec<Binding> {
-    // Until onboarding reaches Practice, no shortcut dictates (ONB-07).
-    if !settings.onboarding.shortcuts_active() {
-        return Vec::new();
-    }
     let mut bindings: Vec<Binding> = configured(defaults, settings)
         .into_iter()
         .filter(|binding| moment.cancelable || binding.action != Action::Cancel)
@@ -199,9 +195,9 @@ mod tests {
     }
 
     #[test]
-    fn nothing_is_bound_before_onboarding_reaches_practice() {
+    fn shortcuts_are_active_by_default() {
         let defaults = macos_defaults(true);
-        assert!(active(&defaults, &Settings::default(), Moment::default()).is_empty());
+        assert!(!active(&defaults, &Settings::default(), Moment::default()).is_empty());
         assert!(!active(&defaults, &set_up(), Moment::default()).is_empty());
     }
 

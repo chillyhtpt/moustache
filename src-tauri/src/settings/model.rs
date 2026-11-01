@@ -98,9 +98,9 @@ impl OnboardingSettings {
         }
     }
 
-    /// Dictation shortcuts work once setup reaches Practice (ONB-07).
+    /// Dictation shortcuts work immediately out of the box.
     pub fn shortcuts_active(&self) -> bool {
-        self.completed || self.step >= OnboardingStep::Practice
+        true
     }
 }
 
@@ -571,11 +571,11 @@ mod tests {
     }
 
     #[test]
-    fn shortcuts_wait_for_practice() {
+    fn shortcuts_active_out_of_the_box() {
         let mut onboarding = OnboardingSettings::default();
-        assert!(!onboarding.shortcuts_active());
+        assert!(onboarding.shortcuts_active());
         onboarding.step = OnboardingStep::Engine;
-        assert!(!onboarding.shortcuts_active());
+        assert!(onboarding.shortcuts_active());
         onboarding.step = OnboardingStep::Practice;
         assert!(onboarding.shortcuts_active());
         assert!(OnboardingSettings::done().shortcuts_active());

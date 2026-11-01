@@ -30,11 +30,26 @@
 html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background: transparent;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
   cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+body.edge-left {
+  align-items: flex-start;
+}
+
+body.edge-right {
+  align-items: flex-end;
 }
 
 button {
@@ -49,15 +64,17 @@ button:focus-visible {
 
 /* Sized by its content, not the window: the window follows this box. */
 .flow-bar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  position: relative;
+  margin: 0 auto;
   width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   padding: 4px;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
 }
 
 .flow-bar:empty {
@@ -66,10 +83,12 @@ button:focus-visible {
 
 .flow-bar.edge-left {
   align-items: flex-start;
+  margin-left: 0;
 }
 
 .flow-bar.edge-right {
   align-items: flex-end;
+  margin-right: 0;
 }
 
 /* The pill. */
@@ -83,8 +102,12 @@ button:focus-visible {
   border: 1px solid var(--hud-line);
   border-radius: 999px;
   background: var(--hud);
-  box-shadow: var(--hud-highlight);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), var(--hud-highlight);
   color: var(--hud-text);
+  will-change: transform, width, height;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pill-idle {
@@ -94,7 +117,8 @@ button:focus-visible {
   background: var(--hud-rest);
   transition:
     background-color 160ms ease-out,
-    transform 260ms var(--ease-spring);
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pill-idle:hover {
@@ -110,7 +134,7 @@ button:focus-visible {
   gap: 6px;
   height: 34px;
   padding: 0 5px;
-  animation: pill-in 280ms var(--ease-spring);
+  animation: pill-in 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pill-processing {
@@ -192,7 +216,8 @@ button:focus-visible {
   border-radius: 2px;
   background: #fff;
   transform-origin: center;
-  transition: transform 60ms linear;
+  transition: transform 90ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
 }
 
 .dot {
