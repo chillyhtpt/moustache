@@ -8,7 +8,7 @@ mod macos;
 mod overrides;
 mod switchable;
 #[cfg(target_os = "windows")]
-mod windows;
+pub mod windows;
 
 pub use switchable::SwitchablePermissions;
 

@@ -9,9 +9,11 @@ use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
 use tauri::{
-    AppHandle, Emitter, Manager, Monitor, PhysicalPosition, PhysicalSize, Runtime, WebviewUrl,
+    AppHandle, Emitter, Manager, Monitor, PhysicalPosition, Runtime, WebviewUrl,
     WebviewWindow, WebviewWindowBuilder,
 };
+#[allow(unused_imports)]
+use tauri::PhysicalSize;
 
 use super::events::FLOW_BAR_HOVER_EVENT;
 use super::flow_bar_place::{self, Area, Spacing};
@@ -186,7 +188,7 @@ fn place<R: Runtime>(window: &WebviewWindow<R>, state: &FlowBarState) -> tauri::
 
     #[cfg(target_os = "windows")]
     {
-        crate::platform::windows::flow_bar::set_bounds(
+        crate::platform::flow_bar::set_bounds(
             window,
             target_x,
             target_y,
