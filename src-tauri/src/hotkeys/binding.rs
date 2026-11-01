@@ -232,7 +232,7 @@ pub fn windows_defaults() -> Vec<Binding> {
     let last = Modifiers::SHIFT | Modifiers::OPT;
     let transforms = Modifiers::CMD | Modifiers::OPT;
     vec![
-        Binding::of(Action::PushToTalk, talk, None),
+        Binding::of(Action::PushToTalk, Modifiers::empty(), Some(Key::CapsLock)),
         Binding::of(Action::HandsFree, talk, Some(Key::Space)),
         Binding::of(Action::Cancel, Modifiers::empty(), Some(Key::Escape)),
         Binding::of(Action::PasteLast, last, Some(Key::Z)),
@@ -484,7 +484,7 @@ mod tests {
                 .unwrap();
             windows_label(&binding.trigger)
         };
-        assert_eq!(label(Action::PushToTalk), "Ctrl+Win");
+        assert_eq!(label(Action::PushToTalk), "Caps Lock");
         assert_eq!(label(Action::HandsFree), "Ctrl+Win+Space");
         assert_eq!(label(Action::CommandMode), "Ctrl+Win+Alt");
         assert_eq!(label(Action::PasteLast), "Shift+Alt+Z");

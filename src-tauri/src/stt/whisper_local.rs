@@ -54,18 +54,34 @@ impl LocalWhisper {
         LOGGING.call_once(whisper_rs::install_logging_hooks);
 
         let mut params = WhisperContextParameters::default();
+        #[cfg(target_os = "macos")]
         params.flash_attn(true);
-        let context = WhisperContext::new_with_params(utf8(model)?, params)
-            .map_err(|err| SttError::Unavailable(t!("error.whisper.loadModel", details = err)))?;
+        #[cfg(not(target_os = "macos"))]
+        params.flash_attn(false);
+
+        let context = match WhisperContext::new_with_params(utf8(model)?, params) {
+            Ok(context) => context,
+            Err(err) => {
+                log::warn!("WhisperContext failed with initial params: {err}; retrying with flash_attn(false)");
+                let mut fallback_params = WhisperContextParameters::default();
+                fallback_params.flash_attn(false);
+                WhisperContext::new_with_params(utf8(model)?, fallback_params)
+                    .map_err(|err| SttError::Unavailable(t!("error.whisper.loadModel", details = err)))?
+            }
+        };
         let vad = vad_model
-            .map(|path| {
-                let mut params = WhisperVadContextParams::new();
-                params.set_use_gpu(false);
-                WhisperVadContext::new(utf8(path)?, params).map_err(|err| {
-                    SttError::Unavailable(t!("error.whisper.loadVad", details = err))
-                })
-            })
-            .transpose()?;
+            .and_then(|path| {
+                let p = utf8(path).ok()?;
+                let mut vad_params = WhisperVadContextParams::new();
+                vad_params.set_use_gpu(false);
+                match WhisperVadContext::new(p, vad_params) {
+                    Ok(ctx) => Some(ctx),
+                    Err(err) => {
+                        log::warn!("{}", t!("error.whisper.loadVad", details = err));
+                        None
+                    }
+                }
+            });
         Ok(Self {
             context: Arc::new(context),
             vad: vad.map(|vad| Arc::new(Mutex::new(vad))),

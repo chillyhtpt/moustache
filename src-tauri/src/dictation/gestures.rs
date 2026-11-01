@@ -226,7 +226,7 @@ impl Gestures {
                 (self.locked(now, true, false), Some(Command::Lock))
             }
             (Phase::AwaitingSecondTap { token }, TapTimeout(fired)) if fired == token => {
-                (idle, Some(Command::Cancel(CancelReason::ShortTap)))
+                (self.locked(now, false, false), Some(Command::Lock))
             }
             (Phase::Holding { .. } | Phase::AwaitingSecondTap { .. }, Press(HandsFree)) => {
                 (self.locked(now, false, false), Some(Command::Lock))
@@ -384,10 +384,11 @@ mod tests {
         };
         assert_eq!(
             s.at(700, Input::TapTimeout(token)),
-            Some(Command::Cancel(CancelReason::ShortTap)),
-            "released before listening started"
+            Some(Command::Lock),
+            "locks into hands-free mode instead of discarding"
         );
         assert!(s.gestures.is_command());
+        assert_eq!(s.gestures.mode(), Some(RecordingMode::Locked));
     }
 
     #[test]
@@ -424,7 +425,7 @@ mod tests {
     }
 
     #[test]
-    fn short_tap_waits_then_cancels_with_the_tip() {
+    fn short_tap_waits_then_locks_hands_free() {
         let mut s = Script::new();
         s.at(0, Input::Press(PTT));
         let Some(Command::ArmTapTimeout { token, after }) = s.at(200, Input::Release(PTT)) else {
@@ -437,9 +438,10 @@ mod tests {
         );
         assert_eq!(
             s.at(700, Input::TapTimeout(token)),
-            Some(Command::Cancel(CancelReason::ShortTap))
+            Some(Command::Lock)
         );
-        assert!(!s.gestures.is_recording());
+        assert!(s.gestures.is_recording());
+        assert_eq!(s.gestures.mode(), Some(RecordingMode::Locked));
     }
 
     #[test]

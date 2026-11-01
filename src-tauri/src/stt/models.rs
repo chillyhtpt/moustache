@@ -85,7 +85,10 @@ pub const WHISPER_MODELS: [ModelFile; 5] = [
     ),
 ];
 
+#[cfg(target_os = "macos")]
 pub const DEFAULT_WHISPER_MODEL: &str = "large-v3-turbo-q5_0";
+#[cfg(not(target_os = "macos"))]
+pub const DEFAULT_WHISPER_MODEL: &str = "base-q5_1";
 
 pub fn find_whisper_model(id: &str) -> Option<&'static ModelFile> {
     WHISPER_MODELS.iter().find(|model| model.id == id)

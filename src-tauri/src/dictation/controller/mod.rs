@@ -168,6 +168,8 @@ struct Recording {
     /// The audio saved as it arrives, in case Shrimp quits (HIS-06).
     journal: Option<Journal>,
     started_by: StartedBy,
+    speech_detected: bool,
+    last_speech_at: Option<Instant>,
 }
 
 impl Recording {
@@ -468,6 +470,8 @@ impl Controller {
                     context,
                     journal,
                     started_by,
+                    speech_detected: false,
+                    last_speech_at: None,
                 });
                 let editor = Arc::clone(&self.pipeline.editor);
                 tauri::async_runtime::spawn(async move { editor.warm_up().await });
@@ -733,10 +737,17 @@ impl Controller {
                     journal.write(format, samples);
                 }
                 let rms = (!samples.is_empty()).then(|| level::rms(samples));
-                self.ui.level(level::display_level(rms.unwrap_or(0.0)));
+                let display_lvl = level::display_level(rms.unwrap_or(0.0));
+                self.ui.level(display_lvl);
                 let open = recording.recorder.is_open();
                 if let Some(microphone) = recording.microphone.as_mut() {
                     microphone.update(open, rms, self.ui.as_ref());
+                }
+                if let Some(val) = rms {
+                    if val > 0.003 || display_lvl > 0.04 {
+                        recording.speech_detected = true;
+                        recording.last_speech_at = Some(Instant::now());
+                    }
                 }
             }
             Err(AudioError::Disconnected) if recording.microphone.is_some() => {
@@ -759,6 +770,23 @@ impl Controller {
                 self.set_state(DictationState::Idle);
                 let message = t!("notice.dictation.recordingStopped", error = error);
                 self.ui.notice(Notice::error(message));
+                return;
+            }
+        }
+        // Silence detection and auto-stop for hands-free dictation:
+        // Automatically finish after ~1.8 seconds of silence once speech occurred,
+        // or after 10 seconds of complete silence if no words were spoken.
+        if self.gestures.mode() == Some(RecordingMode::Locked) {
+            let should_finish = if recording.speech_detected {
+                recording
+                    .last_speech_at
+                    .is_some_and(|t| t.elapsed() >= Duration::from_millis(1800))
+            } else {
+                recording.started.elapsed() >= Duration::from_secs(10)
+            };
+            if should_finish && self.gestures.force_finish() {
+                log::info!("hands-free silence timeout reached; automatically finishing dictation");
+                self.finish();
                 return;
             }
         }
