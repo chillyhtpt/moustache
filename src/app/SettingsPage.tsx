@@ -68,6 +68,7 @@ export interface SettingsTarget {
 interface SettingsPageProps {
   target?: SettingsTarget;
   onOpenShortcuts?: () => void;
+  onOpenUpgrade?: (() => void) | undefined;
 }
 
 const STEP: Record<string, number> = { ArrowDown: 1, ArrowUp: -1 };
@@ -82,6 +83,7 @@ function neighbour(section: SettingsSection, step: number): SettingsSection {
 export function SettingsPage({
   target = { section: "general", count: 0 },
   onOpenShortcuts = () => undefined,
+  onOpenUpgrade,
 }: SettingsPageProps) {
   const { t, i18n } = useTranslation();
   const { settings, error, update } = useSettings();
@@ -185,7 +187,7 @@ export function SettingsPage({
       case "system":
         content = (
           <>
-            <SystemSection settings={settings} update={update} />
+            <SystemSection settings={settings} update={update} onOpenUpgrade={onOpenUpgrade} />
             <SoundSection settings={settings} update={update} />
             <FlowBarSection settings={settings} update={update} />
             <NotificationsSection settings={settings} update={update} />

@@ -20,7 +20,7 @@ use crate::settings::SettingsStore;
 use crate::t;
 
 pub const MENU_ID: &str = "check-updates";
-const FIRST_CHECK: Duration = Duration::from_secs(60);
+const FIRST_CHECK: Duration = Duration::from_secs(10);
 const AUTO_CHECK: Duration = Duration::from_secs(6 * 60 * 60);
 const IDLE_POLL: Duration = Duration::from_millis(250);
 /// Idle this long before installing, so a paste's clipboard restore can finish.

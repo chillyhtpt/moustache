@@ -83,6 +83,7 @@ export function CalendarBanner({ onStartFromCalendar }: CalendarBannerProps) {
             variant="ghost"
             size="sm"
             className="text-muted-foreground hover:text-foreground"
+            aria-label="Calendar sync settings"
             onClick={() => setShowSettings((s) => !s)}
           >
             <Settings2 className="size-4" />

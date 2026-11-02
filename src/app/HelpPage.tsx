@@ -64,7 +64,7 @@ export function HelpPage({ onOpenShortcuts, onSetup, onOpenUpgrade }: HelpPagePr
         (upgradeOpen && (
           <Dialog title="Upgrade Manager" onClose={() => setUpgradeOpen(false)} wide>
             <div className="max-h-[80vh] overflow-y-auto -m-6 p-6">
-              <UpgradeManagerPage />
+              <UpgradeManagerPage onClose={() => setUpgradeOpen(false)} />
             </div>
           </Dialog>
         ))

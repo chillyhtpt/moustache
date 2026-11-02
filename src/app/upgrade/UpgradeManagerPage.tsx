@@ -1,4 +1,5 @@
 import {
+  ArrowLeft,
   ArrowUpCircle,
   CheckCircle2,
   Clock,
@@ -8,15 +9,26 @@ import {
   RotateCcw,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { RELEASES_CATALOG } from "./releaseCatalog";
 import type { ReleaseVersion, UpdateChannel, UpdateState } from "./types";
 
-export function UpgradeManagerPage() {
+interface UpgradeManagerPageProps {
+  onBack?: () => void;
+  onClose?: () => void;
+  autoCheckOnMount?: boolean;
+}
+
+export function UpgradeManagerPage({
+  onBack,
+  onClose,
+  autoCheckOnMount = false,
+}: UpgradeManagerPageProps = {}) {
   const [channel, setChannel] = useState<UpdateChannel>("stable");
   const [updateState, setUpdateState] = useState<UpdateState>("idle");
   const [downloadProgress, setDownloadProgress] = useState(0);
@@ -24,7 +36,7 @@ export function UpgradeManagerPage() {
     () => RELEASES_CATALOG[0]!,
   );
   const [autoCheck, setAutoCheck] = useState(true);
-  const [autoDownload, setAutoDownload] = useState(false);
+  const [autoDownload, setAutoDownload] = useState(true);
   const [frequency, setFrequency] = useState("6h");
 
   const currentVersion: ReleaseVersion =
@@ -65,19 +77,47 @@ export function UpgradeManagerPage() {
     window.location.reload();
   };
 
+  // Automatically check on mount if enabled
+  useEffect(() => {
+    if (autoCheckOnMount) {
+      handleCheckUpdates();
+    }
+  }, [autoCheckOnMount]);
+
+  // Automatically download if update is available and autoDownload is active
+  useEffect(() => {
+    if (updateState === "available" && autoDownload) {
+      handleDownloadUpdate();
+    }
+  }, [updateState, autoDownload]);
+
   return (
     <div className="flex h-full flex-col p-6 overflow-y-auto">
       {/* Header */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-5">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
-            <ArrowUpCircle className="size-6 text-brand" />
-            Upgrade Manager
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Manage release channels, verify signatures, inspect detailed release notes, and install
-            updates.
-          </p>
+        <div className="flex items-center gap-3">
+          {(onBack || onClose) && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onBack ?? onClose}
+              className="gap-1.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+              aria-label="Back to previous page"
+            >
+              <ArrowLeft className="size-4" />
+              Back
+            </Button>
+          )}
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
+              <ArrowUpCircle className="size-6 text-brand" />
+              Upgrade Manager
+            </h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Manage release channels, verify signatures, inspect detailed release notes, and install
+              updates.
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <label htmlFor="update-channel" className="text-xs text-muted-foreground">
@@ -96,6 +136,17 @@ export function UpgradeManagerPage() {
             <option value="beta">Beta (Preview)</option>
             <option value="nightly">Nightly (Dev)</option>
           </select>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="size-8 text-muted-foreground hover:text-foreground cursor-pointer"
+              aria-label="Close"
+            >
+              <X className="size-4" />
+            </Button>
+          )}
         </div>
       </div>
 
@@ -271,6 +322,7 @@ export function UpgradeManagerPage() {
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Check Frequency</span>
               <select
+                aria-label="Check Frequency"
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value)}
                 className="rounded border border-input bg-background px-2 py-1 text-xs"
@@ -284,12 +336,20 @@ export function UpgradeManagerPage() {
 
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Automatic Check</span>
-              <Switch checked={autoCheck} onCheckedChange={setAutoCheck} />
+              <Switch
+                aria-label="Automatic Check"
+                checked={autoCheck}
+                onCheckedChange={setAutoCheck}
+              />
             </div>
 
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Auto-download</span>
-              <Switch checked={autoDownload} onCheckedChange={setAutoDownload} />
+              <Switch
+                aria-label="Auto-download"
+                checked={autoDownload}
+                onCheckedChange={setAutoDownload}
+              />
             </div>
           </div>
         </div>

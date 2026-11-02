@@ -55,7 +55,7 @@ function WindowChrome({ children }: { children: ReactNode }) {
 }
 
 function Screen() {
-  const { page, go } = usePageHistory();
+  const { page, go, back } = usePageHistory();
   const [scrolled, setScrolled] = useState(false);
   const { settings, error: settingsError, update } = useSettings();
   const health = useAppHealth();
@@ -135,6 +135,7 @@ function Screen() {
           settingsTarget={settingsTarget}
           revealVoiceProfile={revealVoiceProfile}
           onNavigate={go}
+          onBack={back}
           onOpenShortcuts={() => setShortcutsOpen(true)}
           onSetup={() => void update({ onboarding: { completed: false, step: "welcome" } })}
         />
@@ -149,6 +150,7 @@ interface CurrentPageProps {
   settingsTarget: SettingsTarget;
   revealVoiceProfile: number;
   onNavigate: (page: PageId) => void;
+  onBack: () => void;
   onOpenShortcuts: () => void;
   onSetup: () => void;
 }
@@ -158,6 +160,7 @@ function CurrentPage({
   settingsTarget,
   revealVoiceProfile,
   onNavigate,
+  onBack,
   onOpenShortcuts,
   onSetup,
 }: CurrentPageProps) {
@@ -174,7 +177,7 @@ function CurrentPage({
     case "appRules":
       return <AppRulesPage />;
     case "upgrade":
-      return <UpgradeManagerPage />;
+      return <UpgradeManagerPage onBack={onBack} autoCheckOnMount={true} />;
     case "insights":
       return <InsightsPage revealVoiceProfile={revealVoiceProfile} />;
     case "dictionary":
@@ -191,9 +194,16 @@ function CurrentPage({
           key={settingsTarget.count}
           target={settingsTarget}
           onOpenShortcuts={onOpenShortcuts}
+          onOpenUpgrade={() => onNavigate("upgrade")}
         />
       );
     case "help":
-      return <HelpPage onOpenShortcuts={onOpenShortcuts} onSetup={onSetup} />;
+      return (
+        <HelpPage
+          onOpenShortcuts={onOpenShortcuts}
+          onSetup={onSetup}
+          onOpenUpgrade={() => onNavigate("upgrade")}
+        />
+      );
   }
 }

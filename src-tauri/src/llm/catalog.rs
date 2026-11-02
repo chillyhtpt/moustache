@@ -17,7 +17,7 @@ pub const DEFAULT_GROQ_STT_MODEL: &str = "whisper-large-v3-turbo";
 /// Measured on the eval set (docs/ARCHITECTURE.md): Qwen 3.5 4B matched
 /// Gemma 3 4B's accuracy at under half its latency; Llama 3.2 3B is fastest
 /// but drops more meaning.
-pub const OLLAMA_PREFERENCE: [&str; 3] = ["qwen3.5:4b", "gemma3:4b", "llama3.2:3b"];
+pub const OLLAMA_PREFERENCE: [&str; 4] = ["kolibri:latest", "qwen3.5:4b", "gemma3:4b", "llama3.2:3b"];
 
 /// Mirrors `ModelOption` in src/lib/ipc.ts.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -106,6 +106,11 @@ const HETZNER: &[ModelOption] = &[
     model(
         "Qwen/Qwen2.5-72B-Instruct",
         "Qwen 2.5 72B Instruct",
+        Note::FastestRecommended,
+    ),
+    model(
+        "aleph-alpha/kolibri-1",
+        "Kolibri-1 (Aleph Alpha MoE)",
         Note::FastestRecommended,
     ),
     model(

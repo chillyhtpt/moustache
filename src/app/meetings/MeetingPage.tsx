@@ -663,6 +663,7 @@ export function MeetingPage() {
                     variant="ghost"
                     size="sm"
                     className="text-destructive hover:bg-destructive/10"
+                    aria-label="Delete meeting"
                     onClick={() => deleteMeeting(selectedMeeting.id)}
                   >
                     <Trash2 className="size-3.5" />

@@ -99,7 +99,7 @@ export function Sidebar({ page, onSelect }: SidebarProps) {
             : id === "appRules"
               ? "App Rules"
               : id === "upgrade"
-                ? "Upgrade"
+                ? "Updates"
                 : t(`nav.${id as "home"}`)}
         </span>
       </button>

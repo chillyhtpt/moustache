@@ -26,6 +26,13 @@ export function usePageHistory(first: PageId = "home") {
     });
   }, []);
 
+  const back = useCallback(() => {
+    setHistory((current) => {
+      const index = current.index - 1;
+      return index >= 0 ? { ...current, index } : current;
+    });
+  }, []);
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.defaultPrevented) {
@@ -58,5 +65,5 @@ export function usePageHistory(first: PageId = "home") {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [page, go]);
 
-  return { page, go };
+  return { page, go, back };
 }

@@ -50,7 +50,7 @@ macro_rules! whisper_model {
 pub const WHISPER_MODELS: [ModelFile; 5] = [
     whisper_model!(
         "tiny-q5_1",
-        "Whisper Tiny",
+        "Whisper Tiny (Ultra-Fast)",
         "ggml-tiny-q5_1.bin",
         32_152_673,
         "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7"
@@ -78,7 +78,7 @@ pub const WHISPER_MODELS: [ModelFile; 5] = [
     ),
     whisper_model!(
         "large-v3-turbo-q5_0",
-        "Whisper Large v3 Turbo",
+        "Whisper Large v3 Turbo (Fast & Accurate)",
         "ggml-large-v3-turbo-q5_0.bin",
         574_041_195,
         "394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2"

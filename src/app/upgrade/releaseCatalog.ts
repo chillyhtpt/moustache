@@ -2,6 +2,34 @@ import type { ReleaseVersion } from "./types";
 
 export const RELEASES_CATALOG: ReleaseVersion[] = [
   {
+    version: "1.1.0",
+    releaseDate: "2026-11-02",
+    channel: "stable",
+    title: "Moustache 1.1.0 - Fast Voice Models, Dynamic Overlay & Navigation Overhaul",
+    highlights: [
+      "Fast Voice & Kolibri-1: Added high-speed Aleph Alpha Kolibri-1 MoE for voice styling & tone rewrites, and promoted Whisper Large v3 Turbo & Groq Turbo for sub-second voice dictation.",
+      "Dynamic Floating Overlay: Re-engineered Flow Bar with dynamic bounds buffers and seamless capsule geometry, eliminating edge clipping, cutoff corners, and window frame jitter.",
+      "Usability & Menu Overhaul: Reorganized app navigation with dedicated Updates, Meetings, and App Rules sidebar entries, plus an intuitive Back button in Upgrade Manager.",
+      "Automatic Updates: Hands-free update checking on launch with automatic background download and installation.",
+    ],
+    changelog: `### What's New in Moustache 1.1.0:
+- **Fast Voice Models & Kolibri Integration**:
+  - Integrated Aleph Alpha Kolibri-1 MoE model for fast, high-fidelity voice profiles and tone transformations.
+  - Added fast voice model presets (Whisper Large v3 Turbo, Whisper Tiny Ultra-Fast) and Groq sub-second cloud transcription.
+- **Dynamic Floating Overlay (Flow Bar)**:
+  - Eliminated edge cutoff once and for all: added dynamic window buffer margins preventing OS window clipping of shadows, glows, and rounded borders.
+  - Replaced rigid width sizing with a dynamic capsule pill that expands and animates smoothly on hover.
+  - Refined language switch chips with sleek frosted glass styling and centered layout.
+- **Usability & Navigation Hierarchy**:
+  - Added dedicated sidebar access to Updates, Meetings, and App Rules.
+  - Added a prominent Back/Return button to Upgrade Manager, ensuring users can return to their previous step seamlessly.
+- **Hands-Free Automatic Updates**:
+  - Automatically checks for updates on launch and downloads new versions seamlessly in the background.
+  - Configured native updater endpoints with cryptographic verification.`,
+    isCurrent: true,
+    downloadSize: "49.8 MB",
+  },
+  {
     version: "1.0.2",
     releaseDate: "2026-11-02",
     channel: "stable",
@@ -19,7 +47,7 @@ export const RELEASES_CATALOG: ReleaseVersion[] = [
 - **Compiler & Platform Cleanups**:
   - Removed unused platform imports on Windows.
   - Ensured seamless build pipelines across Windows, macOS, and Linux.`,
-    isCurrent: true,
+    isCurrent: false,
     downloadSize: "49.6 MB",
   },
   {

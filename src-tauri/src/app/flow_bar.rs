@@ -24,10 +24,10 @@ use crate::t;
 pub const FLOW_BAR_LABEL: &str = "flow-bar";
 
 /// Logical size before the webview reports its own.
-const INITIAL_SIZE: (f64, f64) = (72.0, 28.0);
-const MAX_SIZE: (f64, f64) = (480.0, 320.0);
+const INITIAL_SIZE: (f64, f64) = (120.0, 48.0);
+const MAX_SIZE: (f64, f64) = (640.0, 480.0);
 /// The pill's height with its padding, in logical points.
-const PILL_HEIGHT: f64 = 28.0;
+const PILL_HEIGHT: f64 = 32.0;
 /// Gap between the bar and the Dock or screen edge, in logical points.
 const MARGIN: f64 = 10.0;
 /// Room between the pill and the ends of its edge for the language chips
