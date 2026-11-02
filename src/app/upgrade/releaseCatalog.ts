@@ -2,6 +2,27 @@ import type { ReleaseVersion } from "./types";
 
 export const RELEASES_CATALOG: ReleaseVersion[] = [
   {
+    version: "1.0.2",
+    releaseDate: "2026-11-02",
+    channel: "stable",
+    title: "Moustache 1.0.2 - Windows Native Focus Restore Fix",
+    highlights: [
+      "Windows HWND Thread Safety: Replaced mutex pointer wrapping with lock-free AtomicUsize for target foreground window restore.",
+      "Reliable Direct Paste: Fixed Windows build failure on windows-rs HWND raw pointer concurrency constraint.",
+      "Clean Compiler Hygiene: Eliminated unused imports and warnings across Windows platform modules.",
+    ],
+    changelog: `### What's New in Moustache 1.0.2:
+- **Windows Focus Restoration Thread Safety**:
+  - Fixed Windows compilation failure (E0277) where \`HWND\` raw pointers cannot be shared across threads via \`Mutex<Option<HWND>>\`.
+  - Implemented a lock-free, zero-allocation \`AtomicUsize\` storage for the target foreground window handle, ensuring 100% thread safety (\`Send + Sync\`).
+  - Seamlessly restores focus to the active target application before pasting transcribed text.
+- **Compiler & Platform Cleanups**:
+  - Removed unused platform imports on Windows.
+  - Ensured seamless build pipelines across Windows, macOS, and Linux.`,
+    isCurrent: true,
+    downloadSize: "49.6 MB",
+  },
+  {
     version: "1.0.1",
     releaseDate: "2026-11-02",
     channel: "stable",
@@ -28,7 +49,7 @@ export const RELEASES_CATALOG: ReleaseVersion[] = [
 - **Branding & Tray Menu Refresh**:
   - Updated all vector source SVGs and regenerated taskbar, tray, and hidden icon assets.
   - Reorganized tray menu with a logical, intuitive hierarchy.`,
-    isCurrent: true,
+    isCurrent: false,
     downloadSize: "49.6 MB",
   },
   {

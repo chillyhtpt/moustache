@@ -11,7 +11,7 @@ use handy_keys::Modifiers;
 use super::keycode::{VK_INSERT, VK_RETURN};
 use super::{clipboard, focus, hook, input, process};
 use crate::platform::{
-    CopyReason, Editable, InsertOptions, InsertOutcome, InsertText, PasteKey, PlatformError,
+    CopyReason, InsertOptions, InsertOutcome, InsertText, PasteKey, PlatformError,
     SyntheticKey, TextInserter,
 };
 
