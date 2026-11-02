@@ -102,6 +102,24 @@ const GROQ: &[ModelOption] = &[
     model("qwen/qwen3.8-27b", "Qwen 3.8 27B", Note::Preview),
 ];
 
+const HETZNER: &[ModelOption] = &[
+    model(
+        "Qwen/Qwen2.5-72B-Instruct",
+        "Qwen 2.5 72B Instruct",
+        Note::FastestRecommended,
+    ),
+    model(
+        "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+        "DeepSeek R1 Distill Qwen 32B",
+        Note::Recommended,
+    ),
+    model(
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "Llama 3.3 70B Instruct",
+        Note::LargerSlower,
+    ),
+];
+
 const OPENAI_STT: &[ModelOption] = &[
     model("gpt-transcribe", "GPT Transcribe", Note::Recommended),
     model(
@@ -129,6 +147,7 @@ pub fn models(provider: LlmProviderId) -> &'static [ModelOption] {
         LlmProviderId::Anthropic => ANTHROPIC,
         LlmProviderId::OpenAi => OPENAI,
         LlmProviderId::Groq => GROQ,
+        LlmProviderId::Hetzner => HETZNER,
         LlmProviderId::Ollama => &[],
     }
 }
@@ -142,6 +161,7 @@ pub fn key_account(provider: LlmProviderId) -> Option<KeyAccount> {
         LlmProviderId::Anthropic => Some(KeyAccount::Anthropic),
         LlmProviderId::OpenAi => Some(KeyAccount::OpenAi),
         LlmProviderId::Groq => Some(KeyAccount::Groq),
+        LlmProviderId::Hetzner => Some(KeyAccount::Hetzner),
         LlmProviderId::Ollama => None,
     }
 }
@@ -189,6 +209,7 @@ pub fn options() -> AiOptions {
         LlmProviderId::Anthropic,
         LlmProviderId::OpenAi,
         LlmProviderId::Groq,
+        LlmProviderId::Hetzner,
         LlmProviderId::Ollama,
     ]
     .into_iter()
@@ -256,6 +277,7 @@ mod tests {
             LlmProviderId::Anthropic,
             LlmProviderId::OpenAi,
             LlmProviderId::Groq,
+            LlmProviderId::Hetzner,
         ] {
             assert!(!default_model(provider).is_empty());
             assert!(key_account(provider).is_some());

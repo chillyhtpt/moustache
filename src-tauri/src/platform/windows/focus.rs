@@ -2,8 +2,11 @@
 //! and for deciding between pasting and leaving the transcript on the
 //! clipboard (INS-04).
 
+use std::sync::Mutex;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::Duration;
+
+use windows::Win32::Foundation::HWND;
 
 use super::{context, process, uia};
 use crate::platform::{
@@ -16,6 +19,21 @@ const CHECK_TIMEOUT: Duration = Duration::from_millis(600);
 
 /// Whether a text field in Shrimp's own window has focus, as its webview reports.
 static OWN_FIELD_FOCUSED: AtomicBool = AtomicBool::new(false);
+static REMEMBERED_WINDOW: Mutex<Option<HWND>> = Mutex::new(None);
+
+pub fn remember_target_window() {
+    if let Some(w) = process::foreground_window() {
+        if process::window_pid(w) != process::own_pid() {
+            if let Ok(mut lock) = REMEMBERED_WINDOW.lock() {
+                *lock = Some(w);
+            }
+        }
+    }
+}
+
+pub fn remembered_target_window() -> Option<HWND> {
+    REMEMBERED_WINDOW.lock().ok().and_then(|lock| *lock)
+}
 
 pub fn set_own_field_focused(focused: bool) {
     OWN_FIELD_FOCUSED.store(focused, Ordering::Relaxed);
@@ -25,6 +43,7 @@ pub struct WinFocus;
 
 impl FocusInspector for WinFocus {
     fn frontmost_app(&self) -> Option<AppIdentity> {
+        remember_target_window();
         process::identity(process::foreground_pid()?)
     }
 

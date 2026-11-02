@@ -5,6 +5,7 @@
 mod anthropic;
 pub mod catalog;
 mod groq;
+mod hetzner;
 pub mod http;
 pub mod ollama;
 mod openai;
@@ -13,6 +14,7 @@ mod registry;
 
 pub use anthropic::Anthropic;
 pub use groq::Groq;
+pub use hetzner::Hetzner;
 pub use ollama::Ollama;
 pub use openai::OpenAi;
 pub use provider::{LlmError, LlmProvider, LlmProviderId, LlmRequest, LlmResponse, Message, Role};

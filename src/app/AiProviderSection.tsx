@@ -9,7 +9,7 @@ import { ModelSelect } from "./ModelSelect";
 import { OllamaFields } from "./OllamaFields";
 import { PrivacyModeNote } from "./PrivacyModeNote";
 
-type ProviderModelField = "anthropicModel" | "openaiModel" | "groqModel";
+type ProviderModelField = "anthropicModel" | "openaiModel" | "groqModel" | "hetznerModel";
 
 function modelField(id: LlmProviderId): ProviderModelField | null {
   switch (id) {
@@ -19,6 +19,8 @@ function modelField(id: LlmProviderId): ProviderModelField | null {
       return "openaiModel";
     case "groq":
       return "groqModel";
+    case "hetzner":
+      return "hetznerModel";
     case "ollama":
       return null;
   }

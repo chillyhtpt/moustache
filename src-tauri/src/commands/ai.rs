@@ -27,6 +27,7 @@ pub struct ApiKeys {
     pub anthropic: bool,
     pub openai: bool,
     pub groq: bool,
+    pub hetzner: bool,
 }
 
 fn api_keys(secrets: &Secrets) -> ApiKeys {
@@ -34,6 +35,7 @@ fn api_keys(secrets: &Secrets) -> ApiKeys {
         anthropic: secrets.has(KeyAccount::Anthropic),
         openai: secrets.has(KeyAccount::OpenAi),
         groq: secrets.has(KeyAccount::Groq),
+        hetzner: secrets.has(KeyAccount::Hetzner),
     }
 }
 
@@ -150,10 +152,11 @@ mod tests {
             anthropic: true,
             openai: false,
             groq: false,
+            hetzner: false,
         };
         assert_eq!(
             serde_json::to_value(keys).unwrap(),
-            serde_json::json!({"anthropic": true, "openai": false, "groq": false})
+            serde_json::json!({"anthropic": true, "openai": false, "groq": false, "hetzner": false})
         );
     }
 }

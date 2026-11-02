@@ -17,6 +17,7 @@ const COMPANIES: Record<KeyAccount, string> = {
   anthropic: "Anthropic",
   openai: "OpenAI",
   groq: "Groq",
+  hetzner: "Hetzner",
 };
 
 interface EngineStepProps {

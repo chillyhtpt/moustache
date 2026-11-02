@@ -17,8 +17,8 @@ use windows::Win32::System::Threading::{
     PROCESS_QUERY_LIMITED_INFORMATION, QueryFullProcessImageNameW,
 };
 use windows::Win32::UI::WindowsAndMessaging::{
-    EnumChildWindows, GetForegroundWindow, GetWindowTextLengthW, GetWindowTextW,
-    GetWindowThreadProcessId,
+    BringWindowToTop, EnumChildWindows, GetForegroundWindow, GetWindowTextLengthW, GetWindowTextW,
+    GetWindowThreadProcessId, SetForegroundWindow,
 };
 use windows::core::{BOOL as CoreBool, PCWSTR, PWSTR, w};
 
@@ -30,6 +30,15 @@ const FRAME_HOST: &str = "ApplicationFrameHost.exe";
 pub fn foreground_window() -> Option<HWND> {
     let window = unsafe { GetForegroundWindow() };
     (!window.is_invalid()).then_some(window)
+}
+
+pub fn set_foreground_window(window: HWND) {
+    if !window.is_invalid() {
+        unsafe {
+            let _ = BringWindowToTop(window);
+            let _ = SetForegroundWindow(window);
+        }
+    }
 }
 
 pub fn window_pid(window: HWND) -> u32 {

@@ -76,12 +76,19 @@ impl TextInserter for WinInserter {
         text: &InsertText,
         options: &InsertOptions,
     ) -> Result<InsertOutcome, PlatformError> {
+        // Always place the transcribed text on the clipboard so user never loses it
+        let _ = clipboard::write_text(text, false);
+
         if process::foreground_pid().is_some_and(process::above_own_integrity) {
             return self.copy_instead(text, CopyReason::Elevated);
         }
-        if options.require_field && focus::focused_field() == Editable::No {
-            return self.copy_instead(text, CopyReason::NoTextField);
+
+        // Restore focus to the remembered target application where dictation started
+        if let Some(target) = focus::remembered_target_window() {
+            process::set_foreground_window(target);
+            std::thread::sleep(Duration::from_millis(50));
         }
+
         let parts: Vec<InsertText> = match options.split {
             Some(split) if text.html.is_none() => split
                 .parts(&text.plain)
@@ -91,18 +98,17 @@ impl TextInserter for WinInserter {
             _ => vec![text.clone()],
         };
         let pause = options.split.map_or(Duration::ZERO, |split| split.pause);
-        let snapshot = clipboard::snapshot()?;
         wait_for_release();
-        let mut written = 0;
         for (index, part) in parts.iter().enumerate() {
             if index > 0 {
                 // Each part reaches the app as its own paste.
                 std::thread::sleep(pause);
             }
-            written = clipboard::write_text(part, true)?;
+            let _ = clipboard::write_text(part, true)?;
             paste(options.paste_key)?;
         }
-        Self::restore_later(snapshot, written, options.hold);
+        // Keep the transcribed text on the clipboard as requested
+        let _ = clipboard::write_text(text, false);
         Ok(InsertOutcome::Pasted)
     }
 

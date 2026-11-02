@@ -11,6 +11,7 @@ pub enum LlmProviderId {
     #[serde(rename = "openai")]
     OpenAi,
     Groq,
+    Hetzner,
     Ollama,
 }
 
@@ -20,6 +21,7 @@ impl LlmProviderId {
             Self::Anthropic => "Anthropic",
             Self::OpenAi => "OpenAI",
             Self::Groq => "Groq",
+            Self::Hetzner => "Hetzner",
             Self::Ollama => "Ollama",
         }
     }

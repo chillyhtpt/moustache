@@ -338,6 +338,7 @@ pub struct AiSettings {
     pub anthropic_model: String,
     pub openai_model: String,
     pub groq_model: String,
+    pub hetzner_model: String,
     /// Empty means the first installed model Shrimp recommends.
     pub ollama_model: String,
     pub ollama_url: String,
@@ -351,6 +352,7 @@ impl Default for AiSettings {
             anthropic_model: catalog::default_model(LlmProviderId::Anthropic).into(),
             openai_model: catalog::default_model(LlmProviderId::OpenAi).into(),
             groq_model: catalog::default_model(LlmProviderId::Groq).into(),
+            hetzner_model: catalog::default_model(LlmProviderId::Hetzner).into(),
             ollama_model: String::new(),
             ollama_url: catalog::DEFAULT_OLLAMA_URL.into(),
         }
@@ -363,6 +365,7 @@ impl AiSettings {
             LlmProviderId::Anthropic => &self.anthropic_model,
             LlmProviderId::OpenAi => &self.openai_model,
             LlmProviderId::Groq => &self.groq_model,
+            LlmProviderId::Hetzner => &self.hetzner_model,
             LlmProviderId::Ollama => &self.ollama_model,
         }
     }

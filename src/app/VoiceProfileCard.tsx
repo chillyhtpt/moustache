@@ -18,6 +18,7 @@ const PROVIDER_NAMES: Record<LlmProviderId, string> = {
   anthropic: "Anthropic",
   openai: "OpenAI",
   groq: "Groq",
+  hetzner: "Hetzner",
   ollama: "Ollama",
 };
 

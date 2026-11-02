@@ -2,6 +2,36 @@ import type { ReleaseVersion } from "./types";
 
 export const RELEASES_CATALOG: ReleaseVersion[] = [
   {
+    version: "1.0.1",
+    releaseDate: "2026-11-02",
+    channel: "stable",
+    title: "Moustache 1.0.1 - Windows Flow Bar, Focus Restore & Hetzner Inference",
+    highlights: [
+      "Flow Bar Pill Overhaul: Pixel-perfect capsule pill alignment matching native dimensions with frosted glass language selector.",
+      "Reliable Windows Pasting: Restores target application focus before synthesized paste and permanently preserves transcribed text on clipboard.",
+      "Hetzner Free Inference: Native support for Hetzner Experiments OpenAI-compatible LLM inference (Qwen 2.5 72B, DeepSeek R1).",
+      "Branding & Asset Cleanup: Complete replacement of legacy Shrimp vector icons in taskbar, tray, and hidden icons with Moustache branding.",
+      "Logical Tray Menu: Reordered tray actions into a cleaner, more intuitive workflow.",
+    ],
+    changelog: `### What's New in Moustache 1.0.1:
+- **Windows Flow Bar Alignment & Styling**:
+  - Replaced flat rectangular idle bar with an elegant 28px height capsule pill matching Rust window positioning.
+  - Centered floating capsule dropdown for language selection on hover with glassmorphism blur and smooth transitions.
+- **Windows Focus Restoration & Clipboard Retention**:
+  - Automatically captures and remembers target foreground window HWND when recording starts.
+  - Restores target window focus prior to synthesizing Ctrl+V.
+  - Keeps transcribed text on the system clipboard permanently for quick manual pasting without timeout wipe.
+  - Removed brittle UIA editable tree check that failed in Chromium and Electron apps.
+- **Hetzner Free Inference API Integration**:
+  - Support for Hetzner Experiments free inference API at https://inference.hetzner.com/api/v1.
+  - Key management via Windows Credential Manager and OS keychains.
+- **Branding & Tray Menu Refresh**:
+  - Updated all vector source SVGs and regenerated taskbar, tray, and hidden icon assets.
+  - Reorganized tray menu with a logical, intuitive hierarchy.`,
+    isCurrent: true,
+    downloadSize: "49.6 MB",
+  },
+  {
     version: "1.0.0",
     releaseDate: "2026-10-30",
     channel: "stable",
@@ -31,7 +61,7 @@ export const RELEASES_CATALOG: ReleaseVersion[] = [
   - In-app release upgrade manager with channel selection and signature verification.
   - Team vault sync with encrypted JSON bundles.
   - Sequential prompt stacking pipeline.`,
-    isCurrent: true,
+    isCurrent: false,
     downloadSize: "49.5 MB",
   },
   {

@@ -1,6 +1,6 @@
 [package]
 name = "shrimp"
-version = "1.0.0"
+version = "1.0.1"
 description = "Moustache: Speech to text, anywhere"
 authors = ["Dantavious Williams", "chillyhtpt"]
 license = "MIT"

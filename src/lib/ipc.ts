@@ -251,10 +251,10 @@ export interface PermissionsInfo {
 export type SttEngineId = "local-whisper" | "openai" | "groq";
 
 /** Mirrors `llm::LlmProviderId`. */
-export type LlmProviderId = "anthropic" | "openai" | "groq" | "ollama";
+export type LlmProviderId = "anthropic" | "openai" | "groq" | "hetzner" | "ollama";
 
 /** Mirrors `secrets::KeyAccount`: the keychain entry a provider's key lives in. */
-export type KeyAccount = "anthropic" | "openai" | "groq";
+export type KeyAccount = "anthropic" | "openai" | "groq" | "hetzner";
 
 /** Mirrors `edit::CleanupLevel`. */
 export type CleanupLevel = "none" | "light" | "medium";
@@ -293,6 +293,7 @@ export interface Settings {
     anthropicModel: string;
     openaiModel: string;
     groqModel: string;
+    hetznerModel: string;
     /** Empty means Moustache picks an installed model. */
     ollamaModel: string;
     ollamaUrl: string;

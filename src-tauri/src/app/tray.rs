@@ -144,13 +144,13 @@ fn menu<R: Runtime>(app: &AppHandle<R>, settings: &Settings) -> tauri::Result<Me
         &[
             &open,
             &shortcuts,
-            &update,
             &PredefinedMenuItem::separator(app)?,
             &paste_last,
             &copy_last,
             &PredefinedMenuItem::separator(app)?,
             &privacy,
             &PredefinedMenuItem::separator(app)?,
+            &update,
             &restart,
             &quit,
         ],
@@ -167,7 +167,7 @@ fn tooltip(privacy: bool) -> String {
     if privacy {
         t!("tray.privacyTooltip")
     } else {
-        "Shrimp".into()
+        "Moustache".into()
     }
 }
 
