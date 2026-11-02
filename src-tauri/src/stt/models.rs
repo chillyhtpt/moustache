@@ -47,7 +47,14 @@ macro_rules! whisper_model {
     };
 }
 
-pub const WHISPER_MODELS: [ModelFile; 5] = [
+pub const WHISPER_MODELS: [ModelFile; 6] = [
+    whisper_model!(
+        "kolibri-fast",
+        "Kolibri Speech Engine (Ultra-Fast)",
+        "ggml-tiny-q5_1.bin",
+        32_152_673,
+        "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7"
+    ),
     whisper_model!(
         "tiny-q5_1",
         "Whisper Tiny (Ultra-Fast)",

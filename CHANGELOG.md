@@ -2,6 +2,22 @@
 
 All notable changes to Shrimp. Versions follow [Semantic Versioning](https://semver.org).
 
+## 1.1.5 (2026-11-02)
+
+- **Downloadable Kolibri Speech Engine**:
+  - Integrated ultra-fast 32MB quantized ggml Kolibri speech engine for instant on-device dictation.
+  - Slashed local speech recognition audio encoder latency by up to 66% with dynamic audio context scaling (floor dropped from 768 to 256).
+- **OpenRouter AI Provider**:
+  - Added OpenRouter (`openrouter.ai/api/v1`) with free community models (Llama 3.3 70B, DeepSeek R1, Qwen 2.5 72B) and top value paid models (DeepSeek V3, Gemini 2.0 Flash, Claude 3.5 Haiku).
+- **Hetzner Inference API Compliance**:
+  - Fully compliant with official Hetzner Inference API (`inference.hetzner.com/api/v1`), including bearer token sanitization, custom User-Agent, and reasoning block cleanup (`<think>`).
+- **AI Vocabulary Auto-Learning**:
+  - Integrated automatic dictionary learning into the AI post-processing pass for custom vocabulary, jargon, and proper nouns.
+- **Floating Mic Refinements**:
+  - Restored compact 72x28 idle pill size, removed oversized margins, and suppressed scrollbars.
+- **Navigation Cleanup**:
+  - Removed redundant Upgrade Manager view from the Help page.
+
 ## 0.1.2 (2026-10-15)
 
 The first public release.

@@ -20,14 +20,17 @@ pub enum KeyAccount {
     OpenAi,
     Groq,
     Hetzner,
+    #[serde(rename = "openrouter")]
+    OpenRouter,
 }
 
 impl KeyAccount {
-    pub const ALL: [KeyAccount; 4] = [
+    pub const ALL: [KeyAccount; 5] = [
         Self::Anthropic,
         Self::OpenAi,
         Self::Groq,
         Self::Hetzner,
+        Self::OpenRouter,
     ];
 
     pub fn account(self) -> &'static str {
@@ -36,6 +39,7 @@ impl KeyAccount {
             Self::OpenAi => "openai",
             Self::Groq => "groq",
             Self::Hetzner => "hetzner",
+            Self::OpenRouter => "openrouter",
         }
     }
 
@@ -45,6 +49,7 @@ impl KeyAccount {
             Self::OpenAi => "OpenAI",
             Self::Groq => "Groq",
             Self::Hetzner => "Hetzner",
+            Self::OpenRouter => "OpenRouter",
         }
     }
 }

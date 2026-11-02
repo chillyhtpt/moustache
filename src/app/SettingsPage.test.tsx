@@ -18,7 +18,7 @@ function backend(
   initial: Settings = SETTINGS,
 ) {
   let settings = initial;
-  let keys: ApiKeys = { anthropic: false, openai: true, groq: false, hetzner: false };
+  let keys: ApiKeys = { anthropic: false, openai: true, groq: false, hetzner: false, openrouter: false };
   return mockBackend({
     get_settings: () => settings,
     get_ai_options: () => AI_OPTIONS,

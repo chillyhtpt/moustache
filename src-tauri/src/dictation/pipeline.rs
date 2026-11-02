@@ -5,7 +5,7 @@ use std::time::{Duration, Instant};
 
 use handy_keys::Modifiers;
 
-use super::learn::LearnTarget;
+use super::learn::{self, LearnTarget, learnable, respellings};
 use super::state::{Delivered, Outcome, Processed};
 use super::transform::TransformRun;
 use crate::audio::{AudioClip, level};
@@ -96,6 +96,19 @@ impl Pipeline {
         record.llm_provider = (settings.ai.cleanup != CleanupLevel::None && edited.formatted)
             .then_some(settings.ai.provider);
         record.dictionary_fixes = edited.dictionary_fixes as i64;
+        if settings.dictionary.auto_learn && edited.formatted {
+            let ai_words: Vec<String> = respellings(&record.raw, &record.text, &(0..record.raw.len()))
+                .into_iter()
+                .filter(|(old, new)| learnable(old, new))
+                .map(|(_, new)| new)
+                .collect();
+            if !ai_words.is_empty() {
+                let learned = self.editor.learn(ai_words).await;
+                if !learned.is_empty() {
+                    notices.push(learn::added(&learned).with_action(NoticeAction::OpenDictionary));
+                }
+            }
+        }
         if edited.text.plain.trim().is_empty() {
             let outcome = match edited.press_enter {
                 PressEnter::Press => self.press_enter(paste_delay).await,

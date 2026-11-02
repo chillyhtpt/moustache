@@ -2,30 +2,34 @@ import type { ReleaseVersion } from "./types";
 
 export const RELEASES_CATALOG: ReleaseVersion[] = [
   {
-    version: "1.1.0",
+    version: "1.1.5",
     releaseDate: "2026-11-02",
     channel: "stable",
-    title: "Moustache 1.1.0 - Fast Voice Models, Dynamic Overlay & Navigation Overhaul",
+    title: "Moustache 1.1.5 - Ultra-Fast Dictation, OpenRouter, Hetzner Inference & Floating Mic Overhaul",
     highlights: [
-      "Fast Voice & Kolibri-1: Added high-speed Aleph Alpha Kolibri-1 MoE for voice styling & tone rewrites, and promoted Whisper Large v3 Turbo & Groq Turbo for sub-second voice dictation.",
-      "Dynamic Floating Overlay: Re-engineered Flow Bar with dynamic bounds buffers and seamless capsule geometry, eliminating edge clipping, cutoff corners, and window frame jitter.",
-      "Usability & Menu Overhaul: Reorganized app navigation with dedicated Updates, Meetings, and App Rules sidebar entries, plus an intuitive Back button in Upgrade Manager.",
-      "Automatic Updates: Hands-free update checking on launch with automatic background download and installation.",
+      "Downloadable Kolibri Speech Engine: Integrated ultra-fast 32MB quantized Kolibri speech engine alongside optimized Whisper audio context for blazing dictation speeds.",
+      "OpenRouter AI Provider: Added OpenRouter with free community models (Llama 3.3 70B, DeepSeek R1, Qwen 2.5 72B) and best-value paid models (DeepSeek V3, Gemini 2.0 Flash).",
+      "Hetzner Inference Compliance: Full compliance with Hetzner Inference API specifications, Qwen 3.6 35B FP8 MoE model, bearer token sanitization, and reasoning tag filtering.",
+      "AI Word Learning: AI cleanup transformations now automatically learn new custom vocabulary and technical jargon directly into your personal dictionary.",
+      "Floating Mic Compaction: Restored compact 72x28 floating mic pill, suppressed scrollbars, and eliminated oversized margins.",
     ],
-    changelog: `### What's New in Moustache 1.1.0:
-- **Fast Voice Models & Kolibri Integration**:
-  - Integrated Aleph Alpha Kolibri-1 MoE model for fast, high-fidelity voice profiles and tone transformations.
-  - Added fast voice model presets (Whisper Large v3 Turbo, Whisper Tiny Ultra-Fast) and Groq sub-second cloud transcription.
-- **Dynamic Floating Overlay (Flow Bar)**:
-  - Eliminated edge cutoff once and for all: added dynamic window buffer margins preventing OS window clipping of shadows, glows, and rounded borders.
-  - Replaced rigid width sizing with a dynamic capsule pill that expands and animates smoothly on hover.
-  - Refined language switch chips with sleek frosted glass styling and centered layout.
-- **Usability & Navigation Hierarchy**:
-  - Added dedicated sidebar access to Updates, Meetings, and App Rules.
-  - Added a prominent Back/Return button to Upgrade Manager, ensuring users can return to their previous step seamlessly.
-- **Hands-Free Automatic Updates**:
-  - Automatically checks for updates on launch and downloads new versions seamlessly in the background.
-  - Configured native updater endpoints with cryptographic verification.`,
+    changelog: `### What's New in Moustache 1.1.5:
+- **Ultra-Fast Dictation & Kolibri Speech Engine**:
+  - Integrated downloadable Kolibri Speech Engine (Ultra-Fast ggml, 32 MB) for instant on-device dictation.
+  - Slashed local speech recognition audio encoder latency by up to 66% with dynamic audio context scaling (floor dropped from 768 to 256).
+- **OpenRouter AI Provider**:
+  - Full integration with OpenRouter (\`openrouter.ai/api/v1\`) with custom app headers (\`HTTP-Referer\`, \`X-Title\`).
+  - Catalog includes top free models (\`meta-llama/llama-3.3-70b-instruct:free\`, \`deepseek/deepseek-r1:free\`, \`qwen/qwen-2.5-72b-instruct:free\`) and top value paid models (\`deepseek/deepseek-chat\`, \`google/gemini-2.0-flash-001\`, \`anthropic/claude-3-5-haiku\`).
+- **Hetzner Inference API Compliance**:
+  - Followed official Hetzner Inference documentation (\`inference.hetzner.com/api/v1\`).
+  - Added robust Bearer token prefix & quote sanitization, custom User-Agent, and \`<think>\` reasoning block cleanup.
+- **AI Vocabulary Learning**:
+  - Speech enhancement pass now detects terminology and proper nouns and auto-learns them into your dictionary.
+- **Floating Mic Pill Refinements**:
+  - Restored true compact idle dimensions (72px × 28px) and removed oversized window buffers.
+  - Eliminated unwanted scroll wheel / scrollbar behavior with explicit overflow suppression.
+- **Navigation Cleanup**:
+  - Removed duplicate Upgrade Manager view from the Help page.`,
     isCurrent: true,
     downloadSize: "49.8 MB",
   },

@@ -28,6 +28,7 @@ pub struct ApiKeys {
     pub openai: bool,
     pub groq: bool,
     pub hetzner: bool,
+    pub openrouter: bool,
 }
 
 fn api_keys(secrets: &Secrets) -> ApiKeys {
@@ -36,6 +37,7 @@ fn api_keys(secrets: &Secrets) -> ApiKeys {
         openai: secrets.has(KeyAccount::OpenAi),
         groq: secrets.has(KeyAccount::Groq),
         hetzner: secrets.has(KeyAccount::Hetzner),
+        openrouter: secrets.has(KeyAccount::OpenRouter),
     }
 }
 
@@ -153,10 +155,11 @@ mod tests {
             openai: false,
             groq: false,
             hetzner: false,
+            openrouter: false,
         };
         assert_eq!(
             serde_json::to_value(keys).unwrap(),
-            serde_json::json!({"anthropic": true, "openai": false, "groq": false, "hetzner": false})
+            serde_json::json!({"anthropic": true, "openai": false, "groq": false, "hetzner": false, "openrouter": false})
         );
     }
 }

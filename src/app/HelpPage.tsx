@@ -1,4 +1,3 @@
-import { ArrowUpCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Group, Note, Row, RowText, Section } from "@/components/settings";
@@ -7,8 +6,6 @@ import { Kbd } from "@/components/ui/kbd";
 import { getAppInfo, getShortcuts, type ShortcutList } from "../lib/ipc";
 import { MicAdviceDialog } from "./MicAdviceDialog";
 import { Page } from "./Page";
-import { UpgradeManagerPage } from "./upgrade/UpgradeManagerPage";
-import { Dialog } from "./Dialog";
 import { IS_WINDOWS } from "../lib/platform";
 
 interface HelpPageProps {
@@ -39,12 +36,11 @@ const WINDOWS_KEYS = [
 const KEYS = IS_WINDOWS ? WINDOWS_KEYS : MAC_KEYS;
 
 /** Help: how to dictate, the shortcuts, keyboard navigation and setup (APP-04). */
-export function HelpPage({ onOpenShortcuts, onSetup, onOpenUpgrade }: HelpPageProps) {
+export function HelpPage({ onOpenShortcuts, onSetup }: HelpPageProps) {
   const { t } = useTranslation();
   const [shortcuts, setShortcuts] = useState<ShortcutList | null>(null);
   const [version, setVersion] = useState("");
   const [advice, setAdvice] = useState(false);
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
 
   useEffect(() => {
     getShortcuts()
@@ -59,16 +55,7 @@ export function HelpPage({ onOpenShortcuts, onSetup, onOpenUpgrade }: HelpPagePr
   return (
     <Page
       title={t("help.title")}
-      modal={
-        (advice && <MicAdviceDialog onClose={() => setAdvice(false)} />) ||
-        (upgradeOpen && (
-          <Dialog title="Upgrade Manager" onClose={() => setUpgradeOpen(false)} wide>
-            <div className="max-h-[80vh] overflow-y-auto -m-6 p-6">
-              <UpgradeManagerPage onClose={() => setUpgradeOpen(false)} />
-            </div>
-          </Dialog>
-        ))
-      }
+      modal={advice && <MicAdviceDialog onClose={() => setAdvice(false)} />}
     >
       <Section headingId="help-start" title={t("help.startTitle")}>
         <Group>
@@ -152,24 +139,6 @@ export function HelpPage({ onOpenShortcuts, onSetup, onOpenUpgrade }: HelpPagePr
           </Group>
         </Section>
       )}
-      <Section headingId="help-upgrade" title="Upgrade Manager">
-        <Group>
-          <Row>
-            <RowText
-              title="Updates & Release Channels"
-              description="Check for updates, switch between Stable, Beta, and Nightly channels, and review release notes."
-            />
-            <Button
-              size="sm"
-              onClick={onOpenUpgrade ?? (() => setUpgradeOpen(true))}
-              className="gap-1.5"
-            >
-              <ArrowUpCircle className="size-3.5" />
-              Upgrade Manager
-            </Button>
-          </Row>
-        </Group>
-      </Section>
       <Note className="meta text-center text-xs">{t("help.about", { version })}</Note>
     </Page>
   );

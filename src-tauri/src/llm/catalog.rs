@@ -17,7 +17,7 @@ pub const DEFAULT_GROQ_STT_MODEL: &str = "whisper-large-v3-turbo";
 /// Measured on the eval set (docs/ARCHITECTURE.md): Qwen 3.5 4B matched
 /// Gemma 3 4B's accuracy at under half its latency; Llama 3.2 3B is fastest
 /// but drops more meaning.
-pub const OLLAMA_PREFERENCE: [&str; 4] = ["kolibri:latest", "qwen3.5:4b", "gemma3:4b", "llama3.2:3b"];
+pub const OLLAMA_PREFERENCE: [&str; 3] = ["qwen3.5:4b", "gemma3:4b", "llama3.2:3b"];
 
 /// Mirrors `ModelOption` in src/lib/ipc.ts.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -104,24 +104,64 @@ const GROQ: &[ModelOption] = &[
 
 const HETZNER: &[ModelOption] = &[
     model(
-        "Qwen/Qwen2.5-72B-Instruct",
-        "Qwen 2.5 72B Instruct",
+        "Qwen/Qwen3.6-35B-A3B-FP8",
+        "Qwen 3.6 35B FP8 (MoE)",
+        Note::FastestRecommended,
+    ),
+];
+
+const OPENROUTER: &[ModelOption] = &[
+    // Free models
+    model(
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "Llama 3.3 70B Instruct (Free)",
         Note::FastestRecommended,
     ),
     model(
-        "aleph-alpha/kolibri-1",
-        "Kolibri-1 (Aleph Alpha MoE)",
+        "google/gemini-2.0-flash-exp:free",
+        "Gemini 2.0 Flash (Free)",
         Note::FastestRecommended,
     ),
     model(
-        "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        "DeepSeek R1 Distill Qwen 32B",
+        "deepseek/deepseek-r1:free",
+        "DeepSeek R1 (Free)",
         Note::Recommended,
     ),
     model(
-        "meta-llama/Llama-3.3-70B-Instruct",
-        "Llama 3.3 70B Instruct",
-        Note::LargerSlower,
+        "qwen/qwen-2.5-72b-instruct:free",
+        "Qwen 2.5 72B Instruct (Free)",
+        Note::Recommended,
+    ),
+    model(
+        "mistralai/mistral-small-24b-instruct-2501:free",
+        "Mistral Small 24B (Free)",
+        Note::Recommended,
+    ),
+    // Best value paid models
+    model(
+        "deepseek/deepseek-chat",
+        "DeepSeek V3 (Best Value / Ultra Fast)",
+        Note::FastestRecommended,
+    ),
+    model(
+        "google/gemini-2.0-flash-001",
+        "Gemini 2.0 Flash ($0.10/M)",
+        Note::Recommended,
+    ),
+    model(
+        "meta-llama/llama-3.3-70b-instruct",
+        "Llama 3.3 70B Instruct ($0.12/M)",
+        Note::Recommended,
+    ),
+    model(
+        "anthropic/claude-3.5-haiku",
+        "Claude 3.5 Haiku (High Speed)",
+        Note::Recommended,
+    ),
+    model(
+        "openai/gpt-4o-mini",
+        "GPT-4o Mini",
+        Note::Recommended,
     ),
 ];
 
@@ -153,6 +193,7 @@ pub fn models(provider: LlmProviderId) -> &'static [ModelOption] {
         LlmProviderId::OpenAi => OPENAI,
         LlmProviderId::Groq => GROQ,
         LlmProviderId::Hetzner => HETZNER,
+        LlmProviderId::OpenRouter => OPENROUTER,
         LlmProviderId::Ollama => &[],
     }
 }
@@ -167,6 +208,7 @@ pub fn key_account(provider: LlmProviderId) -> Option<KeyAccount> {
         LlmProviderId::OpenAi => Some(KeyAccount::OpenAi),
         LlmProviderId::Groq => Some(KeyAccount::Groq),
         LlmProviderId::Hetzner => Some(KeyAccount::Hetzner),
+        LlmProviderId::OpenRouter => Some(KeyAccount::OpenRouter),
         LlmProviderId::Ollama => None,
     }
 }
@@ -215,6 +257,7 @@ pub fn options() -> AiOptions {
         LlmProviderId::OpenAi,
         LlmProviderId::Groq,
         LlmProviderId::Hetzner,
+        LlmProviderId::OpenRouter,
         LlmProviderId::Ollama,
     ]
     .into_iter()
@@ -283,6 +326,7 @@ mod tests {
             LlmProviderId::OpenAi,
             LlmProviderId::Groq,
             LlmProviderId::Hetzner,
+            LlmProviderId::OpenRouter,
         ] {
             assert!(!default_model(provider).is_empty());
             assert!(key_account(provider).is_some());

@@ -18,6 +18,7 @@ const COMPANIES: Record<KeyAccount, string> = {
   openai: "OpenAI",
   groq: "Groq",
   hetzner: "Hetzner",
+  openrouter: "OpenRouter",
 };
 
 interface EngineStepProps {

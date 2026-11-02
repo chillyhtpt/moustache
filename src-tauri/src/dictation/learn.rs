@@ -218,7 +218,7 @@ async fn read(focus: &Arc<dyn FocusInspector>, field_id: u64) -> Option<String> 
         .map(|text| text.replace("\r\n", "\n"))
 }
 
-fn added(words: &[String]) -> Notice {
+pub fn added(words: &[String]) -> Notice {
     let quoted: Vec<String> = words
         .iter()
         .map(|word| t!("notice.quoted", text = word))

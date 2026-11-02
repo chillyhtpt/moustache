@@ -9,6 +9,7 @@ mod hetzner;
 pub mod http;
 pub mod ollama;
 mod openai;
+mod openrouter;
 mod provider;
 mod registry;
 
@@ -17,5 +18,6 @@ pub use groq::Groq;
 pub use hetzner::Hetzner;
 pub use ollama::Ollama;
 pub use openai::OpenAi;
+pub use openrouter::OpenRouter;
 pub use provider::{LlmError, LlmProvider, LlmProviderId, LlmRequest, LlmResponse, Message, Role};
 pub use registry::{LlmSource, Providers};

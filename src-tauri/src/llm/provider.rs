@@ -12,6 +12,8 @@ pub enum LlmProviderId {
     OpenAi,
     Groq,
     Hetzner,
+    #[serde(rename = "openrouter")]
+    OpenRouter,
     Ollama,
 }
 
@@ -22,6 +24,7 @@ impl LlmProviderId {
             Self::OpenAi => "OpenAI",
             Self::Groq => "Groq",
             Self::Hetzner => "Hetzner",
+            Self::OpenRouter => "OpenRouter",
             Self::Ollama => "Ollama",
         }
     }

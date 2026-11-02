@@ -27,10 +27,9 @@ const VAD_PADDING_SAMPLES: usize = STT_SAMPLE_RATE as usize / 4;
 /// Whisper's encoder covers 30 s as 1500 frames (50 per second).
 const FULL_AUDIO_CTX: usize = 1500;
 const AUDIO_CTX_PER_SECOND: usize = 50;
-/// Extra encoder frames beyond the audio. Large v3 Turbo repeats itself on
-/// short clips encoded with much less context than this floor.
-const AUDIO_CTX_MARGIN: usize = 256;
-const MIN_AUDIO_CTX: usize = 768;
+/// Extra encoder frames beyond the audio for attention stability and fast throughput.
+const AUDIO_CTX_MARGIN: usize = 128;
+const MIN_AUDIO_CTX: usize = 256;
 /// Non-speech markers Whisper sometimes emits instead of words.
 const NON_SPEECH: [&str; 6] = [
     "[BLANK_AUDIO]",
@@ -325,7 +324,7 @@ mod tests {
         assert_eq!(audio_ctx(16_000 * 2, true), MIN_AUDIO_CTX);
         assert_eq!(audio_ctx(16_000 * 12, true), 600 + AUDIO_CTX_MARGIN);
         assert_eq!(
-            audio_ctx(16_000 * 26, true),
+            audio_ctx(16_000 * 28, true),
             0,
             "long clips use the full window"
         );

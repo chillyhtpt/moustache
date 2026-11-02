@@ -19,13 +19,9 @@ export function useContentSize(ref: RefObject<HTMLElement | null>): void {
       void flowBarLayout(0, 0).catch(() => undefined);
       return;
     }
-    // Dynamic safety buffer: guarantees shadows, glow filters, capsule borders,
-    // and subpixel DPI scalings never clip or cut off at the window frame boundaries.
-    const BUFFER_W = 16;
-    const BUFFER_H = 12;
     const size = {
-      width: Math.ceil(width) + BUFFER_W,
-      height: Math.ceil(height) + BUFFER_H,
+      width: Math.ceil(width),
+      height: Math.ceil(height),
     };
     const key = `${size.width}x${size.height}`;
     // 0 x 0 hides the window: nothing to show (BAR-04).

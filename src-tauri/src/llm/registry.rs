@@ -5,8 +5,8 @@ use std::sync::Arc;
 use async_trait::async_trait;
 
 use super::{
-    Anthropic, Groq, Hetzner, LlmError, LlmProvider, LlmProviderId, Ollama, OpenAi, anthropic,
-    catalog, groq, hetzner, ollama, openai,
+    Anthropic, Groq, Hetzner, LlmError, LlmProvider, LlmProviderId, Ollama, OpenAi, OpenRouter,
+    anthropic, catalog, groq, hetzner, ollama, openai, openrouter,
 };
 use crate::secrets::Secrets;
 use crate::settings::AiSettings;
@@ -57,6 +57,9 @@ impl LlmSource for Providers {
             LlmProviderId::Groq => Arc::new(Groq::new(client, groq::BASE_URL, key, model)),
             LlmProviderId::Hetzner => {
                 Arc::new(Hetzner::new(client, hetzner::BASE_URL, key, model))
+            }
+            LlmProviderId::OpenRouter => {
+                Arc::new(OpenRouter::new(client, openrouter::BASE_URL, key, model))
             }
             LlmProviderId::Ollama => unreachable!("handled above"),
         };

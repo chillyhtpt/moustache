@@ -19,6 +19,7 @@ const PROVIDER_NAMES: Record<LlmProviderId, string> = {
   openai: "OpenAI",
   groq: "Groq",
   hetzner: "Hetzner",
+  openrouter: "OpenRouter",
   ollama: "Ollama",
 };
 
